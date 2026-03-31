@@ -22,20 +22,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     
     setTheme(initialTheme);
     setMounted(true);
-    
-    // Watch for system preference changes if no manual theme is set
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      if (!localStorage.getItem("theme")) {
-        const newTheme = e.matches ? "dark" : "light";
-        setTheme(newTheme);
-        root.classList.toggle("dark", e.matches);
-        root.style.colorScheme = newTheme;
-      }
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   const toggleTheme = () => {
