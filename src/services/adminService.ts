@@ -18,14 +18,16 @@ export const adminService = {
         .from("settings")
         .select("value")
         .eq("id", ADMIN_CONFIG_ID)
-        .single();
+        .limit(1);
       
-      if (error && error.code !== "PGRST116") { // PGRST116 is code for 'no rows returned'
+      if (error) {
         console.error("Error fetching admin config:", error);
         return null;
       }
       
-      return data?.value as AdminConfig || null;
+      if (!data || data.length === 0) return null;
+      
+      return data[0].value as AdminConfig || null;
     } catch (error) {
       console.error("Error getting admin config:", error);
       return null;
