@@ -6,18 +6,26 @@ const COURSES_TABLE = "courses";
 export const courseService = {
   /**
    * Fetches all courses from Supabase.
+   * @param onlyPublished If true, only returns courses marked as is_published.
    */
-  async getCourses(): Promise<Course[]> {
+  async getCourses(onlyPublished: boolean = false): Promise<Course[]> {
     try {
-      const { data, error } = await supabase
+      let query = supabase
         .from(COURSES_TABLE)
         .select("*")
         .order("title", { ascending: true });
       
+      if (onlyPublished) {
+        query = query.eq("is_published", true);
+      }
+
+      const { data, error } = await query;
+      
       if (error) throw error;
       
       if (!data || data.length === 0) {
-        return Object.values(coursesData); // Fallback to static data
+        const staticData = Object.values(coursesData);
+        return onlyPublished ? staticData as any : staticData; 
       }
 
       return data.map(course => ({
@@ -27,10 +35,29 @@ export const courseService = {
         careerPaths: course.career_paths,
         createdAt: course.created_at,
         updatedAt: course.updated_at,
+        is_published: course.is_published ?? true
       })) as Course[];
     } catch (error) {
       console.error("Error fetching courses, falling back to static data:", error);
       return Object.values(coursesData);
+    }
+  },
+
+  /**
+   * Toggles course visibility.
+   */
+  async toggleVisibility(id: string, isPublished: boolean) {
+    try {
+      const { error } = await supabase
+        .from(COURSES_TABLE)
+        .update({ is_published: isPublished })
+        .eq("id", id);
+      
+      if (error) throw error;
+      return { success: true };
+    } catch (error: any) {
+      console.error("Error toggling visibility:", error);
+      throw new Error(error.message);
     }
   },
 

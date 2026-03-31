@@ -24,8 +24,9 @@ export function Faculty() {
   const [verifyingId, setVerifyingId] = useState<string | null>(null);
 
   useEffect(() => {
+    // Only show published faculty members to the public
     const unsub = facultyService.subscribeToFaculty((data) => {
-      setFacultyMembers(data);
+      setFacultyMembers(data.filter(m => m.is_published));
       setLoading(false);
     });
     return () => unsub();

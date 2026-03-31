@@ -9,6 +9,7 @@ export interface Testimonial {
   avatar: string;
   rating: number;
   year: string;
+  is_published: boolean;
   createdAt?: string;
 }
 
@@ -18,12 +19,18 @@ export const testimonialService = {
   /**
    * Fetches all testimonials from Supabase.
    */
-  async getTestimonials(): Promise<Testimonial[]> {
+  async getTestimonials(onlyPublished: boolean = false): Promise<Testimonial[]> {
     try {
-      const { data, error } = await supabase
+      let query = supabase
         .from(TESTIMONIALS_TABLE)
         .select("*")
         .order("created_at", { ascending: false });
+      
+      if (onlyPublished) {
+        query = query.eq("is_published", true);
+      }
+
+      const { data, error } = await query;
       
       if (error) throw error;
 
@@ -31,10 +38,31 @@ export const testimonialService = {
         return defaultTestimonials as any; // Fallback to static data
       }
 
-      return data as Testimonial[];
+      return data.map(t => ({
+        ...t,
+        is_published: t.is_published ?? true
+      })) as Testimonial[];
     } catch (error) {
       console.error("Error fetching testimonials, falling back to static data:", error);
       return defaultTestimonials as any;
+    }
+  },
+
+  /**
+   * Toggles testimonial visibility.
+   */
+  async toggleVisibility(id: string, isPublished: boolean) {
+    try {
+      const { error } = await supabase
+        .from(TESTIMONIALS_TABLE)
+        .update({ is_published: isPublished })
+        .eq("id", id);
+      
+      if (error) throw error;
+      return { success: true };
+    } catch (error: any) {
+      console.error("Error toggling visibility:", error);
+      throw new Error(error.message);
     }
   },
 

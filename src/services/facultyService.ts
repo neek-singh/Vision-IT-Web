@@ -8,6 +8,7 @@ export interface FacultyMember {
   specialization: string;
   experience: string;
   summary: string;
+  is_published: boolean;
   image?: string;
   linkedIn?: string;
   email?: string;
@@ -20,13 +21,20 @@ const FACULTY_TABLE = "faculty";
 export const facultyService = {
   /**
    * Fetches all faculty members from Supabase.
+   * @param onlyPublished If true, only returns faculty marked as is_published.
    */
-  async getFaculty(): Promise<FacultyMember[]> {
+  async getFaculty(onlyPublished: boolean = false): Promise<FacultyMember[]> {
     try {
-      const { data, error } = await supabase
+      let query = supabase
         .from(FACULTY_TABLE)
         .select("*")
         .order("name", { ascending: true });
+      
+      if (onlyPublished) {
+        query = query.eq("is_published", true);
+      }
+
+      const { data, error } = await query;
       
       if (error) throw error;
       
@@ -41,6 +49,7 @@ export const facultyService = {
         specialization: m.specialization,
         experience: m.experience,
         summary: m.summary,
+        is_published: m.is_published ?? true,
         image: m.image,
         linkedIn: m.linked_in,
         email: m.email,
@@ -52,6 +61,25 @@ export const facultyService = {
       return defaultFaculty as any;
     }
   },
+
+  /**
+   * Toggles faculty visibility.
+   */
+  async toggleVisibility(id: string, isPublished: boolean) {
+    try {
+      const { error } = await supabase
+        .from(FACULTY_TABLE)
+        .update({ is_published: isPublished })
+        .eq("id", id);
+      
+      if (error) throw error;
+      return { success: true };
+    } catch (error: any) {
+      console.error("Error toggling visibility:", error);
+      throw new Error(error.message);
+    }
+  },
+// ... rest of the methods ...
 
   /**
    * Real-time listener for faculty members.

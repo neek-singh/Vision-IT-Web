@@ -71,7 +71,7 @@ export default function CoursesPage() {
 
     // Fetch dynamic updates
     const fetchDynamic = async () => {
-      const dynamic = await courseService.getCourses();
+      const dynamic = await courseService.getCourses(true); // onlyPublished = true
       if (dynamic && dynamic.length > 0) {
         const mapped = dynamic.map(c => ({
           ...c,

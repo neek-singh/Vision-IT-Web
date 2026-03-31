@@ -15,7 +15,9 @@ import {
   GraduationCap,
   RefreshCw,
   Loader2,
-  Database
+  Database,
+  Eye,
+  EyeOff
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -32,6 +34,14 @@ export default function FacultyManagementPage() {
     });
     return () => unsub();
   }, []);
+
+  const handleToggleVisibility = async (id: string, currentStatus: boolean) => {
+    try {
+      await facultyService.toggleVisibility(id, !currentStatus);
+    } catch (err) {
+      alert("Failed to toggle visibility");
+    }
+  };
 
   const handleMigrate = async () => {
     if (!confirm("Import default faculty data?")) return;
@@ -100,12 +110,20 @@ export default function FacultyManagementPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   key={member.id}
-                  className="p-8 rounded-[2.5rem] bg-zinc-900 border border-zinc-800 group relative overflow-hidden"
+                  className={cn(
+                    "p-8 rounded-[2.5rem] bg-zinc-900 border border-zinc-800 group relative overflow-hidden transition-all duration-500",
+                    !member.is_published && "opacity-50 grayscale-[0.5]"
+                  )}
                 >
                   <div className="flex flex-col h-full">
                     <div className="flex justify-between items-start mb-6">
                        <div className="space-y-1">
-                          <h4 className="text-xl font-black text-white">{member.name}</h4>
+                          <div className="flex items-center gap-2">
+                             <h4 className="text-xl font-black text-white">{member.name}</h4>
+                             {!member.is_published && (
+                                <span className="px-2 py-0.5 rounded-md bg-zinc-800 text-[8px] font-black text-zinc-500 uppercase tracking-widest border border-zinc-700">Hidden</span>
+                             )}
+                          </div>
                           <span className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">{member.role}</span>
                        </div>
                        <div className="w-12 h-12 rounded-2xl bg-zinc-800 flex items-center justify-center text-zinc-600 border border-zinc-700">
@@ -119,6 +137,16 @@ export default function FacultyManagementPage() {
 
                     <div className="flex items-center justify-between pt-6 border-t border-zinc-800">
                        <div className="flex gap-2">
+                          <button 
+                            onClick={() => handleToggleVisibility(member.id, member.is_published)}
+                            className={cn(
+                              "w-9 h-9 rounded-lg flex items-center justify-center transition-colors",
+                              member.is_published ? "bg-zinc-800 text-zinc-500 hover:text-white" : "bg-primary/20 text-primary hover:bg-primary/30"
+                            )}
+                            title={member.is_published ? "Hide from website" : "Show on website"}
+                          >
+                            {member.is_published ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                          </button>
                           <button className="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-500 hover:text-white transition-colors">
                              <Trash2 className="w-4 h-4" onClick={() => handleDelete(member.id)} />
                           </button>

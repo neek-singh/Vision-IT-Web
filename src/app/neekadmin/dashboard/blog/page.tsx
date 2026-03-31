@@ -2,16 +2,30 @@
 
 import React, { useEffect, useState } from "react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
-import { Newspaper, Plus, Search, Edit, Trash2, Loader2, Database, AlertCircle, ExternalLink } from "lucide-react";
+import { 
+  Newspaper, 
+  Plus, 
+  Search, 
+  Edit, 
+  Trash2, 
+  Loader2, 
+  Database, 
+  AlertCircle, 
+  ExternalLink,
+  Eye,
+  EyeOff
+} from "lucide-react";
 import { blogService, BlogPost } from "@/services/blogService";
 import { blogPosts as staticBlogPosts } from "@/data/blog";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export default function BlogAdmin() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [migrating, setMigrating] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const unsubscribe = blogService.subscribeToPosts((data) => {
@@ -20,6 +34,14 @@ export default function BlogAdmin() {
     });
     return () => unsubscribe();
   }, []);
+
+  const handleToggleVisibility = async (id: string, currentStatus: boolean) => {
+    try {
+      await blogService.toggleVisibility(id, !currentStatus);
+    } catch (err) {
+      alert("Failed to toggle visibility");
+    }
+  };
 
   const handleDelete = async (id: string) => {
     if (confirm("Are you sure you want to delete this insight? This action cannot be undone.")) {
@@ -34,7 +56,7 @@ export default function BlogAdmin() {
   const handleMigrate = async () => {
     setMigrating(true);
     try {
-      await blogService.migrateStaticData(Object.values(staticBlogPosts));
+      await blogService.migrateStaticData(Object.values(staticBlogPosts) as any);
       alert("Migration complete! Static data is now synced to Supabase.");
     } catch (error) {
       alert("Migration failed. Please check your network or Supabase policies.");
@@ -43,13 +65,19 @@ export default function BlogAdmin() {
     }
   };
 
+  const filteredPosts = posts.filter(post => 
+    post.title.toLowerCase().includes(search.toLowerCase()) || 
+    post.category.toLowerCase().includes(search.toLowerCase()) ||
+    post.author.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <AdminLayout>
+    <AdminLayout title="Blog Registry" subtitle={`Reviewing ${posts.length} published intellectual assets`}>
       <div className="space-y-10">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-3xl font-black text-white tracking-tight uppercase">Blog Registry</h2>
-            <p className="text-zinc-500 font-bold text-sm">Reviewing {posts.length} published intellectual assets.</p>
+            <h2 className="text-3xl font-black text-white tracking-tight uppercase">Article Management</h2>
+            <p className="text-zinc-500 font-bold text-sm">Create and curate your thought leadership.</p>
           </div>
           <div className="flex items-center gap-4">
             {posts.length === 0 && !loading && (
@@ -76,7 +104,13 @@ export default function BlogAdmin() {
            <div className="p-8 border-b border-zinc-800/50 bg-zinc-900/20 flex items-center justify-between">
               <div className="relative w-80 group">
                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600 group-focus-within:text-primary transition-colors" />
-                 <input type="text" placeholder="Filter articles..." className="w-full pl-12 pr-4 py-2 bg-transparent border-none text-sm font-medium outline-none text-white" />
+                 <input 
+                    type="text" 
+                    placeholder="Filter articles..." 
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="w-full pl-12 pr-4 py-2 bg-transparent border-none text-sm font-medium outline-none text-white" 
+                 />
               </div>
               <div className="flex items-center gap-2">
                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -90,26 +124,29 @@ export default function BlogAdmin() {
                    <Loader2 className="w-10 h-10 text-primary animate-spin" />
                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Fetching Knowledge...</p>
                 </div>
-              ) : posts.length === 0 ? (
+              ) : filteredPosts.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-32 space-y-6 text-center px-10">
                    <div className="p-6 bg-zinc-800/50 rounded-full">
                      <AlertCircle className="w-12 h-12 text-zinc-700" />
                    </div>
                    <div>
-                     <h3 className="text-xl font-black text-white tracking-tight uppercase mb-2">No Insights Yet</h3>
-                     <p className="text-zinc-500 text-sm font-medium">Your database is currently empty. Start publication or migrate static data.</p>
+                     <h3 className="text-xl font-black text-white tracking-tight uppercase mb-2">No Insights Found</h3>
+                     <p className="text-zinc-500 text-sm font-medium">Try a different search or create a new blog post.</p>
                    </div>
                 </div>
               ) : (
                 <AnimatePresence mode="popLayout">
-                  {posts.map((post, idx) => (
+                  {filteredPosts.map((post, idx) => (
                     <motion.div 
                       key={post.id} 
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ delay: idx * 0.05 }}
-                      className="p-6 flex items-center justify-between hover:bg-white/5 transition-colors group"
+                      className={cn(
+                        "p-6 flex items-center justify-between hover:bg-white/5 transition-all group duration-500",
+                        !post.is_published && "opacity-50 grayscale-[0.5]"
+                      )}
                     >
                       <div className="flex items-center gap-6">
                           <div className="w-14 h-14 rounded-2xl bg-zinc-800 overflow-hidden border border-zinc-700 relative group-hover:border-primary/50 transition-all shadow-lg flex-shrink-0">
@@ -124,6 +161,9 @@ export default function BlogAdmin() {
                           <div className="min-w-0">
                             <div className="flex items-center gap-3 mb-1">
                                <h3 className="text-sm font-black text-white truncate max-w-md">{post.title}</h3>
+                               {!post.is_published && (
+                                 <span className="px-2 py-0.5 rounded-md bg-zinc-800 text-[8px] font-black text-zinc-500 uppercase tracking-widest border border-zinc-700">Draft</span>
+                               )}
                                {post.isFeatured && (
                                  <span className="px-2 py-0.5 bg-primary/10 text-primary text-[8px] font-black uppercase tracking-widest rounded-md border border-primary/20">Featured</span>
                                )}
@@ -144,6 +184,16 @@ export default function BlogAdmin() {
                             <p className="text-xs font-bold text-zinc-400">{post.author}</p>
                           </div>
                           <div className="flex items-center gap-2">
+                             <button 
+                                onClick={() => handleToggleVisibility(post.id, post.is_published ?? true)}
+                                className={cn(
+                                  "p-2.5 transition-all rounded-xl shadow-inner",
+                                  post.is_published ? "text-zinc-600 hover:text-white" : "text-primary hover:text-primary/70 bg-primary/5"
+                                )}
+                                title={post.is_published ? "Unpublish and hide" : "Publish to live site"}
+                             >
+                                {post.is_published ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                             </button>
                              <Link 
                                 href={`/blog/${post.id}`} 
                                 target="_blank"

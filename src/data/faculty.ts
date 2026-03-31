@@ -5,6 +5,9 @@ export interface FacultyMember {
   specialization: string;
   experience: string;
   summary: string;
+  linkedIn?: string;
+  email?: string;
+  is_published?: boolean;
 }
 
 export const defaultFaculty: FacultyMember[] = [

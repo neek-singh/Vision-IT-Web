@@ -13,7 +13,9 @@ import {
   RefreshCw, 
   Loader2, 
   Database,
-  GraduationCap
+  GraduationCap,
+  Eye,
+  EyeOff
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -30,6 +32,14 @@ export default function TestimonialManagementPage() {
     });
     return () => unsub();
   }, []);
+
+  const handleToggleVisibility = async (id: string, currentStatus: boolean) => {
+    try {
+      await testimonialService.toggleVisibility(id, !currentStatus);
+    } catch (err) {
+      alert("Failed to toggle visibility");
+    }
+  };
 
   const handleMigrate = async () => {
     if (!confirm("Import default student stories?")) return;
@@ -98,16 +108,24 @@ export default function TestimonialManagementPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   key={testimonial.id || testimonial.name}
-                  className="p-8 rounded-[2.5rem] bg-zinc-900 border border-zinc-800 group relative flex flex-col"
+                  className={cn(
+                    "p-8 rounded-[2.5rem] bg-zinc-900 border border-zinc-800 group relative flex flex-col transition-all duration-500",
+                    !testimonial.is_published && "opacity-50 grayscale"
+                  )}
                 >
                   <div className="absolute top-6 right-8 text-primary/10">
                      <Quote className="w-12 h-12" />
                   </div>
 
-                  <div className="flex gap-1 mb-6">
-                     {[...Array(5)].map((_, i) => (
-                        <Star key={i} className={cn("w-3 h-3", i < testimonial.rating ? "fill-amber-400 text-amber-400" : "text-zinc-800")} />
-                     ))}
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="flex gap-1">
+                      {[...Array(5)].map((_, i) => (
+                          <Star key={i} className={cn("w-3 h-3", i < testimonial.rating ? "fill-amber-400 text-amber-400" : "text-zinc-800")} />
+                      ))}
+                    </div>
+                    {!testimonial.is_published && (
+                      <span className="px-2 py-0.5 rounded-md bg-zinc-800 text-[8px] font-black text-zinc-500 uppercase tracking-widest border border-zinc-700">Hidden</span>
+                    )}
                   </div>
 
                   <p className="text-[11px] text-zinc-400 font-medium italic leading-relaxed mb-8 flex-grow">
@@ -118,14 +136,24 @@ export default function TestimonialManagementPage() {
                      <div className="w-10 h-10 rounded-xl overflow-hidden border border-zinc-700">
                         <img src={testimonial.avatar} alt="" className="w-full h-full object-cover" />
                      </div>
-                     <div className="flex-grow">
-                        <h5 className="text-[11px] font-black text-white uppercase tracking-wider">{testimonial.name}</h5>
+                     <div className="flex-grow min-w-0">
+                        <h5 className="text-[11px] font-black text-white uppercase tracking-wider truncate">{testimonial.name}</h5>
                         <div className="flex items-center gap-2 text-[9px] font-bold text-zinc-500 uppercase tracking-widest mt-0.5">
                            <GraduationCap className="w-3.5 h-3.5 text-primary" />
-                           {testimonial.course}
+                           <span className="truncate">{testimonial.course}</span>
                         </div>
                      </div>
                      <div className="flex gap-1">
+                        <button 
+                          onClick={() => handleToggleVisibility(testimonial.id!, testimonial.is_published)}
+                          className={cn(
+                            "p-2 transition-colors",
+                            testimonial.is_published ? "text-zinc-600 hover:text-white" : "text-primary hover:text-primary/70"
+                          )}
+                          title={testimonial.is_published ? "Hide from website" : "Show on website"}
+                        >
+                           {testimonial.is_published ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                        </button>
                         <button 
                           onClick={() => handleDelete(testimonial.id!)}
                           className="p-2 text-zinc-600 hover:text-red-500 transition-colors"

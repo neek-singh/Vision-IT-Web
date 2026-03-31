@@ -19,7 +19,9 @@ import {
   CheckCircle2,
   RefreshCw,
   MoreVertical,
-  BookOpen
+  BookOpen,
+  Eye,
+  EyeOff
 } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -39,6 +41,17 @@ export default function CourseAdminPage() {
     });
     return () => unsubscribe();
   }, []);
+
+  const handleToggleVisibility = async (id: string, currentStatus: boolean) => {
+    try {
+      await courseService.toggleVisibility(id, !currentStatus);
+      setNotification({ type: 'success', message: `Course ${!currentStatus ? 'published' : 'hidden'} successfully.` });
+    } catch (err: any) {
+      setNotification({ type: 'error', message: "Failed to update visibility." });
+    } finally {
+      setTimeout(() => setNotification(null), 2000);
+    }
+  };
 
   const handleMigrate = async () => {
     if (!confirm("This will import all courses from the static file to Firestore. Continue?")) return;
@@ -69,7 +82,7 @@ export default function CourseAdminPage() {
 
   const filteredCourses = courses.filter(c => 
     c.title.toLowerCase().includes(search.toLowerCase()) || 
-    c.fullName.toLowerCase().includes(search.toLowerCase())
+    (c as any).fullName?.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -131,19 +144,27 @@ export default function CourseAdminPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
            {loading ? (
              [1,2,3].map(i => (
-               <div key={i} className="h-64 rounded-[2.5rem] bg-zinc-900/50 border border-zinc-800 animate-pulse" />
+                <div key={i} className="h-64 rounded-[2.5rem] bg-zinc-900/50 border border-zinc-800 animate-pulse" />
              ))
            ) : filteredCourses.length > 0 ? (
              filteredCourses.map((course) => (
                <motion.div 
                  layout
                  key={course.id}
-                 className="group relative h-full flex flex-col p-8 rounded-[2.5rem] bg-zinc-900 border border-zinc-800 hover:border-primary/30 transition-all duration-500 shadow-xl"
+                 className={cn(
+                    "group relative h-full flex flex-col p-8 rounded-[2.5rem] bg-zinc-900 border border-zinc-800 hover:border-primary/30 transition-all duration-500 shadow-xl",
+                    !(course as any).is_published && "opacity-60 grayscale-[0.5]"
+                 )}
                >
                  {/* ID / Badge */}
                  <div className="flex items-center justify-between mb-8">
-                    <div className="px-3 py-1 bg-white/5 rounded-full text-[9px] font-black text-zinc-500 uppercase tracking-widest border border-white/5">
-                      ID: {course.id}
+                    <div className="flex items-center gap-2">
+                      <div className="px-3 py-1 bg-white/5 rounded-full text-[9px] font-black text-zinc-500 uppercase tracking-widest border border-white/5">
+                        ID: {course.id}
+                      </div>
+                      {!(course as any).is_published && (
+                        <span className="px-2 py-0.5 rounded-md bg-zinc-800 text-[8px] font-black text-zinc-500 uppercase tracking-widest border border-zinc-700">Hidden</span>
+                      )}
                     </div>
                     {course.tag && (
                       <div className={cn("px-4 py-1 rounded-full text-[9px] font-black text-white uppercase tracking-widest", course.tag.color)}>
@@ -153,29 +174,39 @@ export default function CourseAdminPage() {
                  </div>
 
                  {/* Icon Representation */}
-                 <div className={cn("w-14 h-14 rounded-2xl bg-gradient-to-br flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-500", course.color)}>
+                 <div className={cn("w-14 h-14 rounded-2xl bg-gradient-to-br flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg", course.color || "from-zinc-700 to-zinc-900")}>
                     <BookOpen className="w-6 h-6" />
                  </div>
 
                  <div className="flex-grow space-y-2">
                     <h3 className="text-xl font-black text-white uppercase tracking-tight leading-none">{course.title}</h3>
-                    <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-relaxed line-clamp-1">{course.fullName}</p>
+                    <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-relaxed line-clamp-1">{(course as any).fullName || course.title}</p>
                  </div>
 
                  {/* Operational Stats */}
                  <div className="mt-8 pt-6 border-t border-zinc-800 grid grid-cols-2 gap-4">
                     <div className="space-y-1">
                        <span className="text-[8px] font-black text-zinc-700 uppercase tracking-[0.2em]">Duration</span>
-                       <p className="text-[10px] font-black text-zinc-400 flex items-center gap-2"><Clock className="w-3 h-3 text-primary" /> {course.duration}</p>
+                       <p className="text-[10px] font-black text-zinc-400 flex items-center gap-2 max-w-full truncate"><Clock className="w-3 h-3 text-primary" /> {course.duration}</p>
                     </div>
                     <div className="space-y-1">
                        <span className="text-[8px] font-black text-zinc-700 uppercase tracking-[0.2em]">Fees Profile</span>
-                       <p className="text-[10px] font-black text-zinc-400 flex items-center gap-2"><CreditCard className="w-3 h-3 text-emerald-500" /> {course.fees.split('–')[0].trim()}</p>
+                       <p className="text-[10px] font-black text-zinc-400 flex items-center gap-2 max-w-full truncate"><CreditCard className="w-3 h-3 text-emerald-500" /> {course.fees?.split('–')[0].trim() || "Contact Us"}</p>
                     </div>
                  </div>
 
                  {/* Interaction Overlay */}
                  <div className="mt-8 flex items-center gap-3">
+                    <button 
+                      onClick={() => handleToggleVisibility(course.id, (course as any).is_published ?? true)}
+                      className={cn(
+                        "w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300",
+                        ((course as any).is_published ?? true) ? "bg-white/5 text-zinc-600 hover:text-white" : "bg-primary/20 text-primary hover:bg-primary/30"
+                      )}
+                      title={((course as any).is_published ?? true) ? "Hide from website" : "Show on website"}
+                    >
+                      {((course as any).is_published ?? true) ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                    </button>
                     <Link 
                       href={`/neekadmin/dashboard/courses/edit/${course.id}`}
                       className="flex-grow h-12 bg-white/5 border border-white/5 rounded-xl flex items-center justify-center gap-2 text-zinc-400 font-bold text-[10px] uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"

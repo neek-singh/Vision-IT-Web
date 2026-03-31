@@ -34,16 +34,16 @@ export default function BlogPage() {
     // Initial fetch from Firestore
     const fetchPosts = async () => {
       try {
-        const firestorePosts = await blogService.getPosts();
-        if (firestorePosts.length > 0) {
-          // Merge logic: Firestore posts take priority, static posts act as fallback
-          const firestoreIds = new Set(firestorePosts.map(p => p.id));
-          const combined = [
-            ...firestorePosts,
-            ...Object.values(staticData).filter(p => !firestoreIds.has(p.id))
-          ];
-          setPosts(combined);
-        }
+        const firestorePosts = await blogService.getPosts(true); // onlyPublished = true
+        
+        // Merge logic: Firestore posts take priority, static posts act as fallback
+        const firestoreIds = new Set(firestorePosts.map(p => p.id));
+        const combined = [
+          ...firestorePosts,
+          ...Object.values(staticData).filter(p => !firestoreIds.has(p.id) && (p as any).is_published !== false)
+        ];
+        
+        setPosts(combined);
       } catch (error) {
         console.error("Failed to sync blog updates:", error);
       } finally {
@@ -55,6 +55,9 @@ export default function BlogPage() {
   }, []);
 
   const filteredPosts = posts.filter(post => {
+    // Ensure only published posts are shown
+    if (post.is_published === false) return false;
+    
     const matchesCategory = activeCategory === "All" || post.category === activeCategory;
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                          post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||

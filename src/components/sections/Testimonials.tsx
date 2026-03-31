@@ -20,8 +20,9 @@ export function Testimonials() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Only show published testimonials to the public
     const unsub = testimonialService.subscribeToTestimonials((data) => {
-      setTestimonials(data);
+      setTestimonials(data.filter(t => t.is_published));
       setLoading(false);
     });
     return () => unsub();

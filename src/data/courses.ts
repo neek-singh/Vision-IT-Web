@@ -19,6 +19,7 @@ export interface Course {
   level?: string;
   category?: string;
   isPopular?: boolean;
+  is_published?: boolean;
 }
 
 export const coursesData: Record<string, Course> = {

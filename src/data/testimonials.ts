@@ -5,6 +5,7 @@ export interface Testimonial {
   avatar: string;
   rating: number;
   year: string;
+  is_published?: boolean;
 }
 
 export const defaultTestimonials: Testimonial[] = [

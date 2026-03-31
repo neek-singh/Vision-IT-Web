@@ -10,6 +10,7 @@ export interface BlogPost {
   image: string;
   tags: string[];
   isFeatured?: boolean;
+  is_published?: boolean;
 }
 
 export const blogPosts: Record<string, BlogPost> = {

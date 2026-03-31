@@ -12,6 +12,7 @@ export interface BlogPost {
   image: string;
   tags: string[];
   isFeatured?: boolean;
+  is_published?: boolean;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -21,13 +22,20 @@ const BLOG_TABLE = "blogs";
 export const blogService = {
   /**
    * Fetches all blog posts from Supabase.
+   * @param onlyPublished If true, only returns posts marked as is_published.
    */
-  async getPosts(): Promise<BlogPost[]> {
+  async getPosts(onlyPublished: boolean = false): Promise<BlogPost[]> {
     try {
-      const { data, error } = await supabase
+      let query = supabase
         .from(BLOG_TABLE)
         .select("*")
         .order("created_at", { ascending: false });
+      
+      if (onlyPublished) {
+        query = query.eq("is_published", true);
+      }
+
+      const { data, error } = await query;
       
       if (error) throw error;
       
@@ -43,12 +51,31 @@ export const blogService = {
         image: post.image,
         tags: post.tags,
         isFeatured: post.is_featured,
+        is_published: post.is_published ?? true,
         createdAt: post.created_at,
         updatedAt: post.updated_at,
       })) as BlogPost[];
     } catch (error) {
       console.error("Error fetching blogs:", error);
       return [];
+    }
+  },
+
+  /**
+   * Toggles blog visibility.
+   */
+  async toggleVisibility(id: string, isPublished: boolean) {
+    try {
+      const { error } = await supabase
+        .from(BLOG_TABLE)
+        .update({ is_published: isPublished })
+        .eq("id", id);
+      
+      if (error) throw error;
+      return { success: true };
+    } catch (error: any) {
+      console.error("Error toggling visibility:", error);
+      throw new Error(error.message);
     }
   },
 
@@ -80,6 +107,7 @@ export const blogService = {
         image: data.image,
         tags: data.tags,
         isFeatured: data.is_featured,
+        is_published: data.is_published ?? true,
         createdAt: data.created_at,
         updatedAt: data.updated_at,
       } as BlogPost;
