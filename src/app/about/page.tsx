@@ -1,0 +1,565 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import { 
+  Target, 
+  Eye, 
+  CheckCircle2, 
+  Heart, 
+  Award, 
+  Users, 
+  GraduationCap,
+  Sparkles,
+  ArrowRight,
+  Monitor,
+  Lightbulb,
+  IndianRupee,
+  Clock,
+  Briefcase,
+  UserCheck,
+  ShieldCheck,
+  BookOpen,
+  Calculator,
+  FileText,
+  Keyboard,
+  Server,
+  Globe,
+  Palette,
+  Cpu,
+  Wifi,
+  Layout,
+  Smile,
+  Zap,
+  TrendingUp,
+  Facebook,
+  Instagram,
+  Youtube,
+  MessageCircle,
+  Share2
+} from "lucide-react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { mockTeachers } from "@/data/verification";
+
+export default function AboutPage() {
+  return (
+    <div className="min-h-screen bg-background pb-16 pt-6 transition-colors duration-500">
+      {/* Hero Section */}
+      <section className="py-8 md:py-10 px-6 relative overflow-hidden bg-background">
+        <div className="absolute top-0 right-0 w-[40%] h-[100%] bg-primary/[0.03] dark:bg-primary/[0.05] -skew-x-12 -z-10" />
+        <div className="max-w-7xl mx-auto space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest"
+          >
+            <Sparkles className="w-3 h-3" />
+            Our Story & Commitment
+          </motion.div>
+          <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white max-w-4xl leading-[1.1]">
+            Building the Future of <span className="text-gradient">Pratuppur's Tech Talents</span>
+          </h1>
+          <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base max-w-3xl leading-relaxed">
+            Vision IT Computer Institute, Pratuppur एक trusted and professional computer training institute है, जहाँ students को modern digital skills और career-oriented education प्रदान की जाती है।
+          </p>
+        </div>
+      </section>
+
+      {/* Mission & Vision Cards */}
+      <section className="px-6 mb-16 bg-background">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          <SectionCard 
+            icon={<Target className="w-8 h-8" />} 
+            title="Our Mission" 
+            text="हमारा mission है कि हर student को ऐसा education platform मिले जहाँ वह confidently computer सीख सके और अपने career में आगे बढ़ सके।"
+            accent="bg-blue-600"
+            points={[
+              "Strong computer basics develop करना",
+              "Practical skills improve करना",
+              "Employment opportunities के लिए तैयार करना",
+              "Digital India की journey में योगदान देना"
+            ]}
+          />
+          <SectionCard 
+            icon={<Eye className="w-8 h-8" />} 
+            title="Our Vision" 
+            text="हमारा vision है कि Pratuppur और आसपास के क्षेत्र के students को best computer education मिले और वे digital era में confidently आगे बढ़ें।"
+            accent="bg-indigo-600"
+            points={[
+              "Real-world practical knowledge",
+              "Job-ready and future-ready learners",
+              "Building real confidence in technology",
+              "Community growth through education"
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Why Choose Us Detailed */}
+      <section className="py-10 bg-surface-secondary px-6 transition-colors duration-500">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="space-y-10">
+            <div className="space-y-4">
+              <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Why Vision IT?</h2>
+              <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
+                Quality Education, Practical Training, and <span className="text-gradient">Personal Attention</span>
+              </h3>
+              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
+                Vision IT Computer Institute में beginner to advanced level तक training दी जाती है, ताकि हर student अपनी learning journey को आसानी से complete कर सके।
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <ValueItem icon={<Users />} title="Experienced Faculty" text="Experienced and supportive faculty for expert guidance." />
+              <ValueItem icon={<Monitor />} title="Practical Learning" text="Hands-on practice-based learning approach." />
+              <ValueItem icon={<Lightbulb />} title="Easy Teaching" text="Simple and easy-to-understand teaching method." />
+              <ValueItem icon={<IndianRupee />} title="Affordable Fees" text="Quality education with affordable course fees." />
+              <ValueItem icon={<Clock />} title="Batch System" text="Flexible batch system for student convenience." />
+              <ValueItem icon={<Briefcase />} title="Career Oriented" text="Career-oriented computer courses for better growth." />
+              <ValueItem icon={<UserCheck />} title="Individual Attention" text="Personalized focus and individual attention to every student." />
+              <ValueItem icon={<ShieldCheck />} title="Disciplined Environment" text="Friendly yet disciplined learning environment." />
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="p-8 glass rounded-[3.5rem] bg-white dark:bg-primary/5 relative overflow-hidden"
+          >
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl -z-10" />
+            <h4 className="text-2xl font-bold mb-8 flex items-center gap-3 text-zinc-900 dark:text-white">
+              <CheckCircle2 className="text-emerald-500 w-6 h-6" />
+              Our Core Principles
+            </h4>
+            <div className="space-y-6">
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                हम believe करते हैं कि हर student की learning speed अलग होती है। इसलिए हमारी teaching style simple, practical और student-friendly है।
+              </p>
+              <div className="space-y-4">
+                <PrincipleItem text="Step-by-step concepts realization" />
+                <PrincipleItem text="Daily practical practice sessions" />
+                <PrincipleItem text="Regular revision and doubt clearing" />
+                <PrincipleItem text="Affordable fees for everyone" />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Our Faculty Section */}
+      <section className="py-20 bg-background px-6 transition-colors duration-500 overflow-hidden relative">
+        <div className="absolute top-1/4 right-0 w-[30%] h-[50%] bg-primary/[0.02] dark:bg-primary/[0.04] blur-3xl rounded-full -z-10" />
+        <div className="max-w-7xl mx-auto space-y-16">
+          <div className="max-w-3xl space-y-4">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest"
+            >
+              The People Who Lead You
+            </motion.div>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white"
+            >
+              Our Expert <span className="text-gradient">Faculty</span>
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-zinc-600 dark:text-zinc-400 text-sm md:text-lg leading-relaxed"
+            >
+              Vision IT Computer Institute Pratuppur की सबसे बड़ी strength हमारी qualified, experienced और supportive faculty team है।
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <FacultyFeatureCard 
+              icon={<GraduationCap />}
+              title="Experienced & Skilled Trainers"
+              text="Programming, Accounting, Designing, Basic Computer और Office Applications में expert trainers जो current industry requirements के अनुसार training देते हैं।"
+              delay={0.2}
+            />
+            <FacultyFeatureCard 
+              icon={<Smile />}
+              title="Student Friendly Approach"
+              text="Simple teaching method, doubt clearing पर विशेष ध्यान, individual attention और एक friendly classroom environment maintain करना हमारी प्राथमिकता है।"
+              delay={0.3}
+            />
+            <FacultyFeatureCard 
+              icon={<Zap />}
+              title="Practical Oriented Guidance"
+              text="Vision IT में theory नहीं, बल्कि hands-on practical work कराया जाता है। Live projects और assignments के माध्यम से real experience दिया जाता है।"
+              delay={0.4}
+            />
+            <FacultyFeatureCard 
+              icon={<TrendingUp />}
+              title="Career Support & Motivation"
+              text="हम students को career guidance, motivation और personality improvement tips देते हैं ताकि वे future challenges के लिए पूरी तरह तैयार हो सकें।"
+              delay={0.5}
+            />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="p-8 glass rounded-[2.5rem] bg-zinc-50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 text-center"
+          >
+            <p className="text-zinc-700 dark:text-zinc-300 font-medium leading-relaxed italic">
+              "हमारे teachers का main focus सिर्फ syllabus complete करना नहीं, बल्कि हर student को concept clear कराना, practical skills develop कराना और confidence build करना है।"
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Meet Our Experts Section */}
+      <section className="py-20 bg-surface-secondary px-6 transition-colors duration-500 overflow-hidden relative">
+        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary/[0.03] to-transparent -z-10" />
+        <div className="max-w-7xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white"
+            >
+              Meet Our Expert <span className="text-gradient">Instructors</span>
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto text-sm md:text-base px-4"
+            >
+              Learn from the best. Our instructors come with industry experience and a passion for teaching.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {mockTeachers.map((teacher, index) => (
+              <FacultyProfileCard 
+                key={teacher.id}
+                name={teacher.name}
+                qualification={teacher.qualification}
+                experience={teacher.experience}
+                delay={0.2 + (index * 0.1)}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What We Offer Section */}
+      <section className="py-20 px-6 bg-background relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/[0.01] -z-10 blur-3xl rounded-full" />
+        <div className="max-w-7xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white"
+            >
+              What We <span className="text-gradient">Offer</span>
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed"
+            >
+              हमारे institute में students के लिए कई useful courses available हैं, जो उन्हें modern digital world के लिए तैयार करते हैं।
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <OfferCard icon={<BookOpen />} title="Basic Computer Course" delay={0.1} />
+            <OfferCard icon={<Calculator />} title="Tally / Accounting Course" delay={0.15} />
+            <OfferCard icon={<FileText />} title="MS Office" delay={0.2} />
+            <OfferCard icon={<Keyboard />} title="Typing" delay={0.25} />
+            <OfferCard icon={<Layout />} title="DCA" delay={0.3} />
+            <OfferCard icon={<Server />} title="PGDCA" delay={0.35} />
+            <OfferCard icon={<Globe />} title="Web Designing" delay={0.4} />
+            <OfferCard icon={<Palette />} title="Graphic Designing" delay={0.45} />
+            <OfferCard icon={<Cpu />} title="Computer Fundamentals" delay={0.5} />
+            <OfferCard icon={<Wifi />} title="Internet and Digital Skills" delay={0.55} />
+          </div>
+
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="text-center text-xs font-medium text-zinc-500 dark:text-zinc-500 italic pt-8"
+          >
+            इसके अलावा, students की जरूरत के अनुसार short-term and long-term courses भी available हो सकते हैं।
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Social Media Section */}
+      <section className="py-20 bg-surface-secondary px-6 transition-colors duration-500 overflow-hidden relative">
+        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl -z-10" />
+        <div className="max-w-7xl mx-auto space-y-16">
+          <div className="text-center space-y-4">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white"
+            >
+              Connect With Us on <span className="text-gradient">Social Media</span>
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed"
+            >
+              Vision IT Computer Institute Pratuppur के साथ जुड़े रहें और पाएँ latest updates, new batch announcements, और computer tips।
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <SocialMediaCard 
+              icon={<Facebook />} 
+              title="Facebook Page" 
+              text="Institute updates, event photos और student success stories के लिए follow करें।"
+              color="#1877F2"
+              delay={0.2}
+            />
+            <SocialMediaCard 
+              icon={<Instagram />} 
+              title="Instagram" 
+              text="Daily computer tips, learning reels और motivational content के लिए connect रहें।"
+              color="#E4405F"
+              delay={0.3}
+            />
+            <SocialMediaCard 
+              icon={<MessageCircle />} 
+              title="WhatsApp Group" 
+              text="New batch info और direct communication के लिए हमारे official group में join करें।"
+              color="#25D366"
+              delay={0.4}
+            />
+            <SocialMediaCard 
+              icon={<Youtube />} 
+              title="YouTube Channel" 
+              text="Free computer learning videos और practical guidance के लिए subscribe करें।"
+              color="#FF0000"
+              delay={0.5}
+            />
+          </div>
+
+          {/* Taglines Marquee-style */}
+          <div className="flex flex-wrap justify-center gap-4 pt-10">
+            <TaglineItem text="Learn Digital Skills – Stay Connected with Vision IT." />
+            <TaglineItem text="Follow • Learn • Grow with Vision IT Computer Institute." />
+            <TaglineItem text="Your Digital Learning Partner." />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="mt-16 px-6">
+        <div className="max-w-5xl mx-auto p-8 glass rounded-[3rem] text-center space-y-6 bg-gradient-premium shadow-2xl shadow-primary/20">
+          <h4 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-tight">
+            Ready to Build Your Digital Future?
+          </h4>
+          <p className="text-white/80 max-w-xl mx-auto leading-relaxed">
+            अगर आप एक ऐसे computer institute की तलाश में हैं जहाँ quality education और practical learning मिले, तो Vision IT आपके लिए सही choice है।
+          </p>
+          <Link
+            href="/admission"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-white text-primary rounded-2xl font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-2xl"
+          >
+            Start Your Journey
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function SectionCard({ icon, title, text, points, accent }: any) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="p-8 glass rounded-[3rem] bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 transition-all hover:shadow-2xl h-full flex flex-col"
+    >
+      <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center text-white mb-8", accent)}>
+        {icon}
+      </div>
+      <h4 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 uppercase tracking-wider">{title}</h4>
+      <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8 flex-1">{text}</p>
+      <ul className="space-y-4 pt-6 border-t border-zinc-100 dark:border-zinc-800">
+        {points.map((p: string, i: number) => (
+          <li key={i} className="flex items-center gap-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+            <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+            {p}
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  );
+}
+
+function ValueItem({ icon, title, text }: any) {
+  return (
+    <div className="flex items-start gap-4">
+      <div className="w-10 h-10 rounded-xl bg-primary/5 text-primary flex items-center justify-center shrink-0 border border-primary/10">
+        <div className="w-[18px] h-[18px]">
+          {icon}
+        </div>
+      </div>
+      <div className="space-y-1">
+        <h5 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">{title}</h5>
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">{text}</p>
+      </div>
+    </div>
+  );
+}
+
+function PrincipleItem({ text }: { text: string }) {
+  return (
+    <div className="flex items-center gap-3 text-zinc-800 dark:text-zinc-200">
+      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+      <span className="text-xs font-bold tracking-tight">{text}</span>
+    </div>
+  );
+}
+
+function OfferCard({ icon, title, delay }: { icon: React.ReactNode, title: string, delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay }}
+      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+      className="p-6 glass rounded-3xl bg-white dark:bg-zinc-900 border-zinc-100 dark:border-zinc-800 flex flex-col items-center text-center gap-4 group"
+    >
+      <div className="w-12 h-12 rounded-2xl bg-primary/5 text-primary flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+        {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { className: "w-6 h-6" }) : icon}
+      </div>
+      <h5 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 tracking-tight leading-tight">{title}</h5>
+    </motion.div>
+  );
+}
+
+function FacultyFeatureCard({ icon, title, text, delay }: { icon: React.ReactNode, title: string, text: string, delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay }}
+      className="p-8 glass bg-white dark:bg-zinc-900 border-zinc-100 dark:border-zinc-800 rounded-[2rem] flex flex-col gap-6 group hover:shadow-xl transition-all"
+    >
+      <div className="w-14 h-14 rounded-2xl bg-primary/5 text-primary flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+        {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { className: "w-7 h-7" }) : icon}
+      </div>
+      <div className="space-y-3">
+        <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">{title}</h4>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">{text}</p>
+      </div>
+    </motion.div>
+  );
+}
+
+function SocialMediaCard({ icon, title, text, color, delay }: { icon: React.ReactNode, title: string, text: string, color: string, delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay }}
+      className="p-8 glass rounded-[2.5rem] bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 flex flex-col gap-6 group relative overflow-hidden h-full"
+    >
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-[0.03] dark:group-hover:opacity-[0.07] transition-opacity duration-500 pointer-events-none" 
+        style={{ backgroundColor: color }}
+      />
+      <div 
+        className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
+        style={{ backgroundColor: color }}
+      >
+        {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { className: "w-7 h-7" }) : icon}
+      </div>
+      <div className="space-y-3 flex-1">
+        <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight group-hover:text-primary transition-colors">{title}</h4>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">{text}</p>
+      </div>
+      <div className="pt-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-400 group-hover:text-primary transition-colors">
+        Connect Now <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+      </div>
+    </motion.div>
+  );
+}
+
+function TaglineItem({ text }: { text: string }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      className="px-6 py-3 glass rounded-full bg-primary/5 border-primary/10 text-primary text-xs font-bold tracking-tight hover:bg-primary/10 transition-colors"
+    >
+      <div className="flex items-center gap-3">
+        <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+        {text}
+      </div>
+    </motion.div>
+  );
+}
+
+function FacultyProfileCard({ name, qualification, experience, delay }: { name: string, qualification: string, experience: string, delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay }}
+      className="group relative"
+    >
+      <div className="absolute inset-0 bg-primary/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="relative p-8 glass rounded-[3rem] bg-white dark:bg-zinc-900 border-zinc-100 dark:border-zinc-800 flex items-center gap-8 hover:shadow-2xl transition-all duration-500 overflow-hidden">
+        <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-accent p-[2px] shrink-0">
+          <div className="w-full h-full rounded-2xl bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center text-primary overflow-hidden">
+            <Users className="w-10 h-10 opacity-30 group-hover:scale-110 transition-transform duration-500" />
+          </div>
+        </div>
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">Active Instructor</span>
+          </div>
+          <h4 className="text-xl font-bold text-zinc-900 dark:text-white leading-tight">{name}</h4>
+          <div className="space-y-1">
+            <p className="text-sm font-bold text-primary tracking-tight">{qualification}</p>
+            <p className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-500 flex items-center gap-1.5">
+              <Award className="w-3 h-3" />
+              {experience} Industrial Experience
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+

@@ -1,0 +1,32 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper: Check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper: Validate image metadata
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+
+    // Helper: Max file size (5MB)
+    function isUnderMaxSize() {
+      return request.resource.size < 5 * 1024 * 1024;
+    }
+
+    // Avatar Upload Rules
+    match /avatars/{userId} {
+      // Anyone can read a profile picture
+      allow read: if true;
+      
+      // Only the authenticated user can upload their own avatar
+      allow write: if isAuthenticated() && 
+                    request.auth.uid == userId && 
+                    isImage() && 
+                    isUnderMaxSize();
+    }
+  }
+}

@@ -1,0 +1,23 @@
+
+> vision-it-website@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.2.1 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 18.6s
+  Running TypeScript ...
+Failed to type check.
+
+./src/app/admission/page.tsx:147:23
+Type error: Property 'uid' does not exist on type 'User'.
+
+  145 |       await admissionService.submitApplication({
+  146 |         ...data,
+> 147 |         userId: user?.uid // Associate with authenticated account
+      |                       ^
+  148 |       }, metadata);
+  149 |       
+  150 |       // WhatsApp Redirect Logic
+Next.js build worker exited with code: 1 and signal: null
