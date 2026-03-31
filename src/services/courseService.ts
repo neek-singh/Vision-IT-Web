@@ -181,6 +181,7 @@ export const courseService = {
         full_name: course.fullName,
         description: course.description,
         duration: course.duration,
+        fees: course.fees,
         level: course.level,
         category: course.category,
         image: course.image,
