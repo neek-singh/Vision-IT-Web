@@ -17,7 +17,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/components/providers/ThemeProvider";
 
-export default function LoginPage() {
+function LoginContent() {
   const { loginWithGoogle, loginWithEmail, user } = useAuth();
   const { theme } = useTheme();
   const [email, setEmail] = useState("");
@@ -70,7 +70,7 @@ export default function LoginPage() {
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden items-center justify-center p-12 lg:p-16">
          <div className="absolute inset-0 bg-primary/20 dark:bg-primary/10 mix-blend-multiply z-10" />
          <img 
-           src="/C:\Users\as007\.gemini\antigravity\brain\83576405-744a-492c-bede-075275f2253d\institutional_auth_banner_1774861590455_1774867170772.png" 
+           src="/images/institutional-auth-banner.png" 
            alt="Vision IT Campus" 
            className="absolute inset-0 w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-[10s] ease-in-out select-none"
          />
@@ -195,3 +195,12 @@ export default function LoginPage() {
     </div>
   );
 }
+
+export default function LoginPage() {
+  return (
+    <React.Suspense fallback={<div className="h-screen flex items-center justify-center text-zinc-500 text-[10px] uppercase font-black tracking-widest italic">Loading login portal...</div>}>
+      <LoginContent />
+    </React.Suspense>
+  );
+}
+
