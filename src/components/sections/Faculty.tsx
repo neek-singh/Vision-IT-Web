@@ -19,21 +19,27 @@ import { VerificationModal } from "../verification/VerificationModal";
 const facultyMembers = [
   {
     id: "VIT-TCH-001",
-    name: "Sunil Kumar",
-    role: "Senior IT Instructor",
-    specialization: "ADCA, Tally, Graphic Design",
-    experience: "8+ Years",
-    image: "https://i.pravatar.cc/150?u=sunil",
-    summary: "Professional computer educator with extensive experience in corporate training and software development."
+    name: "Ishwar Singh",
+    role: "SENIOR IT INSTRUCTOR",
+    specialization: "WEB DEVELOPMENT, APP DEVELOPMENT, ADVANCED COMPUTER",
+    experience: "3+ YEARS",
+    summary: "Professional computer educator and institute founder with strong expertise in web and app development. Focused on practical training, live projects, and industry-ready skills."
   },
   {
     id: "VIT-TCH-002",
-    name: "Pooja Gupta",
-    role: "Computer Faculty",
-    specialization: "DCA, PGDCA, MS Office",
-    experience: "5+ Years",
-    image: "https://i.pravatar.cc/150?u=pooja",
-    summary: "Dedicated to building strong foundational IT skills for beginners and advanced diploma students."
+    name: "Miss Mankuwar",
+    role: "COMPUTER FACULTY",
+    specialization: "BASIC COMPUTER, MS OFFICE, TALLY",
+    experience: "2+ YEARS",
+    summary: "Dedicated computer teacher specializing in basic to intermediate computer education. Focuses on clear concepts and practical learning for students."
+  },
+  {
+    id: "VIT-TCH-003",
+    name: "Miss Geeta",
+    role: "COMPUTER FACULTY",
+    specialization: "COMPUTER FUNDAMENTALS, TYPING, INTERNET",
+    experience: "2+ YEARS",
+    summary: "Supportive and beginner-friendly instructor helping students build strong fundamentals in computer and typing skills with step-by-step guidance."
   }
 ];
 
@@ -103,16 +109,13 @@ function FacultyCard({ member, index, onVerify }: { member: any; index: number; 
     >
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-[80px] -z-10" />
       
-      <div className="flex flex-col md:flex-row gap-10 items-start md:items-center">
-        {/* Profile Image */}
-        <div className="relative w-32 h-32 shrink-0 group-hover:scale-110 transition-transform duration-700">
-          <div className="absolute inset-0 bg-primary/20 rounded-3xl -rotate-6 scale-105 group-hover:rotate-0 transition-all duration-500" />
-          <Image 
-            src={member.image} 
-            alt={member.name} 
-            fill 
-            className="rounded-3xl object-cover glass shadow-lg border-2 border-white/20"
-          />
+      <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
+        {/* Placeholder Avatar Icon (No Images) */}
+        <div className="relative w-24 h-24 shrink-0 group-hover:scale-110 transition-transform duration-700">
+          <div className="absolute inset-0 bg-primary/10 dark:bg-primary/5 rounded-3xl -rotate-6 scale-105 group-hover:rotate-0 transition-all duration-500" />
+          <div className="w-full h-full rounded-3xl bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center text-primary/30 border border-zinc-200 dark:border-zinc-800 relative z-10 glass">
+            <GraduationCap className="w-10 h-10" />
+          </div>
         </div>
 
         <div className="space-y-4 flex-1">
@@ -120,34 +123,34 @@ function FacultyCard({ member, index, onVerify }: { member: any; index: number; 
             <h4 className="text-xl font-bold text-zinc-900 dark:text-white group-hover:text-primary transition-colors">
               {member.name}
             </h4>
-            <div className="flex items-center gap-4">
-               <p className="text-sm font-bold text-primary uppercase tracking-widest">{member.role}</p>
-               <div className="w-1.5 h-1.5 rounded-full bg-zinc-200 dark:bg-zinc-700" />
-               <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">{member.experience}</p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+               <p className="text-[10px] font-black text-primary uppercase tracking-widest">{member.role}</p>
+               <div className="hidden sm:block w-1 h-1 rounded-full bg-zinc-200 dark:bg-zinc-700" />
+               <p className="text-[10px] font-black text-zinc-400 dark:text-zinc-600 uppercase tracking-widest">{member.experience}</p>
             </div>
           </div>
 
-          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-md">
+          <p className="text-[11px] font-medium text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-md">
              {member.summary}
           </p>
 
-          <div className="flex flex-wrap gap-3 pt-2">
-            <Tag label={member.specialization.split(", ")[0]} />
-            <Tag label={member.specialization.split(", ")[1]} />
-            <Tag label="B.Ed Graduate" />
+          <div className="flex flex-wrap gap-2 pt-1">
+            {member.specialization.split(", ").map((tag: string) => (
+              <Tag key={tag} label={tag} />
+            ))}
           </div>
 
           <div className="pt-6 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
-            <div className="flex gap-4">
-              <SocialIcon icon={<Linkedin className="w-4 h-4" />} />
-              <SocialIcon icon={<Mail className="w-4 h-4" />} />
+            <div className="flex gap-3">
+              <SocialIcon icon={<Linkedin className="w-3.5 h-3.5" />} />
+              <SocialIcon icon={<Mail className="w-3.5 h-3.5" />} />
             </div>
             <button 
               onClick={onVerify}
-              className="px-6 py-2.5 bg-primary/5 hover:bg-primary text-primary hover:text-white rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-sm active:scale-95 flex items-center gap-2 group/btn"
+              className="px-5 py-2 bg-primary/5 hover:bg-primary text-primary hover:text-white rounded-full text-[9px] font-black uppercase tracking-[0.2em] transition-all shadow-sm active:scale-95 flex items-center gap-2 group/btn"
             >
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              Verify Profile
+              <CheckCircle2 className="w-3 h-3" />
+              Verify ID
             </button>
           </div>
         </div>
@@ -155,6 +158,7 @@ function FacultyCard({ member, index, onVerify }: { member: any; index: number; 
     </motion.div>
   );
 }
+
 
 function Tag({ label }: { label: string }) {
   return (

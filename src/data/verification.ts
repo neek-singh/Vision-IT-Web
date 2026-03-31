@@ -3,6 +3,8 @@ export interface TeacherData {
   name: string;
   qualification: string;
   experience: string;
+  specialization: string;
+  summary: string;
   status: "Active" | "Inactive";
   joinedDate: string;
 }
@@ -33,8 +35,36 @@ export interface MarksheetData {
 }
 
 export const mockTeachers: TeacherData[] = [
-  { id: "VIT-TCH-001", name: "Sunil Kumar", qualification: "MCA", experience: "8 Years", status: "Active", joinedDate: "2018-06-15" },
-  { id: "VIT-TCH-002", name: "Pooja Gupta", qualification: "B.Tech IT", experience: "5 Years", status: "Active", joinedDate: "2020-03-10" },
+  { 
+    id: "VIT-TCH-001", 
+    name: "Ishwar Singh", 
+    qualification: "Senior IT Instructor", 
+    experience: "3+ Years", 
+    specialization: "WEB DEVELOPMENT, APP DEVELOPMENT, ADVANCED COMPUTER",
+    summary: "Professional computer educator and institute founder with strong expertise in web and app development. Focused on practical training, live projects, and industry-ready skills.",
+    status: "Active", 
+    joinedDate: "2021-01-15" 
+  },
+  { 
+    id: "VIT-TCH-002", 
+    name: "Miss Mankuwar", 
+    qualification: "Computer Faculty", 
+    experience: "2+ Years", 
+    specialization: "BASIC COMPUTER, MS OFFICE, TALLY",
+    summary: "Dedicated computer teacher specializing in basic to intermediate computer education. Focuses on clear concepts and practical learning for students.",
+    status: "Active", 
+    joinedDate: "2022-03-10" 
+  },
+  { 
+    id: "VIT-TCH-003", 
+    name: "Miss Geeta", 
+    qualification: "Computer Faculty", 
+    experience: "2+ Years", 
+    specialization: "COMPUTER FUNDAMENTALS, TYPING, INTERNET",
+    summary: "Supportive and beginner-friendly instructor helping students build strong fundamentals in computer and typing skills with step-by-step guidance.",
+    status: "Active", 
+    joinedDate: "2022-05-20" 
+  },
 ];
 
 export const mockStudents: StudentData[] = [

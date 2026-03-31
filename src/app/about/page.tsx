@@ -245,13 +245,15 @@ export default function AboutPage() {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {mockTeachers.map((teacher, index) => (
               <FacultyProfileCard 
                 key={teacher.id}
                 name={teacher.name}
                 qualification={teacher.qualification}
                 experience={teacher.experience}
+                summary={teacher.summary}
+                specialization={teacher.specialization}
                 delay={0.2 + (index * 0.1)}
               />
             ))}
@@ -336,28 +338,28 @@ export default function AboutPage() {
             <SocialMediaCard 
               icon={<Facebook />} 
               title="Facebook Page" 
-              text="Institute updates, event photos और student success stories के लिए follow करें।"
+              text="Institute updates, event photos aur student success stories ke liye follow karein."
               color="#1877F2"
               delay={0.2}
             />
             <SocialMediaCard 
               icon={<Instagram />} 
               title="Instagram" 
-              text="Daily computer tips, learning reels और motivational content के लिए connect रहें।"
+              text="Daily computer tips, learning reels aur motivational content ke liye connect rahein."
               color="#E4405F"
               delay={0.3}
             />
             <SocialMediaCard 
               icon={<MessageCircle />} 
               title="WhatsApp Group" 
-              text="New batch info और direct communication के लिए हमारे official group में join करें।"
+              text="New batch info aur direct communication ke liye hamare official group mein join karein."
               color="#25D366"
               delay={0.4}
             />
             <SocialMediaCard 
               icon={<Youtube />} 
               title="YouTube Channel" 
-              text="Free computer learning videos और practical guidance के लिए subscribe करें।"
+              text="Free computer learning videos aur practical guidance ke liye subscribe karein."
               color="#FF0000"
               delay={0.5}
             />
@@ -528,7 +530,7 @@ function TaglineItem({ text }: { text: string }) {
   );
 }
 
-function FacultyProfileCard({ name, qualification, experience, delay }: { name: string, qualification: string, experience: string, delay: number }) {
+function FacultyProfileCard({ name, qualification, experience, summary, specialization, delay }: { name: string, qualification: string, experience: string, summary: string, specialization: string, delay: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -538,24 +540,39 @@ function FacultyProfileCard({ name, qualification, experience, delay }: { name: 
       className="group relative"
     >
       <div className="absolute inset-0 bg-primary/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <div className="relative p-8 glass rounded-[3rem] bg-white dark:bg-zinc-900 border-zinc-100 dark:border-zinc-800 flex items-center gap-8 hover:shadow-2xl transition-all duration-500 overflow-hidden">
+      <div className="relative p-8 glass rounded-[3rem] bg-white dark:bg-zinc-900 border-zinc-100 dark:border-zinc-800 flex flex-col sm:flex-row items-center sm:items-start gap-8 hover:shadow-2xl transition-all duration-500 overflow-hidden">
         <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-accent p-[2px] shrink-0">
           <div className="w-full h-full rounded-2xl bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center text-primary overflow-hidden">
-            <Users className="w-10 h-10 opacity-30 group-hover:scale-110 transition-transform duration-500" />
+            <GraduationCap className="w-10 h-10 opacity-30 group-hover:scale-110 transition-transform duration-500" />
           </div>
         </div>
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">Active Instructor</span>
-          </div>
-          <h4 className="text-xl font-bold text-zinc-900 dark:text-white leading-tight">{name}</h4>
+        <div className="space-y-4 flex-1">
           <div className="space-y-1">
-            <p className="text-sm font-bold text-primary tracking-tight">{qualification}</p>
-            <p className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-500 flex items-center gap-1.5">
-              <Award className="w-3 h-3" />
-              {experience} Industrial Experience
-            </p>
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">Active Instructor</span>
+            </div>
+            <h4 className="text-2xl font-bold text-zinc-900 dark:text-white leading-tight">{name}</h4>
+            <div className="flex flex-wrap items-center gap-3">
+              <p className="text-sm font-bold text-primary tracking-tight uppercase">{qualification}</p>
+              <div className="w-1 h-1 rounded-full bg-zinc-200 dark:bg-zinc-700" />
+              <p className="text-[11px] font-bold text-zinc-500 dark:text-zinc-500 flex items-center gap-1.5">
+                <Award className="w-3 h-3" />
+                {experience} EXPERIENCE
+              </p>
+            </div>
+          </div>
+          
+          <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+            {summary}
+          </p>
+
+          <div className="flex flex-wrap gap-2 pt-2">
+            {specialization.split(", ").map((tag: string) => (
+              <span key={tag} className="px-2.5 py-1 rounded-lg bg-primary/5 border border-primary/10 text-[9px] font-black text-primary/70 uppercase tracking-wider">
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
       </div>
