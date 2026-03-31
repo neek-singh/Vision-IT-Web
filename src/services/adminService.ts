@@ -1,23 +1,25 @@
 import { supabase } from "@/lib/supabase";
 
-const ADMIN_CONFIG_ID = "admin_config";
+const ADMIN_CONFIG_TABLE = "admin_config";
+const MAIN_CONFIG_ID = "main_config";
 
 export interface AdminConfig {
+  id: string;
   email: string;
-  isInitialized: boolean;
-  createdAt: string;
+  initializedAt: string;
+  updatedAt: string;
 }
 
 export const adminService = {
   /**
-   * Checks if the master admin has been initialized.
+   * Checks if the master admin has been initialized from admin_config table.
    */
   async getAdminConfig(): Promise<AdminConfig | null> {
     try {
       const { data, error } = await supabase
-        .from("settings")
-        .select("value")
-        .eq("id", ADMIN_CONFIG_ID)
+        .from(ADMIN_CONFIG_TABLE)
+        .select("*")
+        .eq("id", MAIN_CONFIG_ID)
         .limit(1);
       
       if (error) {
@@ -27,7 +29,13 @@ export const adminService = {
       
       if (!data || data.length === 0) return null;
       
-      return data[0].value as AdminConfig || null;
+      const config = data[0];
+      return {
+        id: config.id,
+        email: config.email,
+        initializedAt: config.initialized_at,
+        updatedAt: config.updated_at
+      } as AdminConfig;
     } catch (error) {
       console.error("Error getting admin config:", error);
       return null;
@@ -39,18 +47,14 @@ export const adminService = {
    */
   async initializeAdmin(email: string) {
     try {
-      const config: AdminConfig = {
-        email,
-        isInitialized: true,
-        createdAt: new Date().toISOString(),
-      };
-
+      const now = new Date().toISOString();
       const { error } = await supabase
-        .from("settings")
+        .from(ADMIN_CONFIG_TABLE)
         .upsert({
-          id: ADMIN_CONFIG_ID,
-          value: config,
-          updated_at: new Date().toISOString()
+          id: MAIN_CONFIG_ID,
+          email: email,
+          initialized_at: now,
+          updated_at: now
         });
 
       if (error) throw error;
