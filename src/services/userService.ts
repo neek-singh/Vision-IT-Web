@@ -6,7 +6,7 @@ export interface UserProfile {
   displayName: string | null;
   photoURL: string | null;
   phoneNumber?: string;
-  role: "student" | "admin";
+  role: "student" | "admin" | "teacher";
   createdAt: string;
   updatedAt: string;
   lastLogin: string;
@@ -81,12 +81,13 @@ export const userService = {
           ...data,
           displayName: newProfile.display_name,
           photoURL: newProfile.photo_url,
-          role: newProfile.role as "student" | "admin",
+          role: newProfile.role as "student" | "admin" | "teacher",
           createdAt: newProfile.created_at,
           updatedAt: newProfile.updated_at,
           lastLogin: newProfile.last_login,
         } as UserProfile;
       } else {
+// ... existing sync logic ...
         // Sync Login Activity
         const updatedPhotoURL = existingProfile.photoURL || data.photoURL || null;
         const now = new Date().toISOString();
@@ -194,6 +195,35 @@ export const userService = {
     } catch (error) {
        console.error("Error updating profile:", error);
        throw error;
+    }
+  },
+
+  /**
+   * Fetches all registered user profiles.
+   */
+  async getAllProfiles(): Promise<UserProfile[]> {
+    try {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .order("created_at", { ascending: false });
+      
+      if (error) throw error;
+      
+      return data.map(profile => ({
+        uid: profile.id,
+        email: profile.email,
+        displayName: profile.display_name,
+        photoURL: profile.photo_url,
+        phoneNumber: profile.phone_number,
+        role: profile.role,
+        createdAt: profile.created_at,
+        updatedAt: profile.updated_at,
+        lastLogin: profile.last_login,
+      })) as UserProfile[];
+    } catch (error) {
+      console.error("Error fetching all profiles:", error);
+      return [];
     }
   }
 };

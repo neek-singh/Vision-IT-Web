@@ -13,7 +13,10 @@ import {
   Bell,
   Search,
   ChevronRight,
-  MessageSquare
+  MessageSquare,
+  GraduationCap,
+  Quote,
+  Shield
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -23,7 +26,10 @@ const sidebarLinks = [
   { name: "Admissions", href: "/neekadmin/dashboard/admissions", icon: Users },
   { name: "Inquiries", href: "/neekadmin/dashboard/contacts", icon: MessageSquare },
   { name: "Courses", href: "/neekadmin/dashboard/courses", icon: BookOpen },
+  { name: "Faculty", href: "/neekadmin/dashboard/faculty", icon: GraduationCap },
+  { name: "Testimonials", href: "/neekadmin/dashboard/testimonials", icon: Quote },
   { name: "Blog Posts", href: "/neekadmin/dashboard/blog", icon: Newspaper },
+  { name: "User Registry", href: "/neekadmin/dashboard/users", icon: Shield },
   { name: "Admin Profile", href: "/neekadmin/dashboard/profile", icon: Settings },
 ];
 
