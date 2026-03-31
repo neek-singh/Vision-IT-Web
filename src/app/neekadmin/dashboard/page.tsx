@@ -12,20 +12,42 @@ import {
   Calendar,
   MousePointer2,
   Eye,
-  Plus
+  Plus,
+  MessageSquare
 } from "lucide-react";
 import { coursesData } from "@/data/courses";
-import { blogPosts } from "@/data/blog";
+import { admissionService } from "@/services/admissionService";
+import { blogService } from "@/services/blogService";
+import { contactService } from "@/services/contactService";
 
 export default function AdminDashboard() {
   const courses = Object.values(coursesData);
-  const posts = Object.values(blogPosts);
+  const [counts, setCounts] = React.useState({
+    admissions: 0,
+    blogs: 0,
+    inquiries: 0
+  });
+
+  React.useEffect(() => {
+    const fetchCounts = async () => {
+      const authStats = await admissionService.getStats();
+      const blogCount = await blogService.getPostsCount();
+      const contactCount = await contactService.getUnreadCount();
+      
+      setCounts({
+        admissions: authStats.total,
+        blogs: blogCount,
+        inquiries: contactCount
+      });
+    };
+    fetchCounts();
+  }, []);
 
   const stats = [
-    { name: "Total Admissions", value: "124", change: "+12%", icon: Users, color: "text-blue-500", bg: "bg-blue-500/10" },
+    { name: "Total Admissions", value: counts.admissions.toString(), change: "Live", icon: Users, color: "text-blue-500", bg: "bg-blue-500/10" },
     { name: "Global Courses", value: courses.length.toString(), change: "Stable", icon: BookOpen, color: "text-primary", bg: "bg-primary/10" },
-    { name: "Insights Published", value: posts.length.toString(), change: "+2", icon: Newspaper, color: "text-orange-500", bg: "bg-orange-500/10" },
-    { name: "Site Traffic", value: "8.4k", change: "+24%", icon: TrendingUp, color: "text-emerald-500", bg: "bg-emerald-500/10" },
+    { name: "Insights Published", value: counts.blogs.toString(), change: "Sync", icon: Newspaper, color: "text-orange-500", bg: "bg-orange-500/10" },
+    { name: "Unread Inquiries", value: counts.inquiries.toString(), change: "New", icon: MessageSquare, color: "text-emerald-500", bg: "bg-emerald-500/10" },
   ];
 
   return (

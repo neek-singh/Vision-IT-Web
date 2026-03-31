@@ -120,5 +120,23 @@ export const contactService = {
       console.error("Error deleting message:", error);
       throw new Error("Deletion failed");
     }
+  },
+
+  /**
+   * Fetches the count of unread inquiries.
+   */
+  async getUnreadCount() {
+    try {
+      const { count, error } = await supabase
+        .from("contact_messages")
+        .select('*', { count: 'exact', head: true })
+        .eq('status', 'unread');
+      
+      if (error) throw error;
+      return count || 0;
+    } catch (error) {
+      console.error("Error fetching unread messages count:", error);
+      return 0;
+    }
   }
 };

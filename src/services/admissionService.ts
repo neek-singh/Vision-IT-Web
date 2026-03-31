@@ -246,5 +246,37 @@ export const admissionService = {
     return () => {
       supabase.removeChannel(channel);
     };
+  },
+
+  /**
+   * Fetches summary statistics for admissions.
+   */
+  async getStats() {
+    try {
+      const { count: total, error: totalError } = await supabase
+        .from(ADMISSIONS_TABLE)
+        .select('*', { count: 'exact', head: true });
+      
+      const { count: pending, error: pendingError } = await supabase
+        .from(ADMISSIONS_TABLE)
+        .select('*', { count: 'exact', head: true })
+        .eq('status', 'pending');
+
+      const { count: enrolled, error: enrolledError } = await supabase
+        .from(ADMISSIONS_TABLE)
+        .select('*', { count: 'exact', head: true })
+        .eq('status', 'enrolled');
+
+      if (totalError || pendingError || enrolledError) throw totalError || pendingError || enrolledError;
+
+      return {
+        total: total || 0,
+        pending: pending || 0,
+        enrolled: enrolled || 0
+      };
+    } catch (error) {
+      console.error("Error fetching admission stats:", error);
+      return { total: 0, pending: 0, enrolled: 0 };
+    }
   }
 };
