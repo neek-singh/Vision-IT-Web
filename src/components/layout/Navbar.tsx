@@ -17,10 +17,10 @@ import { User as UserIcon, LogOut, Settings } from "lucide-react";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Courses", href: "/courses" },
-  { name: "Track Status", href: "/track" },
-  { name: "Verify", href: "/verify" },
+  { name: "Admission", href: "/admission" },
+  { name: "Gallery", href: "/gallery" },
   { name: "Blog", href: "/blog" },
-  { name: "About", href: "/#about" },
+  { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
 

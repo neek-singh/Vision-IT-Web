@@ -97,151 +97,96 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us Detailed */}
-      <section className="py-10 bg-surface-secondary px-6 transition-colors duration-500">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div className="space-y-10">
-            <div className="space-y-4">
-              <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Why Vision IT?</h2>
-              <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
-                Quality Education, Practical Training, and <span className="text-gradient">Personal Attention</span>
-              </h3>
-              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
-                Vision IT Computer Institute में beginner to advanced level तक training दी जाती है, ताकि हर student अपनी learning journey को आसानी से complete कर सके।
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              <ValueItem icon={<Users />} title="Experienced Faculty" text="Experienced and supportive faculty for expert guidance." />
-              <ValueItem icon={<Monitor />} title="Practical Learning" text="Hands-on practice-based learning approach." />
-              <ValueItem icon={<Lightbulb />} title="Easy Teaching" text="Simple and easy-to-understand teaching method." />
-              <ValueItem icon={<IndianRupee />} title="Affordable Fees" text="Quality education with affordable course fees." />
-              <ValueItem icon={<Clock />} title="Batch System" text="Flexible batch system for student convenience." />
-              <ValueItem icon={<Briefcase />} title="Career Oriented" text="Career-oriented computer courses for better growth." />
-              <ValueItem icon={<UserCheck />} title="Individual Attention" text="Personalized focus and individual attention to every student." />
-              <ValueItem icon={<ShieldCheck />} title="Disciplined Environment" text="Friendly yet disciplined learning environment." />
-            </div>
-          </div>
-
+      {/* Director's Message & Leadership */}
+      <section className="py-20 bg-surface-secondary px-6 transition-colors duration-500 overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-[50%] h-full bg-primary/[0.02] dark:bg-primary/[0.03] -skew-x-12 -z-10" />
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="p-8 glass rounded-[3.5rem] bg-white dark:bg-primary/5 relative overflow-hidden"
+            className="space-y-8"
           >
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl -z-10" />
-            <h4 className="text-2xl font-bold mb-8 flex items-center gap-3 text-zinc-900 dark:text-white">
-              <CheckCircle2 className="text-emerald-500 w-6 h-6" />
-              Our Core Principles
-            </h4>
-            <div className="space-y-6">
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                हम believe करते हैं कि हर student की learning speed अलग होती है। इसलिए हमारी teaching style simple, practical और student-friendly है।
-              </p>
-              <div className="space-y-4">
-                <PrincipleItem text="Step-by-step concepts realization" />
-                <PrincipleItem text="Daily practical practice sessions" />
-                <PrincipleItem text="Regular revision and doubt clearing" />
-                <PrincipleItem text="Affordable fees for everyone" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest">
+              <UserCheck className="w-3 h-3" />
+              Leadership Message
+            </div>
+            
+            <div className="space-y-4">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
+                Empowering the <span className="text-gradient">Next Generation</span> of Digital Leaders.
+              </h2>
+              <div className="p-8 border-l-4 border-primary bg-white dark:bg-zinc-900 shadow-xl rounded-r-3xl space-y-6">
+                <p className="text-lg font-medium text-zinc-800 dark:text-zinc-200 leading-relaxed italic">
+                  "Vision IT Computer Institute की शुरुआत एक छोटे से सपने के साथ हुई थी—Pratuppur के हर युवा को digital age के लिए तैयार करना। आज हम गर्व से कह सकते हैं कि हम सिर्फ computer नहीं सिखाते, बल्कि students का career और confidence build करते हैं।"
+                </p>
+                <div className="flex items-center gap-4 pt-4 border-t border-zinc-100 dark:border-zinc-800">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                    <Users className="w-7 h-7" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-zinc-900 dark:text-white">Ishwar Singh</h4>
+                    <p className="text-xs font-black text-primary uppercase tracking-widest">Founder & Managing Director</p>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Our Faculty Section */}
-      <section className="py-20 bg-background px-6 transition-colors duration-500 overflow-hidden relative">
-        <div className="absolute top-1/4 right-0 w-[30%] h-[50%] bg-primary/[0.02] dark:bg-primary/[0.04] blur-3xl rounded-full -z-10" />
-        <div className="max-w-7xl mx-auto space-y-16">
-          <div className="max-w-3xl space-y-4">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest"
-            >
-              The People Who Lead You
-            </motion.div>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white"
-            >
-              Our Expert <span className="text-gradient">Faculty</span>
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-zinc-600 dark:text-zinc-400 text-sm md:text-lg leading-relaxed"
-            >
-              Vision IT Computer Institute Pratuppur की सबसे बड़ी strength हमारी qualified, experienced और supportive faculty team है।
-            </motion.p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <FacultyFeatureCard 
-              icon={<GraduationCap />}
-              title="Experienced & Skilled Trainers"
-              text="Programming, Accounting, Designing, Basic Computer और Office Applications में expert trainers जो current industry requirements के अनुसार training देते हैं।"
-              delay={0.2}
-            />
-            <FacultyFeatureCard 
-              icon={<Smile />}
-              title="Student Friendly Approach"
-              text="Simple teaching method, doubt clearing पर विशेष ध्यान, individual attention और एक friendly classroom environment maintain करना हमारी प्राथमिकता है।"
-              delay={0.3}
-            />
-            <FacultyFeatureCard 
-              icon={<Zap />}
-              title="Practical Oriented Guidance"
-              text="Vision IT में theory नहीं, बल्कि hands-on practical work कराया जाता है। Live projects और assignments के माध्यम से real experience दिया जाता है।"
-              delay={0.4}
-            />
-            <FacultyFeatureCard 
-              icon={<TrendingUp />}
-              title="Career Support & Motivation"
-              text="हम students को career guidance, motivation और personality improvement tips देते हैं ताकि वे future challenges के लिए पूरी तरह तैयार हो सकें।"
-              delay={0.5}
-            />
-          </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            className="p-8 glass rounded-[2.5rem] bg-zinc-50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 text-center"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
-            <p className="text-zinc-700 dark:text-zinc-300 font-medium leading-relaxed italic">
-              "हमारे teachers का main focus सिर्फ syllabus complete करना नहीं, बल्कि हर student को concept clear कराना, practical skills develop कराना और confidence build करना है।"
-            </p>
+            <div className="p-8 glass rounded-[2.5rem] bg-white dark:bg-zinc-900/50 border-zinc-100 dark:border-zinc-800 space-y-4 hover:shadow-xl transition-all group">
+              <div className="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-all">
+                <Target className="w-6 h-6" />
+              </div>
+              <h5 className="text-lg font-bold">Our Philosophy</h5>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                हमारा मानना है कि शिक्षा केवल डिग्री के लिए नहीं, बल्कि कौशल (skills) के लिए होनी चाहिए।
+              </p>
+            </div>
+            
+            <div className="p-8 glass rounded-[2.5rem] bg-white dark:bg-zinc-900/50 border-zinc-100 dark:border-zinc-800 space-y-4 hover:shadow-xl transition-all group translate-y-6">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-all">
+                <CheckCircle2 className="w-6 h-6" />
+              </div>
+              <h5 className="text-lg font-bold">Educational Excellence</h5>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                Step-by-step concepts realization aur daily practical sessions hamari pehchan hain.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Meet Our Experts Section */}
-      <section className="py-20 bg-surface-secondary px-6 transition-colors duration-500 overflow-hidden relative">
+      <section className="py-24 bg-background px-6 transition-colors duration-500 overflow-hidden relative border-t border-zinc-100 dark:border-zinc-900">
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary/[0.03] to-transparent -z-10" />
         <div className="max-w-7xl mx-auto space-y-12">
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest">
+              <GraduationCap className="w-3 h-3" />
+              Verified Expert Faculty
+            </div>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white"
+              className="text-4xl md:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white"
             >
-              Meet Our Expert <span className="text-gradient">Instructors</span>
+              Learn from the <span className="text-gradient">Best Trainers</span>
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto text-sm md:text-base px-4"
+              className="text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto text-base md:text-lg px-4 leading-relaxed"
             >
-              Learn from the best. Our instructors come with industry experience and a passion for teaching.
+              Vision IT Computer Institute Pratuppur की सफलता का रहस्य हमारी dedicated faculty है, जो students के future के लिए committed हैं।
             </motion.p>
           </div>
 
