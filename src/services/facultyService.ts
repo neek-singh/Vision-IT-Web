@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import { defaultFaculty } from "@/data/faculty";
 
 export interface FacultyMember {
   id: string;
@@ -29,6 +30,10 @@ export const facultyService = {
       
       if (error) throw error;
       
+      if (!data || data.length === 0) {
+        return defaultFaculty as any;
+      }
+
       return data.map(m => ({
         id: m.id,
         name: m.name,
@@ -43,8 +48,8 @@ export const facultyService = {
         updatedAt: m.updated_at
       })) as FacultyMember[];
     } catch (error) {
-      console.error("Error fetching faculty:", error);
-      return [];
+      console.error("Error fetching faculty, falling back to static data:", error);
+      return defaultFaculty as any;
     }
   },
 
@@ -157,7 +162,6 @@ export const facultyService = {
   async migrateStaticFaculty(members: FacultyMember[]) {
     try {
       for (const item of members) {
-        // Check if exists
         const { data: existing } = await supabase
           .from(FACULTY_TABLE)
           .select("id")

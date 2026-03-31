@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import { defaultTestimonials } from "@/data/testimonials";
 
 export interface Testimonial {
   id?: string;
@@ -25,10 +26,15 @@ export const testimonialService = {
         .order("created_at", { ascending: false });
       
       if (error) throw error;
+
+      if (!data || data.length === 0) {
+        return defaultTestimonials as any; // Fallback to static data
+      }
+
       return data as Testimonial[];
     } catch (error) {
-      console.error("Error fetching testimonials:", error);
-      return [];
+      console.error("Error fetching testimonials, falling back to static data:", error);
+      return defaultTestimonials as any;
     }
   },
 

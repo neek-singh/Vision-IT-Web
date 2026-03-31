@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
+import { defaultFaculty } from "@/data/faculty";
 import { facultyService, FacultyMember } from "@/services/facultyService";
 import { 
   Plus, 
@@ -18,26 +19,6 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-
-// Static data for migration
-const defaultFaculty = [
-  {
-    id: "VIT-TCH-001",
-    name: "Ishwar Singh",
-    role: "SENIOR IT INSTRUCTOR",
-    specialization: "WEB DEVELOPMENT, APP DEVELOPMENT, ADVANCED COMPUTER",
-    experience: "3+ YEARS",
-    summary: "Professional computer educator and institute founder with strong expertise in web and app development."
-  },
-  {
-    id: "VIT-TCH-002",
-    name: "Miss Mankuwar",
-    role: "COMPUTER FACULTY",
-    specialization: "BASIC COMPUTER, MS OFFICE, TALLY",
-    experience: "2+ YEARS",
-    summary: "Dedicated computer teacher specializing in basic to intermediate computer education."
-  }
-];
 
 export default function FacultyManagementPage() {
   const [members, setMembers] = useState<FacultyMember[]>([]);

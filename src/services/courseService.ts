@@ -16,6 +16,10 @@ export const courseService = {
       
       if (error) throw error;
       
+      if (!data || data.length === 0) {
+        return Object.values(coursesData); // Fallback to static data
+      }
+
       return data.map(course => ({
         ...course,
         fullName: course.full_name,
@@ -25,8 +29,8 @@ export const courseService = {
         updatedAt: course.updated_at,
       })) as Course[];
     } catch (error) {
-      console.error("Error fetching courses:", error);
-      return [];
+      console.error("Error fetching courses, falling back to static data:", error);
+      return Object.values(coursesData);
     }
   },
 
