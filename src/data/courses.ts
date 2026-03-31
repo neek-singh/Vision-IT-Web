@@ -264,5 +264,36 @@ export const coursesData: Record<string, Course> = {
     color: "from-purple-500 to-indigo-600",
     image: "/courses/fundamentals.png",
     careerPaths: ["Tech Support Beginner", "Computer Lab Asst.", "Digital Literacy Mentor", "Service Center Frontdesk"]
+  },
+  pgdca: {
+    id: "pgdca",
+    title: "PGDCA",
+    fullName: "Post Graduate Diploma in Computer Applications",
+    description: "An advanced 1-year diploma program designed for graduates to master professional IT skills, programming, and advanced office automation for corporate and government sectors.",
+    duration: "12 Months",
+    fees: "₹15,000 – ₹18,000",
+    certificate: "PG Diploma (Verified & ISO Certified)",
+    mode: "Offline / Hybrid / Project Based",
+    syllabus: [
+      "Computer Organization & Architecture",
+      "Advanced Office Automation (Excel/DBMS)",
+      "Programming Fundamentals using C/C++",
+      "Financial Accounting & Tally Prime",
+      "Web Technologies (HTML/CSS/JS)",
+      "System Analysis & Design (SAD)",
+      "Internet, E-Commerce & Cyber Security",
+      "Major Project & Viva-Voce"
+    ],
+    benefits: [
+      "Preferred for high-level government job applications",
+      "In-depth technical and programming knowledge",
+      "Hands-on industrial project experience",
+      "Professional career guidance and placement aid"
+    ],
+    iconName: "Monitor",
+    color: "from-purple-600 to-indigo-800",
+    image: "/courses/pgdca.png",
+    tag: { text: "University Level", color: "bg-purple-600" },
+    careerPaths: ["Software Associate", "System Analyst", "Database Manager", "Computer Teacher", "IT Consultant"]
   }
 };
