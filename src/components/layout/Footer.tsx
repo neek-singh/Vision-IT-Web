@@ -11,7 +11,6 @@ import {
   Twitter, 
   Youtube,
   Send,
-  ExternalLink,
   ArrowRight,
   ShieldCheck,
   Globe
@@ -39,10 +38,10 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-zinc-950 pt-24 pb-12 overflow-hidden border-t border-white/5">
+    <footer className="relative bg-white dark:bg-zinc-950 pt-24 pb-12 overflow-hidden border-t border-zinc-200 dark:border-white/5">
       {/* Ambient Background Glows */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10 opacity-30" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[120px] -z-10 opacity-20" />
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[120px] -z-10" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-600/5 dark:bg-blue-600/10 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-6 relative">
         {/* Newsletter / CTA Section */}
@@ -50,16 +49,16 @@ export function Footer() {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass rounded-[2.5rem] p-8 md:p-12 mb-20 border border-white/10 relative overflow-hidden"
+          className="glass rounded-[2.5rem] p-8 md:p-12 mb-20 relative overflow-hidden"
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -mr-32 -mt-32" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl -mr-32 -mt-32" />
           
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10 relative z-10">
             <div className="max-w-xl text-center lg:text-left space-y-4">
-              <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-                Ready to upgrade your <span className="text-primary-light">career?</span>
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
+                Ready to upgrade your <span className="text-primary dark:text-primary-light">career?</span>
               </h3>
-              <p className="text-zinc-400 text-lg">
+              <p className="text-zinc-600 dark:text-zinc-400 text-lg font-medium">
                 Stay updated with new courses, workshops, and career opportunities. Join our circle of 2,000+ students.
               </p>
             </div>
@@ -69,14 +68,14 @@ export function Footer() {
                 <input 
                   type="email" 
                   placeholder="Enter your email" 
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-white placeholder:text-zinc-500 focus:ring-2 ring-primary outline-none transition-all pr-36"
+                  className="w-full bg-white dark:bg-white/5 border border-zinc-200 dark:border-white/10 rounded-2xl px-6 py-5 text-zinc-900 dark:text-white placeholder:text-zinc-500 focus:ring-2 ring-primary outline-none transition-all pr-36"
                 />
                 <button className="absolute right-2 top-2 bottom-2 px-6 bg-primary text-white rounded-xl font-bold flex items-center gap-2 hover:bg-primary/90 transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/20">
                   Join Now
                   <Send className="w-4 h-4" />
                 </button>
               </form>
-              <p className="text-[10px] text-zinc-500 mt-3 text-center lg:text-left ml-2 uppercase tracking-widest font-medium">
+              <p className="text-[10px] text-zinc-500 mt-3 text-center lg:text-left ml-2 uppercase tracking-widest font-bold opacity-70">
                 No spam. Only quality updates.
               </p>
             </div>
@@ -95,13 +94,13 @@ export function Footer() {
           <motion.div variants={itemVariants} className="space-y-8">
             <div className="space-y-2">
               <div className="flex flex-col">
-                <span className="text-3xl font-black tracking-tighter text-white">
+                <span className="text-3xl font-black tracking-tighter text-zinc-900 dark:text-white">
                   VISION<span className="text-primary italic">IT</span>
                 </span>
                 <div className="h-1 w-12 bg-primary rounded-full mt-1" />
               </div>
-              <p className="text-zinc-400 text-sm leading-relaxed pt-4">
-                authorized center of <span className="text-white font-bold">Drishti Computer Education</span>. 
+              <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed pt-4 font-medium">
+                authorized center of <span className="text-zinc-900 dark:text-white font-black">Drishti Computer Education</span>. 
                 Delivering industry-standard tech education since 2018.
               </p>
             </div>
@@ -116,7 +115,7 @@ export function Footer() {
 
           {/* Links Columns */}
           <motion.div variants={itemVariants}>
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-500 mb-8 border-l-2 border-primary pl-4">
+            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500 mb-8 border-l-2 border-primary pl-4">
               Resources
             </h4>
             <ul className="space-y-5">
@@ -129,7 +128,7 @@ export function Footer() {
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-500 mb-8 border-l-2 border-primary pl-4">
+            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500 mb-8 border-l-2 border-primary pl-4">
               Top Categories
             </h4>
             <ul className="space-y-5">
@@ -143,48 +142,48 @@ export function Footer() {
 
           {/* Contact Column */}
           <motion.div variants={itemVariants} className="space-y-8">
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-500 mb-8 border-l-2 border-primary pl-4">
+            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500 mb-8 border-l-2 border-primary pl-4">
               Our Hub
             </h4>
-            <div className="glass rounded-3xl p-6 border border-white/5 space-y-6">
+            <div className="glass rounded-3xl p-6 relative overflow-hidden space-y-6">
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-white/5 rounded-2xl text-primary flex-shrink-0">
+                <div className="p-3 bg-zinc-100 dark:bg-white/5 rounded-2xl text-primary flex-shrink-0">
                   <MapPin size={18} />
                 </div>
-                <p className="text-zinc-400 text-xs leading-relaxed font-medium">
+                <p className="text-zinc-600 dark:text-zinc-400 text-xs leading-relaxed font-bold">
                   शुभम गिफ्ट गैलरी, कदमपारा चौक, प्रतापपुर, सूरजपुर (छ.ग.)
                 </p>
               </div>
               <div className="flex items-center gap-4 group cursor-pointer">
-                <div className="p-3 bg-white/5 rounded-2xl text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                <div className="p-3 bg-zinc-100 dark:bg-white/5 rounded-2xl text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
                   <Phone size={18} />
                 </div>
-                <span className="text-zinc-300 text-sm font-bold group-hover:text-primary transition-colors">+91 8103170595</span>
+                <span className="text-zinc-700 dark:text-zinc-300 text-sm font-black group-hover:text-primary transition-colors">+91 8103170595</span>
               </div>
               <div className="flex items-center gap-4 group cursor-pointer">
-                <div className="p-3 bg-white/5 rounded-2xl text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                <div className="p-3 bg-zinc-100 dark:bg-white/5 rounded-2xl text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
                   <Mail size={18} />
                 </div>
-                <span className="text-zinc-300 text-xs font-medium truncate group-hover:text-primary transition-colors">visionitinstitute@gmail.com</span>
+                <span className="text-zinc-600 dark:text-zinc-300 text-xs font-bold truncate group-hover:text-primary transition-colors">visionitinstitute@gmail.com</span>
               </div>
             </div>
           </motion.div>
         </motion.div>
 
         {/* Bottom Bar */}
-        <div className="mt-24 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="mt-24 pt-10 border-t border-zinc-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
-            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-600">
-              <ShieldCheck className="w-3 h-3 text-emerald-500" />
+            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-500">
+              <ShieldCheck className="w-3 h-3 text-emerald-600 dark:text-emerald-500" />
               ISO 9001:2015 Certified
             </div>
             <div className="flex items-center gap-8">
-              <Link href="/privacy" className="text-[10px] font-bold text-zinc-500 hover:text-white uppercase tracking-widest transition-colors">Privacy</Link>
-              <Link href="/terms" className="text-[10px] font-bold text-zinc-500 hover:text-white uppercase tracking-widest transition-colors">Terms</Link>
+              <Link href="/privacy" className="text-[10px] font-bold text-zinc-500 hover:text-primary dark:hover:text-white uppercase tracking-widest transition-colors">Privacy</Link>
+              <Link href="/terms" className="text-[10px] font-bold text-zinc-500 hover:text-primary dark:hover:text-white uppercase tracking-widest transition-colors">Terms</Link>
             </div>
           </div>
           
-          <div className="flex items-center gap-4 text-zinc-500 text-[11px] font-medium font-geist-mono">
+          <div className="flex items-center gap-4 text-zinc-500 text-[11px] font-bold font-geist-mono opacity-80">
             <Globe className="w-3 h-3" />
             <span>© {currentYear} Vision IT Institute. All rights reserved.</span>
           </div>
@@ -200,7 +199,7 @@ function SocialLink({ icon, href, label }: { icon: React.ReactNode; href: string
       <Link
         href={href}
         aria-label={label}
-        className="flex items-center justify-center w-11 h-11 bg-white/5 border border-white/10 rounded-2xl text-zinc-400 hover:text-primary hover:border-primary/50 transition-all shadow-xl hover:bg-white/10"
+        className="flex items-center justify-center w-11 h-11 bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 rounded-2xl text-zinc-600 dark:text-zinc-400 hover:text-primary hover:border-primary/50 transition-all shadow-xl hover:bg-zinc-200 dark:hover:bg-white/10"
       >
         {icon}
       </Link>
@@ -213,10 +212,10 @@ function FooterLink({ children, href }: { children: React.ReactNode; href: strin
     <li>
       <Link
         href={href}
-        className="text-sm text-zinc-400 hover:text-primary-light transition-all flex items-center gap-3 group translate-x-0 hover:translate-x-1 duration-300"
+        className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary-light transition-all flex items-center gap-3 group translate-x-0 hover:translate-x-1 duration-300"
       >
         <ArrowRight className="w-3 h-3 text-primary opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0" />
-        <span className="font-medium">{children}</span>
+        <span className="font-bold">{children}</span>
       </Link>
     </li>
   );
