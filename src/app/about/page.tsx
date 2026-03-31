@@ -116,6 +116,10 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
                 Empowering the <span className="text-gradient">Next Generation</span> of Digital Leaders.
               </h2>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest">
+                <CheckCircle2 className="w-3 h-3" />
+                Authorized by Drishti Computer Education
+              </div>
               <div className="p-8 border-l-4 border-primary bg-white dark:bg-zinc-900 shadow-xl rounded-r-3xl space-y-6">
                 <p className="text-lg font-medium text-zinc-800 dark:text-zinc-200 leading-relaxed italic">
                   "Vision IT Computer Institute की शुरुआत एक छोटे से सपने के साथ हुई थी—Pratuppur के हर युवा को digital age के लिए तैयार करना। आज हम गर्व से कह सकते हैं कि हम सिर्फ computer नहीं सिखाते, बल्कि students का career और confidence build करते हैं।"

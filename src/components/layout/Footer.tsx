@@ -31,7 +31,7 @@ export function Footer() {
             </span>
           </div>
           <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
-            Empowering students in Pratuppur with modern digital skills and professional computer training. Join us to become future-ready.
+            Authorized Center of <span className="text-primary font-bold">Drishti Computer Education</span>. Empowering students with modern digital skills and professional computer training.
           </p>
           <div className="flex gap-4">
             <SocialLink icon={<Facebook size={18} />} href="#" />

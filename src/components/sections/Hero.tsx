@@ -95,10 +95,16 @@ export function Hero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest"
+                className="flex flex-col gap-3"
               >
-                <Star className="w-3 h-3 fill-primary" />
-                Vision IT Computer Institute Pratuppur
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest max-w-fit">
+                  <Star className="w-3 h-3 fill-primary" />
+                  Vision IT Computer Institute Pratuppur
+                </div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest max-w-fit">
+                  <CheckCircle className="w-3 h-3" />
+                  Authorized Learning Center of Drishti Computer Education
+                </div>
               </motion.div>
               
               <motion.h1
