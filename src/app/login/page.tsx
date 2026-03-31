@@ -44,8 +44,9 @@ function LoginContent() {
       await loginWithEmail(email, password);
       router.push(redirect);
     } catch (err: any) {
-      console.error(err);
-      setError("Invalid credentials. Please verify your email and password.");
+      console.error("Login Error:", err);
+      // Show the actual error message from Supabase
+      setError(err?.message || "An unexpected error occurred during login.");
     } finally {
       setLoading(false);
     }
