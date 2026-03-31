@@ -90,10 +90,16 @@ export function Footer() {
 
       {/* Slogan & Bottom Bar */}
       <div className="max-w-7xl mx-auto px-6 mt-20 pt-10 border-t border-zinc-200 dark:border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-6">
-        <p className="text-zinc-500 text-[10px] font-medium tracking-widest uppercase">
-          Learn • Practice • Grow
-        </p>
-        <p className="text-zinc-400 text-xs">
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 order-2 md:order-1">
+          <p className="text-zinc-500 text-[10px] font-medium tracking-widest uppercase">
+            Learn • Practice • Grow
+          </p>
+          <div className="flex items-center gap-6">
+            <Link href="/privacy" className="text-[10px] font-bold text-zinc-400 hover:text-primary uppercase tracking-widest transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-[10px] font-bold text-zinc-400 hover:text-primary uppercase tracking-widest transition-colors">Terms of Service</Link>
+          </div>
+        </div>
+        <p className="text-zinc-400 text-xs order-1 md:order-2">
           © {currentYear} Vision IT Computer Institute. All rights reserved.
         </p>
       </div>
