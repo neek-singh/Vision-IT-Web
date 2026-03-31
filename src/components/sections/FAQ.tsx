@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   HelpCircle, 
@@ -14,41 +14,22 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-const faqs = [
-  {
-    id: 1,
-    question: "How can I apply for admission?",
-    answer: "You can apply online via our Admission portal or visit our Pratappur campus in person. For online applications, just fill out the registration form, and our counselor will call you within 24 hours.",
-    category: "Admission"
-  },
-  {
-    id: 2,
-    question: "Are the certificates government-recognized?",
-    answer: "Yes, Vision IT Computer Institute is ISO 9001:2015 certified and provides government-recognized diplomas and certificates that are valid for private sector roles and government exam prerequisites.",
-    category: "Certification"
-  },
-  {
-    id: 3,
-    question: "Do you offer practical lab sessions?",
-    answer: "Absolutely. We maintain a 1:1 student-to-computer ratio. Every theoretical concept is followed by extensive practical lab sessions to ensure hands-on mastery.",
-    category: "Learning"
-  },
-  {
-    id: 4,
-    question: "What are the timings for batches?",
-    answer: "We offer flexible batch timings (Morning & Evening) to accommodate regular students as well as working professionals. Typical sessions run from 8:00 AM to 6:00 PM.",
-    category: "Timing"
-  },
-  {
-    id: 5,
-    question: "Do you provide job placement support?",
-    answer: "Yes, we have a dedicated placement cell that helps students with resume building, mock interviews, and connecting them with local and regional tech firms.",
-    category: "Career"
-  }
-];
+import { faqService, FAQItem } from "@/services/faqService";
 
-export function FAQ() {
-  const [openId, setOpenId] = useState<number | null>(1);
+export function FAQ({ initialFaqs }: { initialFaqs?: FAQItem[] }) {
+  const [openId, setOpenId] = useState<number | string | null>(1);
+  const [faqs, setFaqs] = useState<FAQItem[]>(initialFaqs || []);
+
+  useEffect(() => {
+    // If no initial data, fetch on client as fallback
+    if (!initialFaqs || initialFaqs.length === 0) {
+      const fetchFaqs = async () => {
+        const data = await faqService.getFaqs(true);
+        setFaqs(data);
+      };
+      fetchFaqs();
+    }
+  }, [initialFaqs]);
 
   return (
     <section className="py-12 px-6 bg-surface-secondary overflow-hidden transition-colors duration-500">

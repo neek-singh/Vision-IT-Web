@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { AuthProvider } from "@/context/AuthContext";
 import { ConditionalLayout } from "@/components/layout/ConditionalLayout";
+import { FramerProvider } from "@/components/providers/FramerProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,9 +54,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
         <AuthProvider>
           <ThemeProvider>
-            <ConditionalLayout>
-              {children}
-            </ConditionalLayout>
+            <FramerProvider>
+              <ConditionalLayout>
+                {children}
+              </ConditionalLayout>
+            </FramerProvider>
           </ThemeProvider>
         </AuthProvider>
       </body>

@@ -12,11 +12,11 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { blogPosts as blogData } from "@/data/blog";
+import { blogPosts as blogData, BlogPost } from "@/data/blog";
 
-export function LatestBlog() {
-  // Get 3 most recent posts
-  const recentPosts = Object.values(blogData).slice(0, 3);
+export function LatestBlog({ initialPosts }: { initialPosts?: BlogPost[] }) {
+  // Get 3 most recent posts from props or fallback to static data
+  const recentPosts = (initialPosts || Object.values(blogData)).slice(0, 3);
 
   return (
     <section className="py-12 px-6 bg-background overflow-hidden transition-colors duration-500">

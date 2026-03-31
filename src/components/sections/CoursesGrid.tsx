@@ -15,7 +15,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import Link from "next/link";
-import { coursesData } from "@/data/courses";
+import { coursesData, Course } from "@/data/courses";
 import { CourseCard } from "@/components/cards/CourseCard";
 
 const iconMap: Record<string, any> = {
@@ -30,15 +30,16 @@ const iconMap: Record<string, any> = {
 };
 
 const topCourses = ["adca", "tally", "web"];
-const courses = Object.values(coursesData)
-  .filter(c => topCourses.includes(c.id))
-  .map(course => ({
+
+export function CoursesGrid({ initialCourses }: { initialCourses?: Course[] }) {
+  const displayCourses = initialCourses || Object.values(coursesData)
+    .filter(c => topCourses.includes(c.id));
+    
+  const courses = displayCourses.map(course => ({
     ...course,
     icon: (course.iconName && iconMap[course.iconName]) || <Monitor className="w-8 h-12" />,
-    color: course.color.split(' ')[0],
+    color: course.color ? course.color.split(' ')[0] : "from-zinc-700",
   }));
-
-export function CoursesGrid() {
   return (
     <section className="py-10 bg-surface-secondary px-6 transition-colors duration-500">
       <div className="max-w-7xl mx-auto">

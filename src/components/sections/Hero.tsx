@@ -7,71 +7,35 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Star, ChevronLeft, ChevronRight, CheckCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const slides = [
-  {
-    id: 1,
-    title: "Learn Digital Skills for a Better Future",
-    description: "Vision IT Computer Institute Pratuppur में सीखिए modern computer education, practical training और career-oriented courses.",
-    subtext: "Start your digital journey with confidence.",
-    cta1: { text: "Join Now", href: "/admission" },
-    cta2: { text: "Explore Courses", href: "/courses" },
-    image: "/slides/slide1.png",
-    accent: "text-blue-600"
-  },
-  {
-    id: 2,
-    title: "Practical Training • Expert Guidance • Smart Learning",
-    description: "हमारे institute में हर student को मिलता है step-by-step guidance, hands-on practice और easy learning environment.",
-    subtext: "Build real skills, not just knowledge.",
-    cta1: { text: "View Courses", href: "/courses" },
-    cta2: { text: "Know More", href: "/about" },
-    image: "/slides/slide2.png",
-    accent: "text-emerald-600"
-  },
-  {
-    id: 3,
-    title: "Your Career Starts Here",
-    description: "Basic Computer, DCA, Tally, Typing, Web Designing, Graphic Designing जैसे useful courses के साथ अपने future को strong बनाइए.",
-    subtext: "Learn today, lead tomorrow.",
-    cta1: { text: "Admission Open", href: "/admission" },
-    cta2: { text: "Contact Us", href: "/contact" },
-    image: "/slides/slide3.png",
-    accent: "text-indigo-600"
-  },
-  {
-    id: 4,
-    title: "Trusted Computer Institute in Pratuppur",
-    description: "Vision IT Computer Institute offers quality education, supportive faculty and student-friendly classes for all learners.",
-    subtext: "Where learning becomes easy and effective.",
-    cta1: { text: "About Us", href: "/about" },
-    cta2: { text: "Get Started", href: "/admission" },
-    image: "/slides/slide4.png",
-    accent: "text-cyan-600"
-  },
-  {
-    id: 5,
-    title: "Upgrade Your Skills with Vision IT",
-    description: "Computer knowledge, practical training और digital growth के लिए सही place — Vision IT Computer Institute Pratuppur.",
-    subtext: "Step into the world of smart education.",
-    cta1: { text: "Register Now", href: "/admission" },
-    cta2: { text: "Free Inquiry", href: "/contact" },
-    image: "/slides/slide5.png",
-    accent: "text-blue-500"
-  }
-];
+import { heroService, HeroSlide } from "@/services/heroService";
 
-export function Hero() {
+export function Hero({ initialSlides }: { initialSlides?: HeroSlide[] }) {
   const [current, setCurrent] = useState(0);
+  const [slides, setSlides] = useState<HeroSlide[]>(initialSlides || []);
 
   useEffect(() => {
+    // If no initial data, fetch on client as fallback
+    if (!initialSlides || initialSlides.length === 0) {
+      const fetchSlides = async () => {
+        const data = await heroService.getSlides(true);
+        setSlides(data);
+      };
+      fetchSlides();
+    }
+  }, [initialSlides]);
+
+  useEffect(() => {
+    if (slides.length === 0) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+
+  if (slides.length === 0) return null;
 
   return (
     <section className="relative min-h-[65vh] flex items-center overflow-hidden pt-6 bg-background transition-colors duration-500">
@@ -161,14 +125,37 @@ export function Hero() {
             >
               <div className="absolute inset-0 bg-gradient-premium blur-3xl opacity-20 group-hover:opacity-30 transition-opacity -z-10" />
               <div className="relative rounded-[2.2rem] overflow-hidden glass p-3 aspect-[4/3] lg:aspect-square max-w-[360px] mx-auto shadow-2xl">
-                <Image
-                  src={slides[current].image}
-                  alt={slides[current].title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover rounded-[2.5rem]"
-                  priority={current === 0}
-                />
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={current}
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.8 }}
+                    className="absolute inset-3 z-20"
+                  >
+                    <Image
+                      src={slides[current].image}
+                      alt={slides[current].title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover rounded-[2.5rem]"
+                      priority
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Preload Next Image for Smooth Transitions */}
+                <div className="hidden">
+                  <Image
+                    src={slides[(current + 1) % slides.length].image}
+                    alt="Preload"
+                    width={1}
+                    height={1}
+                    priority
+                  />
+                </div>
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
               </div>
             </motion.div>

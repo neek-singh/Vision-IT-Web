@@ -15,18 +15,20 @@ import { cn } from "@/lib/utils";
 
 import { testimonialService, Testimonial } from "@/services/testimonialService";
 
-export function Testimonials() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [loading, setLoading] = useState(true);
+export function Testimonials({ initialTestimonials }: { initialTestimonials?: Testimonial[] }) {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(initialTestimonials || []);
+  const [loading, setLoading] = useState(!initialTestimonials);
 
   useEffect(() => {
+    if (initialTestimonials) return;
+
     // Only show published testimonials to the public
     const unsub = testimonialService.subscribeToTestimonials((data) => {
       setTestimonials(data.filter(t => t.is_published));
       setLoading(false);
     });
     return () => unsub();
-  }, []);
+  }, [initialTestimonials]);
   return (
     <section className="py-12 bg-background px-6 transition-colors duration-500 overflow-hidden">
       <div className="max-w-7xl mx-auto">

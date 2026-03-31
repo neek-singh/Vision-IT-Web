@@ -18,19 +18,21 @@ import { VerificationModal } from "../verification/VerificationModal";
 
 import { facultyService, FacultyMember } from "@/services/facultyService";
 
-export function Faculty() {
-  const [facultyMembers, setFacultyMembers] = useState<FacultyMember[]>([]);
-  const [loading, setLoading] = useState(true);
+export function Faculty({ initialMembers }: { initialMembers?: FacultyMember[] }) {
+  const [facultyMembers, setFacultyMembers] = useState<FacultyMember[]>(initialMembers || []);
+  const [loading, setLoading] = useState(!initialMembers);
   const [verifyingId, setVerifyingId] = useState<string | null>(null);
 
   useEffect(() => {
+    if (initialMembers) return;
+
     // Only show published faculty members to the public
     const unsub = facultyService.subscribeToFaculty((data) => {
       setFacultyMembers(data.filter(m => m.is_published));
       setLoading(false);
     });
     return () => unsub();
-  }, []);
+  }, [initialMembers]);
 
   return (
     <section className="py-12 bg-surface-secondary px-6 relative overflow-hidden transition-colors duration-500">
