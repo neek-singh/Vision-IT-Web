@@ -59,30 +59,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const handleUserChange = async (currentUser: User | null, config: any) => {
       setLoading(true);
-      if (currentUser) {
-        setUser(currentUser);
-        
-        // Profile Synchronization
-        // Supabase Auth stores metadata in user_metadata
-        const userProfile = await userService.syncUserProfile(currentUser.id, {
-          email: currentUser.email,
-          displayName: currentUser.user_metadata?.full_name || currentUser.user_metadata?.display_name || "Student",
-          photoURL: currentUser.user_metadata?.avatar_url || currentUser.user_metadata?.picture || null,
-        });
-        setProfile(userProfile);
-        
-        // Unified Admin Check
-        const isWhitelisted = ADMIN_WHITELIST.includes(currentUser.email || "");
-        const isMasterConfig = config?.email === currentUser.email;
-        const isProfileAdmin = userProfile?.role === "admin";
-        
-        setIsAdmin(isWhitelisted || isMasterConfig || isProfileAdmin);
-      } else {
-        setUser(null);
-        setProfile(null);
-        setIsAdmin(false);
+      try {
+        if (currentUser) {
+          setUser(currentUser);
+          
+          // Profile Synchronization
+          // Supabase Auth stores metadata in user_metadata
+          const userProfile = await userService.syncUserProfile(currentUser.id, {
+            email: currentUser.email,
+            displayName: currentUser.user_metadata?.full_name || currentUser.user_metadata?.display_name || "Student",
+            photoURL: currentUser.user_metadata?.avatar_url || currentUser.user_metadata?.picture || null,
+          });
+          setProfile(userProfile);
+          
+          // Unified Admin Check
+          const isWhitelisted = ADMIN_WHITELIST.includes(currentUser.email || "");
+          const isMasterConfig = config?.email === currentUser.email;
+          const isProfileAdmin = userProfile?.role === "admin";
+          
+          setIsAdmin(isWhitelisted || isMasterConfig || isProfileAdmin);
+        } else {
+          setUser(null);
+          setProfile(null);
+          setIsAdmin(false);
+        }
+      } catch (error) {
+        console.error("Error in handleUserChange:", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     initAuth();

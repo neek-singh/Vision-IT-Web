@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Lock, ShieldCheck, Mail, LogIn, ArrowRight, ShieldAlert } from "lucide-react";
 
 export default function AdminEntrance() {
-  const { user, loading, isAdmin, loginWithGoogle } = useAuth();
+  const { user, loading, isAdmin, loginWithGoogle, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
@@ -64,15 +64,26 @@ export default function AdminEntrance() {
           <div className="w-full space-y-4 pt-4">
             <AnimatePresence>
               {error && (
-                <motion.div 
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center gap-3 text-red-500 text-xs font-bold"
-                >
-                  <ShieldAlert className="w-4 h-4 shrink-0" />
-                  {error}
-                </motion.div>
+                <div className="space-y-4">
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center gap-3 text-red-500 text-xs font-bold"
+                  >
+                    <ShieldAlert className="w-4 h-4 shrink-0" />
+                    {error}
+                  </motion.div>
+                  
+                  {user && (
+                    <button 
+                      onClick={() => logout()}
+                      className="w-full py-3 bg-zinc-800 text-zinc-400 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-zinc-700 transition-all"
+                    >
+                      Sign Out & Try Another Account
+                    </button>
+                  )}
+                </div>
               )}
             </AnimatePresence>
 
