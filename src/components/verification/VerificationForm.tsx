@@ -10,12 +10,13 @@ import { cn } from "@/lib/utils";
 const getValidationSchema = (type: string) => {
   if (type === "query") {
     return z.object({
-      id: z.string().min(1, "Registration ID is required"),
+      id: z.string().optional(),
       mobile: z.string().regex(/^[6-9]\d{9}$/, "Invalid 10-digit mobile number"),
     });
   }
   return z.object({
     id: z.string().min(1, "Verification ID / Roll No is required"),
+    mobile: z.string().optional(),
   });
 };
 
@@ -35,7 +36,7 @@ export function VerificationForm({ type, onSearch, isLoading, onReset, prefillId
     formState: { errors },
     reset,
     setValue
-  } = useForm<{ id: string, mobile?: string }>({
+  } = useForm<any>({
     resolver: zodResolver(schema),
   });
 
@@ -79,29 +80,31 @@ export function VerificationForm({ type, onSearch, isLoading, onReset, prefillId
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="space-y-5">
-           {/* Primary ID Input */}
-           <div className="space-y-2">
-              <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest ml-1 flex items-center gap-2">
-                <Fingerprint className="w-3 h-3" />
-                Identification ID / Roll No
-              </label>
-              <div className="relative">
-                <input
-                  {...register("id")}
-                  onChange={() => onReset()}
-                  className={cn(
-                    "w-full px-6 py-4.5 bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-800 rounded-2xl focus:ring-4 focus:ring-primary/10 transition-all text-zinc-900 dark:text-zinc-100 outline-none text-base font-medium placeholder:text-zinc-300",
-                    errors.id && "border-red-500/50"
-                  )}
-                  placeholder={placeholders[type]}
-                />
-              </div>
-              {errors.id && (
-                 <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest ml-1">
-                   {errors.id.message as string}
-                 </p>
-              )}
-           </div>
+           {/* Primary ID Input - Hidden for Query */}
+           {type !== "query" && (
+             <div className="space-y-2">
+                <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest ml-1 flex items-center gap-2">
+                  <Fingerprint className="w-3 h-3" />
+                  Identification ID / Roll No
+                </label>
+                <div className="relative">
+                  <input
+                    {...register("id")}
+                    onChange={() => onReset()}
+                    className={cn(
+                      "w-full px-6 py-4.5 bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-800 rounded-2xl focus:ring-4 focus:ring-primary/10 transition-all text-zinc-900 dark:text-zinc-100 outline-none text-base font-medium placeholder:text-zinc-300",
+                      errors.id && "border-red-500/50"
+                    )}
+                    placeholder={placeholders[type]}
+                  />
+                </div>
+                {errors.id && (
+                   <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest ml-1">
+                     {errors.id.message as string}
+                   </p>
+                )}
+             </div>
+           )}
 
            {/* Mobile Input for Query Tracking only */}
            {type === "query" && (

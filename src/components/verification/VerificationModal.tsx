@@ -30,7 +30,7 @@ export function VerificationModal({ isOpen, onClose, type, prefillId }: Verifica
       let data = null;
       switch (type) {
         case "query":
-          data = await verificationService.trackQuery(formData.id, formData.mobile);
+          data = await verificationService.trackQuery(formData.mobile);
           break;
         case "teacher":
           data = await verificationService.verifyTeacher(formData.id);

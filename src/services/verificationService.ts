@@ -10,7 +10,7 @@ export const verificationService = {
   /**
    * Track admission query status from Supabase
    */
-  async trackQuery(id: string, mobile: string) {
+  async trackQuery(mobile: string) {
     const { data, error } = await supabase
       .from("admissions")
       .select("*")
