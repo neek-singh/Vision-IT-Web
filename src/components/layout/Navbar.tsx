@@ -252,10 +252,10 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 mt-2 mx-4 glass rounded-2xl overflow-hidden md:hidden shadow-2xl"
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            className="absolute top-full left-0 right-0 mt-3 mx-4 glass rounded-[2rem] overflow-hidden md:hidden shadow-2xl border-white/20 dark:border-white/10 backdrop-blur-2xl bg-white/90 dark:bg-zinc-950/90"
           >
             <div className="flex flex-col p-4 gap-4 max-h-[80vh] overflow-y-auto">
               {navLinks.map((link) => (

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 export function Welcome() {
   return (
-    <section className="py-16 md:py-24 px-6 relative overflow-hidden bg-background transition-colors duration-500">
+    <section className="py-24 md:py-32 px-6 relative overflow-hidden bg-background transition-colors duration-500">
       {/* Background patterns */}
       <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] dark:opacity-[0.05] pointer-events-none -z-10">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -21,26 +21,26 @@ export function Welcome() {
       </div>
 
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
           {/* Left: Content */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-12"
           >
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest">
                 <Star className="w-3.5 h-3.5 fill-primary" />
                 Welcome to Vision IT
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white leading-[1.1]">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white leading-[1.05]">
                 Pratappur का सबसे भरोसेमंद <span className="text-gradient">Computer Training</span> सेंटर
               </h2>
             </div>
 
-            <div className="space-y-6 text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed text-justify">
+            <div className="space-y-8 text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed text-justify">
               <p>
                 Agar aap <strong>Pratappur</strong> mein ek aisa computer institute ki talash kar rahe hain jahan theory se zyada practical knowledge di jaati hai, toh aap sahi jagah aaye hain. <strong className="text-zinc-900 dark:text-white font-bold">Vision IT Computer Institute Pratappur</strong> pichle kai saalon se Pratappur aur aas-paas ke kshetron (District Surajpur) ke students ka ekmatra bharosa bana hua hai.
               </p>
@@ -49,23 +49,23 @@ export function Welcome() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 pt-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-5 h-5" />
+            <div className="grid grid-cols-2 gap-8 pt-6 border-t border-zinc-100 dark:border-zinc-800">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-zinc-900 dark:text-white font-bold">500+</span>
-                  <span className="text-xs text-zinc-500">Students Trained</span>
+                  <span className="text-2xl font-black text-zinc-900 dark:text-white">500+</span>
+                  <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Students Trained</span>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  <Users className="w-5 h-5" />
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <Users className="w-6 h-6" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-zinc-900 dark:text-white font-bold">Expert</span>
-                  <span className="text-xs text-zinc-500">Faculty Members</span>
+                  <span className="text-2xl font-black text-zinc-900 dark:text-white">Expert</span>
+                  <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Faculty Members</span>
                 </div>
               </div>
             </div>
@@ -77,37 +77,37 @@ export function Welcome() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
-            <div className="p-8 rounded-[2.5rem] bg-surface-secondary border border-zinc-200/50 dark:border-zinc-800/50 space-y-4 hover:border-primary/20 transition-colors group">
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                <Award className="w-6 h-6" />
+            <div className="p-10 rounded-[3rem] bg-surface-secondary border border-zinc-200/50 dark:border-zinc-800/50 space-y-6 hover:border-primary/20 transition-all duration-500 group">
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                <Award className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white">Recognition</h3>
+              <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Recognition</h3>
               <p className="text-sm text-zinc-500 leading-relaxed">Our DCA/PGDCA certificates are university recognized and valid for all Govt Jobs.</p>
             </div>
             
-            <div className="p-8 rounded-[2.5rem] bg-primary text-white space-y-4 shadow-2xl shadow-primary/20 translate-y-6">
-              <div className="w-12 h-12 rounded-2xl bg-white/20 text-white flex items-center justify-center">
-                <CheckCircle2 className="w-6 h-6" />
+            <div className="p-10 rounded-[3rem] bg-primary text-white space-y-6 shadow-2xl shadow-primary/20 translate-y-8">
+              <div className="w-14 h-14 rounded-2xl bg-white/20 text-white flex items-center justify-center">
+                <CheckCircle2 className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold">Practical Lab</h3>
+              <h3 className="text-2xl font-bold">Practical Lab</h3>
               <p className="text-white/80 text-sm leading-relaxed">Dedicated PC for every student with high-speed internet and power backup.</p>
             </div>
 
-            <div className="p-8 rounded-[2.5rem] bg-surface-secondary border border-zinc-200/50 dark:border-zinc-800/50 space-y-4 sm:-translate-y-6 hover:border-primary/20 transition-colors group">
-              <div className="w-12 h-12 rounded-2xl bg-accent/10 text-accent flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all duration-300">
-                <Users className="w-6 h-6" />
+            <div className="p-10 rounded-[3rem] bg-surface-secondary border border-zinc-200/50 dark:border-zinc-800/50 space-y-6 sm:-translate-y-8 hover:border-primary/20 transition-all duration-500 group">
+              <div className="w-14 h-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                <Users className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold">1:1 Attention</h3>
+              <h3 className="text-2xl font-bold">1:1 Attention</h3>
               <p className="text-sm text-zinc-500 leading-relaxed">Small batches ensuring every student receives personal guidance and clarity.</p>
             </div>
 
-            <div className="p-8 rounded-[2.5rem] bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 space-y-4 sm:translate-y-0">
-              <div className="w-12 h-12 rounded-2xl bg-white/10 dark:bg-zinc-100 text-white dark:text-zinc-900 flex items-center justify-center">
-                <Star className="w-6 h-6" />
+            <div className="p-10 rounded-[3rem] bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 space-y-6">
+              <div className="w-14 h-14 rounded-2xl bg-white/10 dark:bg-zinc-100 text-white dark:text-zinc-900 flex items-center justify-center">
+                <Star className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold">Career First</h3>
+              <h3 className="text-2xl font-bold">Career First</h3>
               <p className="opacity-70 text-sm leading-relaxed">Focus on placement support and resume building for local IT and Govt sectors.</p>
             </div>
           </motion.div>
