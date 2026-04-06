@@ -1,27 +1,20 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
-  Briefcase, 
   GraduationCap, 
-  CheckCircle2, 
   Linkedin, 
-  Twitter, 
   Mail,
-  Zap,
   UserCheck
 } from "lucide-react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { VerificationModal } from "../verification/VerificationModal";
 
 import { facultyService, FacultyMember } from "@/services/facultyService";
 
 export function Faculty({ initialMembers }: { initialMembers?: FacultyMember[] }) {
   const [facultyMembers, setFacultyMembers] = useState<FacultyMember[]>(initialMembers || []);
   const [loading, setLoading] = useState(!initialMembers);
-  const [verifyingId, setVerifyingId] = useState<string | null>(null);
 
   useEffect(() => {
     if (initialMembers) return;
@@ -66,27 +59,15 @@ export function Faculty({ initialMembers }: { initialMembers?: FacultyMember[] }
                key={member.id} 
                member={member} 
                index={idx} 
-               onVerify={() => setVerifyingId(member.id)}
             />
           ))}
         </div>
       </div>
-
-      <AnimatePresence>
-        {verifyingId && (
-          <VerificationModal 
-            isOpen={!!verifyingId} 
-            onClose={() => setVerifyingId(null)} 
-            type="teacher"
-            prefillId={verifyingId}
-          />
-        )}
-      </AnimatePresence>
     </section>
   );
 }
 
-function FacultyCard({ member, index, onVerify }: { member: any; index: number; onVerify: () => void }) {
+function FacultyCard({ member, index }: { member: any; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -133,13 +114,6 @@ function FacultyCard({ member, index, onVerify }: { member: any; index: number; 
               <SocialIcon icon={<Linkedin className="w-3.5 h-3.5" />} />
               <SocialIcon icon={<Mail className="w-3.5 h-3.5" />} />
             </div>
-            <button 
-              onClick={onVerify}
-              className="px-5 py-2 bg-primary/5 hover:bg-primary text-primary hover:text-white rounded-full text-[9px] font-black uppercase tracking-[0.2em] transition-all shadow-sm active:scale-95 flex items-center gap-2 group/btn"
-            >
-              <CheckCircle2 className="w-3 h-3" />
-              Verify ID
-            </button>
           </div>
         </div>
       </div>
