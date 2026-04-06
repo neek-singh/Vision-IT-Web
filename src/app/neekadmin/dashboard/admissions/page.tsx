@@ -57,9 +57,13 @@ export default function AdmissionsPipeline() {
   };
 
   const filteredAdmissions = admissions.filter(app => {
-    const matchesSearch = app.fullName.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                         app.phoneNumber.includes(searchQuery);
-    const matchesCourse = filterCourse === "All Courses" || app.course === filterCourse;
+    const fullName = app?.fullName || "";
+    const phoneNumber = app?.phoneNumber || "";
+    const course = app?.course || "";
+    
+    const matchesSearch = fullName.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                         phoneNumber.includes(searchQuery);
+    const matchesCourse = filterCourse === "All Courses" || course === filterCourse;
     return matchesSearch && matchesCourse;
   });
 

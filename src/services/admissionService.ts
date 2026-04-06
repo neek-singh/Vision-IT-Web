@@ -115,17 +115,17 @@ export const admissionService = {
       callback(data.map(m => ({
         id: m.id,
         userId: m.user_id,
-        fullName: m.student_name,
-        fatherName: m.father_name,
-        phoneNumber: m.student_phone,
-        email: m.student_email,
-        course: m.course_id,
-        address: m.student_address,
-        dob: m.student_dob,
-        status: m.status,
-        submittedAt: m.admission_date,
-        source: m.source,
-        metadata: m.metadata
+        fullName: m.student_name || "Unknown Candidate",
+        fatherName: m.father_name || "Not provided",
+        phoneNumber: m.student_phone || "No phone",
+        email: m.student_email || "No email",
+        course: m.course_id || "General Course",
+        address: m.student_address || "No address",
+        dob: m.student_dob || "Not set",
+        status: m.status || "pending",
+        submittedAt: m.admission_date || new Date().toISOString(),
+        source: m.source || "form",
+        metadata: m.metadata || {}
       })) as AdmissionApplication[]);
     };
 
@@ -162,17 +162,17 @@ export const admissionService = {
     return {
       id: m.id,
       userId: m.user_id,
-      fullName: m.student_name,
-      fatherName: m.father_name,
-      phoneNumber: m.student_phone,
-      email: m.student_email,
-      course: m.course_id,
-      address: m.student_address,
-      dob: m.student_dob,
-      status: m.status,
-      submittedAt: m.admission_date,
-      source: m.source,
-      metadata: m.metadata
+      fullName: m.student_name || "Unknown Candidate",
+      fatherName: m.father_name || "Not provided",
+      phoneNumber: m.student_phone || "No phone",
+      email: m.student_email || "No email",
+      course: m.course_id || "General Course",
+      address: m.student_address || "No address",
+      dob: m.student_dob || "Not set",
+      status: m.status || "pending",
+      submittedAt: m.admission_date || new Date().toISOString(),
+      source: m.source || "form",
+      metadata: m.metadata || {}
     } as AdmissionApplication;
   },
 
@@ -200,17 +200,17 @@ export const admissionService = {
       return data.map(m => ({
         id: m.id,
         userId: m.user_id,
-        fullName: m.student_name,
-        fatherName: m.father_name,
-        phoneNumber: m.student_phone,
-        email: m.student_email,
-        course: m.course_id,
-        address: m.student_address,
-        dob: m.student_dob,
-        status: m.status,
-        submittedAt: m.admission_date,
-        source: m.source,
-        metadata: m.metadata
+        fullName: m.student_name || "Unknown Candidate",
+        fatherName: m.father_name || "Not provided",
+        phoneNumber: m.student_phone || "No phone",
+        email: m.student_email || "No email",
+        course: m.course_id || "General Course",
+        address: m.student_address || "No address",
+        dob: m.student_dob || "Not set",
+        status: m.status || "pending",
+        submittedAt: m.admission_date || new Date().toISOString(),
+        source: m.source || "form",
+        metadata: m.metadata || {}
       })) as AdmissionApplication[];
     } catch (error) {
       console.error("Error fetching student applications:", error);
