@@ -98,24 +98,28 @@ function AdmissionFormContent() {
   useEffect(() => {
     const courseParam = searchParams.get("course");
     if (courseParam) {
-      // 1. First check if it's a direct ID match in our official data
-      const courseFromData = coursesData[courseParam.toLowerCase()];
+      const decodedParam = decodeURIComponent(courseParam).toLowerCase();
+      
+      // 1. Precise check: Match by coursesData ID or Title
+      const courseFromData = Object.values(coursesData).find(cd => 
+        cd.id.toLowerCase() === decodedParam || 
+        cd.title.toLowerCase() === decodedParam
+      );
       
       if (courseFromData) {
-        // Find which option in our 'courses' array best matches this official course
+        // Find best match in dropdown array
         const matchedCourse = courses.find(c => 
-          c.toLowerCase().includes(courseFromData.title.toLowerCase()) || 
-          c.toLowerCase().includes(courseParam.toLowerCase())
+          c.toLowerCase().includes(courseFromData.title.toLowerCase())
         );
         
         if (matchedCourse) {
           setValue("course", matchedCourse);
         }
       } else {
-        // 2. Fallback: Try matching the param directly against the list
-        const matchedCourse = courses.find(c => c.toLowerCase().includes(courseParam.toLowerCase()));
-        if (matchedCourse) {
-          setValue("course", matchedCourse);
+        // 2. Fuzzy fallback: directly match dropdown options with parameter
+        const fuzzyMatch = courses.find(c => c.toLowerCase().includes(decodedParam));
+        if (fuzzyMatch) {
+          setValue("course", fuzzyMatch);
         }
       }
     }

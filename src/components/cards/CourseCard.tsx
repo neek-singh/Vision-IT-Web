@@ -127,7 +127,7 @@ export function CourseCard({ course, idx }: CourseCardProps) {
           <ChevronRight className="w-4 h-4" />
         </Link>
         <Link 
-          href="/admission"
+          href={`/admission?course=${course.id}`}
           className="flex-1 py-3.5 bg-white dark:bg-transparent border-2 border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 rounded-2xl text-xs font-black flex items-center justify-center hover:bg-zinc-50 dark:hover:bg-white/5 transition-all active:scale-95"
         >
           Quick Enroll
