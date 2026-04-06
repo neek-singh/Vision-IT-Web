@@ -373,7 +373,7 @@ function AdmissionFormContent() {
               
               <p className="text-[10px] text-zinc-400 text-center uppercase tracking-[0.3em] font-medium leading-relaxed">
                 ISO 9001:2015 CERTIFIED INSTITUTE <br/>
-                PRATAPPPUR | SURAJPUR | CHHATTISGARH
+                PRATAPPUR | SURAJPUR | CHHATTISGARH
               </p>
             </form>
           )}

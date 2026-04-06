@@ -61,7 +61,7 @@ export function CoursesGrid({ initialCourses }: { initialCourses?: Course[] }) {
             Choose Your <span className="text-gradient">Professional Path</span>
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 text-base">
-            Vision IT Computer Institute Pratappur is the leading destination for technical and modern computer education in Surajpur district.
+            Vision IT Computer Institute Pratappur is the best destination for technical and modern computer education for students across the entire Surajpur district.
           </p>
         </div>
 

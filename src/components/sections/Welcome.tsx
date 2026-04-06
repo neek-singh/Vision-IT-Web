@@ -42,7 +42,7 @@ export function Welcome() {
 
             <div className="space-y-6 text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed text-justify">
               <p>
-                Agar aap <strong>Pratappur</strong> mein ek aisa computer institute ki talash kar rahe hain jahan theory se zyada practical knowledge di jaati hai, toh aap sahi jagah aaye hain. <strong className="text-zinc-900 dark:text-white font-bold">Vision IT Computer Institute Pratappur</strong> pichle kai saalon se Pratappur aur aas-paas ke areas jaise <strong>Wadrafnagar, Surajpur, aur Balrampur</strong> ke students ka ekmatra bharosa bana hua hai.
+                Agar aap <strong>Pratappur</strong> mein ek aisa computer institute ki talash kar rahe hain jahan theory se zyada practical knowledge di jaati hai, toh aap sahi jagah aaye hain. <strong className="text-zinc-900 dark:text-white font-bold">Vision IT Computer Institute Pratappur</strong> pichle kai saalon se Pratappur aur aas-paas ke kshetron (District Surajpur) ke students ka ekmatra bharosa bana hua hai.
               </p>
               <p>
                 Humara maqsad sirf certificate dena nahi, balki aapko job-ready banana hai. <strong className="text-zinc-900 dark:text-white font-bold">Class 6th ke students hon ya PG (Graduate) level ke</strong>, Vision IT Pratappur par hum provide karte hain industry-leading courses jaise DCA, PGDCA, Junior Special, aur Tally Prime with GST. Hum sirf theory nahi, balki <strong className="text-primary font-bold">Hands-on Practical Training</strong> par focus karte hain taaki aap industry ke kisi bhi professional se peeche na rahein.

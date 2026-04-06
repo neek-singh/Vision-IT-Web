@@ -17,9 +17,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Best Computer Institute in Pratappur | DCA, PGDCA, Tally & Python",
+  metadataBase: new URL("https://visionitinstitute.vercel.app"),
+  title: {
+    default: "Vision IT Computer Institute Pratappur | Best Computer Classes",
+    template: "%s | Vision IT Pratappur"
+  },
   description: "Vision IT Computer Institute Pratappur offers world-class training for Class 6th to Post-Graduation (PG) students. Recognized DCA, PGDCA, Tally, and Python courses with 100% placement support.",
-  keywords: "Computer Institute Pratappur, Class 6th Computer Classes, Computer Classes for Graduates, DCA PGDCA Course Pratappur, Tally Prime GST training Pratappur, Web Development Pratappur, Python Classes Surajpur, Best Computer Coaching Chhattisgarh",
+  keywords: "Computer Institute Pratappur, Class 6th Computer Classes, Computer Classes for Graduates, DCA PGDCA Course Pratappur, Tally Prime GST training Pratappur, Web Development Pratappur, Python Classes Pratappur, Best Computer Coaching Pratappur",
+  alternates: {
+    canonical: "/",
+  },
   verification: {
     google: "google317c240a3e397d28",
   },
@@ -32,10 +39,10 @@ const jsonLd = {
   "image": "https://vision-it-website.vercel.app/logo.png",
   "@id": "https://vision-it-website.vercel.app",
   "url": "https://vision-it-website.vercel.app",
-  "telephone": "+91XXXXXXXXXX",
+  "telephone": "+918103170595",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Kadampara Chowk, Main Road",
+    "streetAddress": "Kadampara Chowk, Pratappur",
     "addressLocality": "Pratappur",
     "addressRegion": "Chhattisgarh",
     "postalCode": "497223",
