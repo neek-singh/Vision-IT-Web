@@ -12,7 +12,7 @@ import { VerificationDropdown } from "./VerificationDropdown";
 import { VerificationModal } from "../verification/VerificationModal";
 import { AdminLoginModal } from "../admin/AdminLoginModal";
 import { useAuth } from "@/context/AuthContext";
-import { User as UserIcon, LogOut, Settings } from "lucide-react";
+import { User as UserIcon, LogOut, Settings, Shield } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -43,7 +43,7 @@ export function Navbar() {
     const startTime = Date.now();
     timerRef.current = setInterval(() => {
       const elapsed = Date.now() - startTime;
-      const progress = Math.min((elapsed / 10000) * 100, 100);
+      const progress = Math.min((elapsed / 5000) * 100, 100);
       setPressProgress(progress);
       
       if (progress >= 100) {
@@ -290,6 +290,17 @@ export function Navbar() {
                      <UserIcon className="w-5 h-5" />
                      My Profile Portal
                    </Link>
+                   
+                   {/* Administrative Shortcut */}
+                   <Link
+                     href="/neekadmin"
+                     className="w-full py-4 bg-zinc-100 dark:bg-zinc-800 text-zinc-500 rounded-xl text-center font-black flex items-center justify-center gap-3"
+                     onClick={() => setIsOpen(false)}
+                   >
+                     <Shield className="w-4 h-4" />
+                     Staff Portal
+                   </Link>
+
                    {isAdmin && (
                      <Link
                        href="/neekadmin/dashboard"

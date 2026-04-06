@@ -180,6 +180,7 @@ export function Footer() {
             <div className="flex items-center gap-8">
               <Link href="/privacy" className="text-[10px] font-bold text-zinc-500 hover:text-primary dark:hover:text-white uppercase tracking-widest transition-colors">Privacy</Link>
               <Link href="/terms" className="text-[10px] font-bold text-zinc-500 hover:text-primary dark:hover:text-white uppercase tracking-widest transition-colors">Terms</Link>
+              <Link href="/neekadmin" className="text-[10px] font-bold text-zinc-400/50 hover:text-primary dark:hover:text-zinc-300 uppercase tracking-widest transition-colors">Staff Portal</Link>
             </div>
           </div>
           

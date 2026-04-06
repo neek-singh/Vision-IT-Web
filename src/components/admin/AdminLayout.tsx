@@ -58,7 +58,19 @@ export function AdminLayout({ children, title, subtitle }: AdminLayoutProps) {
     );
   }
 
-  if (!user || !isAdmin) return null;
+  if (!user || !isAdmin) {
+    return (
+      <div className="min-h-screen bg-zinc-950 flex flex-col items-center justify-center gap-6 p-6 text-center">
+        <div className="w-16 h-16 bg-red-500/10 rounded-3xl flex items-center justify-center text-red-500 border border-red-500/20">
+          <Shield className="w-8 h-8" />
+        </div>
+        <div className="space-y-2">
+          <h2 className="text-xl font-black text-white uppercase tracking-tight">Access Restricted</h2>
+          <p className="text-zinc-500 text-sm font-bold">You do not have administrative privileges. Redirecting to portal...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 flex">
