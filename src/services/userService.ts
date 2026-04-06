@@ -34,9 +34,9 @@ export const userService = {
       return {
         uid: data.id,
         email: data.email,
-        displayName: data.display_name,
-        photoURL: data.photo_url,
-        phoneNumber: data.phone_number,
+        displayName: data.full_name,
+        photoURL: data.avatar_url,
+        phoneNumber: data.phone,
         role: data.role,
         createdAt: data.created_at,
         updatedAt: data.updated_at,
@@ -61,9 +61,9 @@ export const userService = {
         const newProfile = {
           id: uid,
           email: data.email || null,
-          display_name: data.displayName || "Student",
-          photo_url: data.photoURL || null,
-          phone_number: data.phoneNumber || "",
+          full_name: data.displayName || "Student",
+          avatar_url: data.photoURL || null,
+          phone: data.phoneNumber || "",
           role: data.role || "student",
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
@@ -79,8 +79,8 @@ export const userService = {
         return {
           uid,
           ...data,
-          displayName: newProfile.display_name,
-          photoURL: newProfile.photo_url,
+          displayName: newProfile.full_name,
+          photoURL: newProfile.avatar_url,
           role: newProfile.role as "student" | "admin" | "teacher",
           createdAt: newProfile.created_at,
           updatedAt: newProfile.updated_at,
@@ -97,8 +97,8 @@ export const userService = {
           .update({
             last_login: now,
             updated_at: now,
-            display_name: data.displayName || existingProfile.displayName,
-            photo_url: updatedPhotoURL,
+            full_name: data.displayName || existingProfile.displayName,
+            avatar_url: updatedPhotoURL,
           })
           .eq("id", uid);
 
@@ -179,9 +179,9 @@ export const userService = {
         updated_at: new Date().toISOString(),
       };
       
-      if (updates.displayName !== undefined) supabaseUpdates.display_name = updates.displayName;
-      if (updates.photoURL !== undefined) supabaseUpdates.photo_url = updates.photoURL;
-      if (updates.phoneNumber !== undefined) supabaseUpdates.phone_number = updates.phoneNumber;
+      if (updates.displayName !== undefined) supabaseUpdates.full_name = updates.displayName;
+      if (updates.photoURL !== undefined) supabaseUpdates.avatar_url = updates.photoURL;
+      if (updates.phoneNumber !== undefined) supabaseUpdates.phone = updates.phoneNumber;
       if (updates.email !== undefined) supabaseUpdates.email = updates.email;
       if (updates.role !== undefined) supabaseUpdates.role = updates.role;
 
@@ -213,9 +213,9 @@ export const userService = {
       return data.map(profile => ({
         uid: profile.id,
         email: profile.email,
-        displayName: profile.display_name,
-        photoURL: profile.photo_url,
-        phoneNumber: profile.phone_number,
+        displayName: profile.full_name,
+        photoURL: profile.avatar_url,
+        phoneNumber: profile.phone,
         role: profile.role,
         createdAt: profile.created_at,
         updatedAt: profile.updated_at,

@@ -39,15 +39,15 @@ export const admissionService = {
         .from(ADMISSIONS_TABLE)
         .insert({
           user_id: data.userId || null,
-          full_name: data.fullName,
+          student_name: data.fullName,
           father_name: data.fatherName,
-          phone_number: data.phoneNumber,
-          email: data.email || null,
-          course: data.course,
-          address: data.address,
-          dob: data.dob,
+          student_phone: data.phoneNumber,
+          student_email: data.email || null,
+          course_id: data.course,
+          student_address: data.address,
+          student_dob: data.dob,
           status: "pending",
-          submitted_at: new Date().toISOString(),
+          admission_date: new Date().toISOString(),
           source: "website_online_form",
           metadata: metadata || {},
         })
@@ -69,7 +69,7 @@ export const admissionService = {
     const { data, error } = await supabase
       .from(ADMISSIONS_TABLE)
       .select("id")
-      .eq("phone_number", phoneNumber)
+      .eq("student_phone", phoneNumber)
       .limit(1);
     
     if (error) {
@@ -105,7 +105,7 @@ export const admissionService = {
       const { data, error } = await supabase
         .from(ADMISSIONS_TABLE)
         .select("*")
-        .order("submitted_at", { ascending: false });
+        .order("admission_date", { ascending: false });
       
       if (error) {
         console.error("Error fetching admissions:", error);
@@ -115,15 +115,15 @@ export const admissionService = {
       callback(data.map(m => ({
         id: m.id,
         userId: m.user_id,
-        fullName: m.full_name,
+        fullName: m.student_name,
         fatherName: m.father_name,
-        phoneNumber: m.phone_number,
-        email: m.email,
-        course: m.course,
-        address: m.address,
-        dob: m.dob,
+        phoneNumber: m.student_phone,
+        email: m.student_email,
+        course: m.course_id,
+        address: m.student_address,
+        dob: m.student_dob,
         status: m.status,
-        submittedAt: m.submitted_at,
+        submittedAt: m.admission_date,
         source: m.source,
         metadata: m.metadata
       })) as AdmissionApplication[]);
@@ -152,8 +152,8 @@ export const admissionService = {
     const { data, error } = await supabase
       .from(ADMISSIONS_TABLE)
       .select("*")
-      .eq("phone_number", phoneNumber)
-      .order("submitted_at", { ascending: false })
+      .eq("student_phone", phoneNumber)
+      .order("admission_date", { ascending: false })
       .limit(1);
     
     if (error || data.length === 0) return null;
@@ -162,15 +162,15 @@ export const admissionService = {
     return {
       id: m.id,
       userId: m.user_id,
-      fullName: m.full_name,
+      fullName: m.student_name,
       fatherName: m.father_name,
-      phoneNumber: m.phone_number,
-      email: m.email,
-      course: m.course,
-      address: m.address,
-      dob: m.dob,
+      phoneNumber: m.student_phone,
+      email: m.student_email,
+      course: m.course_id,
+      address: m.student_address,
+      dob: m.student_dob,
       status: m.status,
-      submittedAt: m.submitted_at,
+      submittedAt: m.admission_date,
       source: m.source,
       metadata: m.metadata
     } as AdmissionApplication;
@@ -184,31 +184,31 @@ export const admissionService = {
       let query = supabase.from(ADMISSIONS_TABLE).select("*");
       
       if (userId && phoneNumber) {
-        query = query.or(`user_id.eq.${userId},phone_number.eq.${phoneNumber}`);
+        query = query.or(`user_id.eq.${userId},student_phone.eq.${phoneNumber}`);
       } else if (userId) {
         query = query.eq("user_id", userId);
       } else if (phoneNumber) {
-        query = query.eq("phone_number", phoneNumber);
+        query = query.eq("student_phone", phoneNumber);
       } else {
         return [];
       }
 
-      const { data, error } = await query.order("submitted_at", { ascending: false });
+      const { data, error } = await query.order("admission_date", { ascending: false });
       
       if (error) throw error;
       
       return data.map(m => ({
         id: m.id,
         userId: m.user_id,
-        fullName: m.full_name,
+        fullName: m.student_name,
         fatherName: m.father_name,
-        phoneNumber: m.phone_number,
-        email: m.email,
-        course: m.course,
-        address: m.address,
-        dob: m.dob,
+        phoneNumber: m.student_phone,
+        email: m.student_email,
+        course: m.course_id,
+        address: m.student_address,
+        dob: m.student_dob,
         status: m.status,
-        submittedAt: m.submitted_at,
+        submittedAt: m.admission_date,
         source: m.source,
         metadata: m.metadata
       })) as AdmissionApplication[];
@@ -237,7 +237,7 @@ export const admissionService = {
           event: "*", 
           schema: "public", 
           table: ADMISSIONS_TABLE,
-          filter: `phone_number=eq.${phoneNumber}` 
+          filter: `student_phone=eq.${phoneNumber}` 
         },
         () => fetchStatus()
       )
