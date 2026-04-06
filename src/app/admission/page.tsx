@@ -28,10 +28,9 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import toast, { Toaster } from "react-hot-toast";
-import { AdmissionApplication } from "@/services/admissionService";
-import { userService } from "@/services/userService";
 import { coursesData } from "@/data/courses";
 import { useAuth } from "@/context/AuthContext";
+import { admissionService } from "@/services/admissionService";
 
 // Schema for form validation
 const admissionSchema = z.object({
@@ -125,43 +124,47 @@ function AdmissionFormContent() {
   const onSubmit = async (data: AdmissionForm) => {
     setIsSubmitting(true);
     try {
-      const { admissionService } = await import("@/services/admissionService");
+      console.log("Submitting Admission Data:", data);
       
-      // Check for duplicates
+      // 1. Check for duplicates (Search by phone number)
       const isDuplicate = await admissionService.checkDuplicate(data.phoneNumber);
       if (isDuplicate) {
-        toast.error("You have already submitted an application with this number.");
+        toast.error("An application with this phone number already exists.");
         setIsSubmitting(false);
         return;
       }
 
-      // Metadata for tracking
+      // 2. Metadata for analytics tracking
       const metadata = {
         utm_source: searchParams.get("utm_source") || "direct",
         browser: typeof window !== 'undefined' ? window.navigator.userAgent : "unknown",
         timestamp: new Date().toISOString(),
       };
 
-      await admissionService.submitApplication({
+      // 3. Submit data to Supabase
+      const result = await admissionService.submitApplication({
         ...data,
-        userId: user?.id // Associate with authenticated account
+        userId: user?.id 
       }, metadata);
       
-      // WhatsApp Redirect Logic
+      console.log("Submission successful:", result);
+
+      // 4. Success handling & WhatsApp Redirect
       const waMessage = `Hello Vision IT! %0A%0AI just submitted my online admission application.%0A%0A*Name:* ${data.fullName}%0A*Course:* ${data.course}%0A*Phone:* ${data.phoneNumber}%0A%0APlease let me know the next steps for verification.`;
       const waUrl = `https://wa.me/918103170595?text=${waMessage}`;
       
-      toast.success("Application details sent successfully!");
+      toast.success("Application registered! Redirecting to WhatsApp...");
       setIsSuccess(true);
       reset();
 
-      // Give user a moment to see success UI before redirect
+      // Small delay to show success before redirecting
       setTimeout(() => {
         window.open(waUrl, '_blank');
-      }, 2000);
+      }, 1500);
 
     } catch (error: any) {
-      toast.error(error.message || "Something went wrong. Please try again.");
+      console.error("Critical Submission Error:", error);
+      toast.error(error.message || "Failed to submit. Please try again or visit our center.");
     } finally {
       setIsSubmitting(false);
     }

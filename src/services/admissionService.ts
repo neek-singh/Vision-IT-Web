@@ -54,11 +54,15 @@ export const admissionService = {
         .select()
         .single();
 
-      if (error) throw error;
-      return { success: true, id: result.id };
+      if (error) {
+        console.error("Supabase Insertion Error:", error);
+        throw error;
+      }
+      
+      return { success: true, id: result?.id };
     } catch (error: any) {
       console.error("Error submitting admission:", error);
-      throw new Error(error.message || "Failed to submit application");
+      throw new Error(error.message || "Failed to submit application. Please check your connection.");
     }
   },
 
