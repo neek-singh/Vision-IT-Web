@@ -58,11 +58,11 @@ export function MissionVision() {
           </div>
           
           <h4 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
-            Building a <span className="text-gradient">Digital Legacy</span> in Pratuppur.
+            Building a <span className="text-gradient">Digital Legacy</span> in Pratappur.
           </h4>
           
           <p className="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed">
-            हमारा vision है कि Pratuppur और आसपास के क्षेत्र के students को best computer education मिले और वे digital era में confidently आगे बढ़ें।
+            हमारा vision है कि Pratappur और आसपास के क्षेत्र के students को best computer education मिले और वे digital era में confidently आगे बढ़ें।
           </p>
 
           <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">

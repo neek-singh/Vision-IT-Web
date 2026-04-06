@@ -29,7 +29,7 @@ export default function TermsOfService() {
           <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-3xl -z-10" />
           
           <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
-            Vision IT Computer Institute Pratuppur में admission लेने से पहले, कृपया निम्नलिखित नियमों और शर्तों (Terms & Conditions) को ध्यानपूर्वक पढ़ें।
+            Vision IT Computer Institute Pratappur में admission लेने से पहले, कृपया निम्नलिखित नियमों और शर्तों (Terms & Conditions) को ध्यानपूर्वक पढ़ें।
           </p>
 
           <TermBlock 

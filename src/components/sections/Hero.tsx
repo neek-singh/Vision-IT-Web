@@ -63,7 +63,7 @@ export function Hero({ initialSlides }: { initialSlides?: HeroSlide[] }) {
               >
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest max-w-fit">
                   <Star className="w-3 h-3 fill-primary" />
-                  Vision IT Computer Institute Pratuppur
+                  Vision IT Computer Institute Pratappur
                 </div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest max-w-fit">
                   <CheckCircle className="w-3 h-3" />

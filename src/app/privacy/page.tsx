@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
           <PolicySection 
             icon={<Eye className="text-blue-500" />}
             title="Overview"
-            content="Vision IT Computer Institute ('we', 'our', or 'us') is committed to protecting the privacy of our students and visitors. This Privacy Policy explains how we collect, use, and safeguard your personal information when you use our website or visit our institute in Pratuppur."
+            content="Vision IT Computer Institute ('we', 'our', or 'us') is committed to protecting the privacy of our students and visitors. This Privacy Policy explains how we collect, use, and safeguard your personal information when you use our website or visit our institute in Pratappur."
           />
 
           <PolicySection 

@@ -14,21 +14,33 @@ const table = "faqs";
 const defaultFaqs: FAQItem[] = [
   {
     id: 1,
-    question: "How can I apply for admission?",
-    answer: "You can apply online via our Admission portal or visit our Pratappur campus in person. For online applications, just fill out the registration form, and our counselor will call you within 24 hours.",
-    category: "Admission"
+    question: "Best computer institute in Pratappur कौन सा है?",
+    answer: "Vision IT Computer Institute Pratappur का सबसे भरोसेमंद शिक्षा केंद्र है। हम Kadampara Chowk पर DCA, PGDCA, और Tally जैसे कोर्सेज के लिए best practical training प्रदान करते हैं।",
+    category: "General"
   },
   {
     id: 2,
-    question: "Are the certificates government-recognized?",
-    answer: "Yes, Vision IT Computer Institute is ISO 9001:2015 certified and provides government-recognized diplomas and certificates that are valid for private sector roles and government exam prerequisites.",
+    question: "क्या DCA और PGDCA के सर्टिफिकेट Government Jobs के लिए मान्य हैं?",
+    answer: "हाँ, Vision IT द्वारा दिए जाने वाले DCA और PGDCA डिप्लोमा यूनिवर्सिटी से मान्यता प्राप्त हैं। यह CG Vyapam, SSC, Banking, और अन्य सभी सरकारी और प्राइवेट नौकरियों के लिए पूरी तरह मान्य हैं।",
     category: "Certification"
   },
   {
     id: 3,
-    question: "Do you offer practical lab sessions?",
-    answer: "Absolutely. We maintain a 1:1 student-to-computer ratio. Every theoretical concept is followed by extensive practical lab sessions to ensure hands-on mastery.",
-    category: "Learning"
+    question: "क्या beginners Python या Web Development सीख सकते हैं?",
+    answer: "बिल्कुल! हमारे कोर्सेज zero level से शुरू होते हैं। अगर आपको कंप्यूटर की बेसिक जानकारी भी नहीं है, तो भी आप Python और Full Stack Development आसानी से सीख सकते हैं।",
+    category: "Courses"
+  },
+  {
+    id: 4,
+    question: "क्या Surajpur या Wadrafnagar के छात्र भी जॉइन कर सकते हैं?",
+    answer: "हाँ, हमारे सेंटर पर Surajpur, Wadrafnagar, Rajpur, और Bhaiyathan के बहुत से छात्र पढ़ते हैं। हमारा लोकेशन Kadampara Chowk बहुत ही सुलभ है।",
+    category: "Location"
+  },
+  {
+    id: 5,
+    question: "कोर्स की फीस कितनी है?",
+    answer: "Vision IT Pratappur में कोर्सेज की फीस बहुत कम और किफायती है। हम गरीब और मेधावी छात्रों के लिए विशेष स्कॉलरशिप और किश्तों (EMI) की सुविधा भी देते हैं।",
+    category: "Fees"
   }
 ];
 

@@ -58,10 +58,10 @@ export default function AboutPage() {
             Our Story & Commitment
           </motion.div>
           <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white max-w-4xl leading-[1.1]">
-            Building the Future of <span className="text-gradient">Pratuppur's Tech Talents</span>
+            Building the Future of <span className="text-gradient">Pratappur's Tech Talents</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base max-w-3xl leading-relaxed">
-            Vision IT Computer Institute, Pratuppur एक trusted and professional computer training institute है, जहाँ students को modern digital skills और career-oriented education प्रदान की जाती है।
+            Vision IT Computer Institute, Pratappur एक trusted and professional computer training institute है, जहाँ students को modern digital skills और career-oriented education प्रदान की जाती.
           </p>
         </div>
       </section>
@@ -84,7 +84,7 @@ export default function AboutPage() {
           <SectionCard 
             icon={<Eye className="w-8 h-8" />} 
             title="Our Vision" 
-            text="हमारा vision है कि Pratuppur और आसपास के क्षेत्र के students को best computer education मिले और वे digital era में confidently आगे बढ़ें।"
+            text="हमारा vision है कि Pratappur और आसपास के क्षेत्र के students को best computer education मिले और वे digital era में confidently आगे बढ़ें।"
             accent="bg-indigo-600"
             points={[
               "Real-world practical knowledge",
@@ -122,7 +122,7 @@ export default function AboutPage() {
               transition={{ delay: 0.1 }}
               className="text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto text-base md:text-lg px-4 leading-relaxed"
             >
-              Vision IT Computer Institute Pratuppur की सफलता का रहस्य हमारी dedicated faculty है, जो students के future के लिए committed हैं।
+              Vision IT Computer Institute Pratappur की सफलता का रहस्य हमारी dedicated faculty है, जो students के future के लिए committed हैं।
             </motion.p>
           </div>
 
@@ -211,7 +211,7 @@ export default function AboutPage() {
               transition={{ delay: 0.1 }}
               className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed"
             >
-              Vision IT Computer Institute Pratuppur के साथ जुड़े रहें और पाएँ latest updates, new batch announcements, और computer tips।
+              Vision IT Computer Institute Pratappur के साथ जुड़े रहें और पाएँ latest updates, new batch announcements, और computer tips।
             </motion.p>
           </div>
 

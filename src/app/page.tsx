@@ -7,6 +7,7 @@ import { MissionVision } from "@/components/sections/MissionVision";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { LatestBlog } from "@/components/sections/LatestBlog";
 import { FAQ } from "@/components/sections/FAQ";
+import { Welcome } from "@/components/sections/Welcome";
 
 import { facultyService } from "@/services/facultyService";
 import { testimonialService } from "@/services/testimonialService";
@@ -26,13 +27,14 @@ export default async function Home() {
     faqService.getFaqs(true)
   ]);
 
-  // Filter for top courses only (ADCA, Tally, Web)
-  const topCourseIds = ["adca", "tally", "web"];
+  // Filter for top courses only
+  const topCourseIds = ["adca", "dca", "pgdca", "tally", "web", "python", "fullstack", "office"];
   const topCourses = allCourses.filter((c: any) => topCourseIds.includes(c.id));
 
   return (
     <>
       <Hero initialSlides={heroSlides} />
+      <Welcome />
       <WhyChooseUs />
       <CoursesGrid initialCourses={topCourses} />
       <Faculty initialMembers={facultyData} />

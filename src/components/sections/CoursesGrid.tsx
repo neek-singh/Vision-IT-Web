@@ -12,7 +12,9 @@ import {
   Network,
   Cpu,
   Zap,
-  ChevronRight
+  ChevronRight,
+  Code,
+  Server
 } from "lucide-react";
 import Link from "next/link";
 import { coursesData, Course } from "@/data/courses";
@@ -27,9 +29,11 @@ const iconMap: Record<string, any> = {
   FileText: <FileText className="w-8 h-12" />,
   Network: <Network className="w-8 h-12" />,
   Cpu: <Cpu className="w-8 h-12" />,
+  Code: <Code className="w-8 h-12" />,
+  Server: <Server className="w-8 h-12" />,
 };
 
-const topCourses = ["adca", "tally", "web"];
+const topCourses = ["adca", "dca", "pgdca", "tally", "web", "python", "fullstack", "office"];
 
 export function CoursesGrid({ initialCourses }: { initialCourses?: Course[] }) {
   const displayCourses = initialCourses || Object.values(coursesData)
@@ -57,7 +61,7 @@ export function CoursesGrid({ initialCourses }: { initialCourses?: Course[] }) {
             Choose Your <span className="text-gradient">Professional Path</span>
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 text-base">
-            Vision IT Computer Institute Pratuppur offers industry-standard courses designed for your career success.
+            Vision IT Computer Institute Pratappur is the leading destination for technical and modern computer education in Surajpur district.
           </p>
         </div>
 

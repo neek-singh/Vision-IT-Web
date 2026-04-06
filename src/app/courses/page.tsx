@@ -4,8 +4,8 @@ import { CoursesPageContent } from "@/components/sections/CoursesPageContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Professional Courses | Vision IT Computer Institute",
-  description: "Explore our wide range of professional computer courses including ADCA, Tally, Web Development, and more at Vision IT Computer Institute Pratuppur.",
+  title: "Professional Courses in Pratappur | Vision IT Computer Institute",
+  description: "Explore our wide range of professional computer courses including DCA, PGDCA, Tally, and Web Development at Vision IT Computer Institute Pratappur.",
 };
 
 export default async function CoursesPage() {

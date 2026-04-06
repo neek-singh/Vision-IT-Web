@@ -17,9 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vision IT Computer Institute | Pratuppur's Leading Computer Training Center",
-  description: "Vision IT Computer Institute, Pratuppur is a trusted computer training center offering courses like ADCA, Tally, DCA, Web Designing, and more. Learn, Practice, Grow.",
-  keywords: "Computer Institute Pratuppur, Computer Training UP, ADCA Course, Tally Prime, Web Designing, Vision IT Computer",
+  title: "Best Computer Institute in Pratappur | DCA, PGDCA, Tally & Python",
+  description: "Vision IT Computer Institute in Pratappur offers university-recognized DCA, PGDCA, Tally, and Python courses with 100% placement support. Enroll today for practical IT training.",
+  keywords: "Computer Institute Pratappur, Computer Classes in Pratappur, DCA PGDCA Course Pratappur, Tally Prime GST training, Web Development Pratappur, Python Classes Surajpur, Best Computer Coaching Chhattisgarh",
 };
 
 export default function RootLayout({

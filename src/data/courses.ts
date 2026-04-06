@@ -27,7 +27,7 @@ export const coursesData: Record<string, Course> = {
     id: "adca",
     title: "ADCA",
     fullName: "Advanced Diploma in Computer Application",
-    description: "Our most comprehensive program for a complete digital transformation. Mastering everything from basics to professional designing and accounting.",
+    description: "Our most comprehensive program for a complete digital transformation. Mastering everything from basics to professional designing and accounting in Pratappur.",
     duration: "12 Months",
     fees: "₹12,000 – ₹15,000",
     certificate: "Government Verified (ISO Certified)",
@@ -296,5 +296,67 @@ export const coursesData: Record<string, Course> = {
     image: "/courses/pgdca.png",
     tag: { text: "University Level", color: "bg-purple-600" },
     careerPaths: ["Software Associate", "System Analyst", "Database Manager", "Computer Teacher", "IT Consultant"]
+  },
+  python: {
+    id: "python",
+    title: "Python",
+    fullName: "Python Programming & Data Logic",
+    description: "Enter the world of coding with our Python classes. Learn logic building, data types, and backend development from the Best Computer Institute in Pratappur.",
+    duration: "3-6 Months",
+    fees: "₹6,000 – ₹8,000",
+    certificate: "Programming Specialist Cert.",
+    mode: "Offline / Hybrid",
+    syllabus: [
+      "Introduction to Python & Installation",
+      "Variables, Data Types & Operators",
+      "Control Flow (If, Loops, Break/Continue)",
+      "Functions, Modules & Packages",
+      "Data Structures (Lists, Tuples, Dicts, Sets)",
+      "File Handling & Exception Handling",
+      "Introduction to OOPs in Python",
+      "Project: ATM Simulator or Web Scraper"
+    ],
+    benefits: [
+      "Master the most versatile coding language",
+      "Build logic for Software Engineering",
+      "1:1 Doubt clearing sessions",
+      "Industry-ready mini projects"
+    ],
+    iconName: "Code",
+    color: "from-yellow-400 to-yellow-600",
+    image: "/courses/python.png",
+    tag: { text: "Student Choice", color: "bg-yellow-500" },
+    careerPaths: ["Python Developer", "Data Analyst (Junior)", "Automation Engineer", "Software Trainee", "AI/ML Enthusiast"]
+  },
+  fullstack: {
+    id: "fullstack",
+    title: "Full Stack",
+    fullName: "Full Stack Web Development (MERN/Next.js)",
+    description: "The ultimate path to becoming a Pro Developer. Build full-scale applications from frontend to backend with databases and deployment.",
+    duration: "6-12 Months",
+    fees: "₹18,000 – ₹25,000",
+    certificate: "Full Stack Developer Diploma",
+    mode: "Project-Based Learning",
+    syllabus: [
+      "Advanced HTML5 & CSS3 (Animations/Grid)",
+      "JavaScript Deep Dive (Async/Await, ES6+)",
+      "React.js Fundamentals & State Management",
+      "Next.js 14 App Router & SSR",
+      "Node.js & Express.js Backend",
+      "MongoDB & SQL Database Design",
+      "RESTful API Development & Security",
+      "Deployment on Vercel/DigitalOcean"
+    ],
+    benefits: [
+      "Become a career-ready Software Engineer",
+      "Build 5+ Production-ready projects",
+      "Exclusive Job placement assistance",
+      "Work on real-world local business apps"
+    ],
+    iconName: "Server",
+    color: "from-blue-600 to-cyan-500",
+    image: "/courses/fullstack.png",
+    tag: { text: "High ROI", color: "bg-cyan-600" },
+    careerPaths: ["Full Stack Developer", "Backend Engineer", "Product Engineer", "Freelance Developer", "Tech Lead"]
   }
 };

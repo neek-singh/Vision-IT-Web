@@ -65,10 +65,10 @@ export function WhyChooseUs() {
             Value Proposition
           </h2>
           <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
-            Why Choose <span className="text-gradient">Vision IT</span> Institute?
+            Why Choose <span className="text-gradient">Vision IT</span> in Pratappur?
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-            हमारा institute quality education, practical training, और personal attention के लिए जाना जाता है।
+          <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto text-base">
+            हमारा institute quality education, recognized DCA/PGDCA certificates, और expert practical training के लिए पूरे Pratappur क्षेत्र में प्रसिद्ध है।
           </p>
         </div>
 
