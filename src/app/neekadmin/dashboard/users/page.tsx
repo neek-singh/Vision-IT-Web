@@ -31,18 +31,18 @@ export default function UserManagementPage() {
     fetchProfiles();
   }, []);
 
-  const handleRoleChange = async (uid: string, newRole: "student" | "admin" | "teacher") => {
+  const handleRoleChange = async (id: string, newRole: "student" | "admin" | "teacher") => {
     if (!confirm(`Change user role to ${newRole}?`)) return;
     try {
-      await userService.updateProfile(uid, { role: newRole as any });
-      setProfiles(profiles.map(p => p.uid === uid ? { ...p, role: newRole } : p));
+      await userService.updateProfile(id, { role: newRole as any });
+      setProfiles(profiles.map(p => p.id === id ? { ...p, role: newRole } : p));
     } catch (err) {
       alert("Failed to update role");
     }
   };
 
   const filtered = profiles.filter(p => 
-    p.displayName?.toLowerCase().includes(search.toLowerCase()) || 
+    p.name?.toLowerCase().includes(search.toLowerCase()) || 
     p.email?.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -81,18 +81,14 @@ export default function UserManagementPage() {
                     </tr>
                   ))
                 ) : filtered.map((profile) => (
-                  <tr key={profile.uid} className="group hover:bg-white/[0.02] transition-colors">
+                  <tr key={profile.id} className="group hover:bg-white/[0.02] transition-colors">
                     <td className="px-8 py-6">
                       <div className="flex items-center gap-4">
                         <div className="w-10 h-10 rounded-xl bg-zinc-800 flex items-center justify-center text-zinc-500 border border-zinc-700">
-                          {profile.photoURL ? (
-                            <img src={profile.photoURL} alt="" className="w-full h-full rounded-xl object-cover" />
-                          ) : (
-                            <UserIcon className="w-5 h-5" />
-                          )}
+                          <UserIcon className="w-5 h-5" />
                         </div>
                         <div>
-                          <p className="text-sm font-bold text-white">{profile.displayName || "Unknown"}</p>
+                          <p className="text-sm font-bold text-white">{profile.name || "Unknown"}</p>
                           <p className="text-[10px] text-zinc-500 font-medium">{profile.email}</p>
                         </div>
                       </div>
@@ -112,22 +108,19 @@ export default function UserManagementPage() {
                         <span className="text-[10px] font-bold text-zinc-400">
                           {new Date(profile.createdAt).toLocaleDateString()}
                         </span>
-                        <span className="text-[8px] text-zinc-600 uppercase tracking-tighter italic">
-                          Last seen: {new Date(profile.lastLogin).toLocaleDateString()}
-                        </span>
                       </div>
                     </td>
                     <td className="px-8 py-6 text-right">
                        <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                           <button 
-                            onClick={() => handleRoleChange(profile.uid, 'admin')}
+                            onClick={() => handleRoleChange(profile.id, 'admin')}
                             className="p-2 bg-zinc-800 hover:bg-amber-500/20 hover:text-amber-500 rounded-lg transition-all"
                             title="Make Admin"
                           >
                             <ShieldCheck className="w-4 h-4" />
                           </button>
                           <button 
-                            onClick={() => handleRoleChange(profile.uid, 'student')}
+                            onClick={() => handleRoleChange(profile.id, 'student')}
                             className="p-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-all"
                             title="Make Student"
                           >

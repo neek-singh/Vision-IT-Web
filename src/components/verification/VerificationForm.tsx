@@ -37,7 +37,7 @@ export function VerificationForm({ type, onSearch, isLoading, onReset, prefillId
     reset,
     setValue
   } = useForm<any>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema as any),
   });
 
   useEffect(() => {

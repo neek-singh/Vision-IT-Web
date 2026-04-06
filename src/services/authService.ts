@@ -1,12 +1,17 @@
 import { supabase } from "@/lib/supabase";
 
-export type UserRole = "admin" | "user";
+export type UserRole = "admin" | "user" | "teacher" | "student";
 
 export interface AuthUser {
   id: string;
   email: string;
   name: string;
   role: UserRole;
+  photoURL?: string;
+  displayName?: string;
+  phoneNumber?: string;
+  lastLogin?: string;
+  createdAt?: string;
 }
 
 export const authService = {
@@ -25,14 +30,12 @@ export const authService = {
   /**
    * User registration with Email + Password
    */
-  async signUpWithEmail(email: string, password: string, name: string) {
+  async signUpWithEmail(email: string, password: string, metadata: any) {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        data: {
-          full_name: name,
-        },
+        data: metadata,
       },
     });
     if (error) throw error;
@@ -127,6 +130,11 @@ export const authService = {
       email: profile.email,
       name: profile.name,
       role: profile.role,
+      photoURL: profile.photo_url,
+      displayName: profile.name,
+      phoneNumber: profile.phone_number,
+      lastLogin: profile.last_login,
+      createdAt: profile.created_at,
     };
   },
 };

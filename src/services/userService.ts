@@ -4,8 +4,12 @@ export interface UserProfile {
   id: string;
   email: string;
   name: string;
-  role: "admin" | "user";
+  role: "admin" | "user" | "teacher" | "student";
   createdAt: string;
+  photoURL?: string;
+  displayName?: string;
+  phoneNumber?: string;
+  lastLogin?: string;
 }
 
 export const userService = {
@@ -33,6 +37,10 @@ export const userService = {
         name: data.name,
         role: data.role,
         createdAt: data.created_at,
+        photoURL: data.photo_url,
+        displayName: data.name,
+        phoneNumber: data.phone_number,
+        lastLogin: data.last_login,
       } as UserProfile;
     } catch (error) {
       console.error("Error fetching user profile:", error);
@@ -82,10 +90,23 @@ export const userService = {
         name: profile.name,
         role: profile.role,
         createdAt: profile.created_at,
+        photoURL: profile.photo_url,
+        displayName: profile.name, // Mapping name to displayName for compatibility
+        phoneNumber: profile.phone_number,
+        lastLogin: profile.last_login,
       })) as UserProfile[];
     } catch (error) {
       console.error("Error fetching all profiles:", error);
       return [];
     }
+  },
+
+  /**
+   * Stub for uploading user avatar
+   */
+  async uploadAvatar(id: string, file: File): Promise<string> {
+    console.log("Stub uploadAvatar called for ID:", id, "with file:", file.name);
+    // In a real app, this would upload to Supabase Storage and return the URL
+    return "";
   }
 };
