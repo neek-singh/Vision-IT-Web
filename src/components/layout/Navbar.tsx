@@ -26,7 +26,7 @@ const navLinks = [
 
 export function Navbar() {
   const { theme, toggleTheme } = useTheme();
-  const { user, profile, isAdmin, logout } = useAuth();
+  const { user, profile, isAdmin, signOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeModal, setActiveModal] = useState<string | null>(null);
@@ -151,7 +151,7 @@ export function Navbar() {
 
           <button
             onClick={toggleTheme}
-            className="p-2.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary-light transition-all active:scale-90 relative overflow-hidden"
+            className="p-2.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary-light transition-all relative overflow-hidden"
             aria-label="Toggle Theme"
           >
             <motion.div
@@ -172,9 +172,9 @@ export function Navbar() {
                 className="flex items-center gap-3 p-1.5 pr-4 rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-primary transition-all group"
               >
                 <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-xs font-black text-white shadow-lg overflow-hidden">
-                  {profile?.photoURL ? <img src={profile.photoURL} alt="User" /> : profile?.displayName?.[0] || user.email?.[0].toUpperCase()}
+                  {profile?.name?.[0] || user.email?.[0].toUpperCase()}
                 </div>
-                <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100">{profile?.displayName?.split(' ')[0] || 'Student'}</span>
+                <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100">{profile?.name?.split(' ')[0] || 'Student'}</span>
               </button>
 
               <AnimatePresence>
@@ -208,7 +208,7 @@ export function Navbar() {
                      )}
 
                      <button 
-                       onClick={() => { logout(); setIsUserMenuOpen(false); }}
+                       onClick={() => { signOut(); setIsUserMenuOpen(false); }}
                        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-50 dark:hover:bg-red-950/20 text-red-500 transition-colors"
                      >
                        <LogOut className="w-4 h-4" />
@@ -221,7 +221,7 @@ export function Navbar() {
           ) : (
             <Link
               href="/login"
-              className="px-6 py-2.5 bg-primary text-white rounded-full text-xs font-black uppercase tracking-widest hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 hover:scale-[1.03] active:scale-95 flex items-center gap-2"
+              className="px-6 py-2.5 bg-primary text-white rounded-full text-xs font-black uppercase tracking-widest hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 hover:scale-[1.03] flex items-center gap-2"
             >
               <Rocket className="w-4 h-4" />
               Join Us
@@ -233,7 +233,7 @@ export function Navbar() {
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={toggleTheme}
-            className="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary-light transition-all active:scale-95"
+            className="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary-light transition-all"
             aria-label="Toggle Theme"
           >
             {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
@@ -312,7 +312,7 @@ export function Navbar() {
                      </Link>
                    )}
                    <button
-                     onClick={() => { logout(); setIsOpen(false); }}
+                     onClick={() => { signOut(); setIsOpen(false); }}
                      className="w-full py-4 text-red-500 font-bold text-sm uppercase tracking-widest"
                    >
                      Sign Out

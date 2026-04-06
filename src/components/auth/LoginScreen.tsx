@@ -134,7 +134,7 @@ function UserLogin({ loading, setLoading }: { loading: boolean; setLoading: (l: 
 
       <button
         disabled={loading}
-        className="w-full rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all hover:bg-indigo-500 active:scale-[0.98] disabled:opacity-50"
+        className="w-full rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all hover:bg-indigo-500 disabled:opacity-50"
       >
         {loading ? "Signing in..." : "Continue"}
       </button>
@@ -151,7 +151,7 @@ function UserLogin({ loading, setLoading }: { loading: boolean; setLoading: (l: 
       <button
         type="button"
         onClick={handleGoogle}
-        className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/5 bg-white/[0.03] py-3 text-sm font-medium text-white transition-all hover:bg-white/[0.05] active:scale-[0.98]"
+        className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/5 bg-white/[0.03] py-3 text-sm font-medium text-white transition-all hover:bg-white/[0.05]"
       >
         <Chrome className="h-4 w-4 text-indigo-400" />
         Google Account
@@ -215,7 +215,7 @@ function AdminLogin({ loading, setLoading }: { loading: boolean; setLoading: (l:
         </div>
         <button
           disabled={loading}
-          className="w-full rounded-xl bg-purple-600 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/20 transition-all hover:bg-purple-500 active:scale-[0.98] disabled:opacity-50"
+          className="w-full rounded-xl bg-purple-600 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/20 transition-all hover:bg-purple-500 disabled:opacity-50"
         >
           {loading ? "Verifying..." : "Confirm Code"}
         </button>
@@ -260,7 +260,7 @@ function AdminLogin({ loading, setLoading }: { loading: boolean; setLoading: (l:
 
       <button
         disabled={loading}
-        className="w-full rounded-xl bg-purple-600 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/20 transition-all hover:bg-purple-500 active:scale-[0.98] disabled:opacity-50"
+        className="w-full rounded-xl bg-purple-600 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/20 transition-all hover:bg-purple-500 disabled:opacity-50"
       >
         {loading ? "Checking Authorization..." : "Send Verification Code"}
       </button>
