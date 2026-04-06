@@ -16,42 +16,42 @@ import {
 const reasons = [
   {
     title: "Experienced Faculty",
-    description: "Supportive and high-quality teachers dedicated to your success.",
+    description: "Humare trainers ke paas industry ka years ka experience hai.",
     icon: <Users className="w-6 h-6" />,
   },
   {
-    title: "Practical Based Learning",
-    description: "Real-world hands-on practice, not just theory.",
+    title: "Practical Training",
+    description: "Hum theory se zyada hands-on practical practice par focus karte hain.",
     icon: <Lightbulb className="w-6 h-6" />,
   },
   {
     title: "Simple Teaching",
-    description: "Easy-to-understand step-by-step methods for every student.",
+    description: "Har student ke liye aasaan aur step-by-step seekhne ka tarika.",
     icon: <BookOpen className="w-6 h-6" />,
   },
   {
     title: "Affordable Fees",
-    description: "Quality education that fits your budget.",
+    description: "Pratappur mein sabse kam fees aur behtar quality education.",
     icon: <Wallet className="w-6 h-6" />,
   },
   {
-    title: "Batch for Students",
-    description: "Flexible batch systems for your total convenience.",
+    title: "Flexible Batches",
+    description: "Aapke convenience ke hisaab se morning aur evening batches.",
     icon: <Clock className="w-6 h-6" />,
   },
   {
     title: "Career Oriented",
-    description: "Focused training to make you job-ready for the industry.",
+    description: "Aapko job-ready banane ke liye placement support aur guideance.",
     icon: <TrendingUp className="w-6 h-6" />,
   },
   {
-    title: "Individual Attention",
-    description: "We care about the progress of every single learner.",
+    title: "Personal Attention",
+    description: "Chote batches taaki har student par special dhyan diya sake.",
     icon: <UserCheck className="w-6 h-6" />,
   },
   {
-    title: "Disciplined Environment",
-    description: "A friendly yet focused learning atmosphere.",
+    title: "Lab Facilities",
+    description: "Modern computer lab with high-speed internet aur backup.",
     icon: <Smile className="w-6 h-6" />,
   },
 ];
@@ -68,7 +68,7 @@ export function WhyChooseUs() {
             Why Choose <span className="text-gradient">Vision IT</span> in Pratappur?
           </h3>
           <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto text-base">
-            हमारा institute quality education, recognized DCA/PGDCA certificates, और expert practical training के लिए पूरे Pratappur क्षेत्र में प्रसिद्ध है।
+            Humara institute quality education, recognized DCA/PGDCA certificates, aur expert practical training ke liye poore Pratappur kshetra mein prasiddh hai.
           </p>
         </div>
 

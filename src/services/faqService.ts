@@ -14,33 +14,39 @@ const table = "faqs";
 const defaultFaqs: FAQItem[] = [
   {
     id: 1,
-    question: "Best computer institute in Pratappur कौन सा है?",
-    answer: "Vision IT Computer Institute Pratappur का सबसे भरोसेमंद शिक्षा केंद्र है। हम Kadampara Chowk पर DCA, PGDCA, और Tally जैसे कोर्सेज के लिए best practical training प्रदान करते हैं।",
+    question: "Vision IT Pratappur kahan located hai?",
+    answer: "Hum Kadampara Chowk, Pratappur mein located hain. Aap easily Google Maps par humein dhund sakte hain. Humara location Wadrafnagar aur Surajpur road se bahut hi connectable hai.",
     category: "General"
   },
   {
     id: 2,
-    question: "क्या DCA और PGDCA के सर्टिफिकेट Government Jobs के लिए मान्य हैं?",
-    answer: "हाँ, Vision IT द्वारा दिए जाने वाले DCA और PGDCA डिप्लोमा यूनिवर्सिटी से मान्यता प्राप्त हैं। यह CG Vyapam, SSC, Banking, और अन्य सभी सरकारी और प्राइवेट नौकरियों के लिए पूरी तरह मान्य हैं।",
+    question: "Kya DCA aur PGDCA ke certificates Government Jobs ke liye valid hain?",
+    answer: "Ji haan, Vision IT Pratappur ke Certificates University se recognized aur ISO Certified hote hain. Ye sabhi state/central govt jobs aur private sectors mein 100% valid hain.",
     category: "Certification"
   },
   {
     id: 3,
-    question: "क्या beginners Python या Web Development सीख सकते हैं?",
-    answer: "बिल्कुल! हमारे कोर्सेज zero level से शुरू होते हैं। अगर आपको कंप्यूटर की बेसिक जानकारी भी नहीं है, तो भी आप Python और Full Stack Development आसानी से सीख सकते हैं।",
+    question: "12th pass students ke liye best computer course kaun sa hai?",
+    answer: "Pratappur mein 12th pass students ke liye DCA (Diploma in Computer Application) aur Tally Prime with GST sabse zyada demand wale courses hain jo turret job dilane mein help karte hain.",
     category: "Courses"
   },
   {
     id: 4,
-    question: "क्या Surajpur या Wadrafnagar के छात्र भी जॉइन कर सकते हैं?",
-    answer: "हाँ, हमारे सेंटर पर Surajpur, Wadrafnagar, Rajpur, और Bhaiyathan के बहुत से छात्र पढ़ते हैं। हमारा लोकेशन Kadampara Chowk बहुत ही सुलभ है।",
-    category: "Location"
+    question: "Fees installment mein pay karne ki suvidha hai?",
+    answer: "Bilkul! Vision IT Pratappur mein hum flexible installment plans aur affordable fees offer karte hain taaki har student ko behtar education mil sake.",
+    category: "Fees"
   },
   {
     id: 5,
-    question: "कोर्स की फीस कितनी है?",
-    answer: "Vision IT Pratappur में कोर्सेज की फीस बहुत कम और किफायती है। हम गरीब और मेधावी छात्रों के लिए विशेष स्कॉलरशिप और किश्तों (EMI) की सुविधा भी देते हैं।",
-    category: "Fees"
+    question: "Kya humein placement support milega?",
+    answer: "Haan, Vision IT Pratappur apne har student ko job search, resume building aur interview preparation mein full support deta hai. Humare kai students local businesses mein successful hain.",
+    category: "Career"
+  },
+  {
+    id: 6,
+    question: "Free Demo class available hai?",
+    answer: "Absolutely! Aap aaj hi centre visit karke ya call karke apni Free Demo seat book kar sakte hain aur humari teaching style dekh sakte hain.",
+    category: "General"
   }
 ];
 

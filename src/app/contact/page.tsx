@@ -76,7 +76,7 @@ export default function ContactPage() {
             How Can We <span className="text-gradient">Help You?</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-            Vision IT Computer Institute Pratappur — हम आपकी digital journey और career growth के लिए हमेशा तैयार हैं।
+            Vision IT Computer Institute Pratappur — Hum aapke digital future aur career growth ke liye hamesha ready hain. Kadampara Chowk par visit karein ya humein call karein.
           </p>
         </motion.div>
       </section>
@@ -103,8 +103,8 @@ export default function ContactPage() {
           <ContactInfoCard 
             icon={<MapPin className="w-6 h-6" />} 
             title="Institute Address" 
-            info="Shubham Gift Gallery, Pratappur" 
-            subInfo="District – Surajpur (Chhattisgarh)"
+            info="Kadampara Chowk, Main Road, Pratappur" 
+            subInfo="Near Shubham Gift Gallery, District – Surajpur (CG)"
             color="bg-indigo-600"
           />
           

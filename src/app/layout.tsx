@@ -18,8 +18,51 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Best Computer Institute in Pratappur | DCA, PGDCA, Tally & Python",
-  description: "Vision IT Computer Institute in Pratappur offers university-recognized DCA, PGDCA, Tally, and Python courses with 100% placement support. Enroll today for practical IT training.",
-  keywords: "Computer Institute Pratappur, Computer Classes in Pratappur, DCA PGDCA Course Pratappur, Tally Prime GST training, Web Development Pratappur, Python Classes Surajpur, Best Computer Coaching Chhattisgarh",
+  description: "Vision IT Computer Institute Pratappur offers world-class training for Class 6th to Post-Graduation (PG) students. Recognized DCA, PGDCA, Tally, and Python courses with 100% placement support.",
+  keywords: "Computer Institute Pratappur, Class 6th Computer Classes, Computer Classes for Graduates, DCA PGDCA Course Pratappur, Tally Prime GST training Pratappur, Web Development Pratappur, Python Classes Surajpur, Best Computer Coaching Chhattisgarh",
+  verification: {
+    google: "google317c240a3e397d28",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Vision IT Computer Institute Pratappur",
+  "image": "https://vision-it-website.vercel.app/logo.png",
+  "@id": "https://vision-it-website.vercel.app",
+  "url": "https://vision-it-website.vercel.app",
+  "telephone": "+91XXXXXXXXXX",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Kadampara Chowk, Main Road",
+    "addressLocality": "Pratappur",
+    "addressRegion": "Chhattisgarh",
+    "postalCode": "497223",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 23.4754,
+    "longitude": 83.1876
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "08:00",
+    "closes": "19:00"
+  },
+  "sameAs": [
+    "https://facebook.com/visionitpratappur",
+    "https://instagram.com/visionitpratappur"
+  ]
 };
 
 export default function RootLayout({
@@ -35,6 +78,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <script
           id="theme-initializer"
           dangerouslySetInnerHTML={{

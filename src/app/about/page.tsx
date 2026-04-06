@@ -61,7 +61,7 @@ export default function AboutPage() {
             Building the Future of <span className="text-gradient">Pratappur's Tech Talents</span>
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base max-w-3xl leading-relaxed">
-            Vision IT Computer Institute, Pratappur एक trusted and professional computer training institute है, जहाँ students को modern digital skills और career-oriented education प्रदान की जाती.
+            Vision IT Computer Institute Pratappur ek trusted and professional computer training institute hai jahan Class 6th ke school students se lekar Graduates aur PG candidates tak sabhi ko modern digital skills pradan ki jaati hai.
           </p>
         </div>
       </section>
@@ -72,19 +72,19 @@ export default function AboutPage() {
           <SectionCard 
             icon={<Target className="w-8 h-8" />} 
             title="Our Mission" 
-            text="हमारा mission है कि हर student को ऐसा education platform मिले जहाँ वह confidently computer सीख सके और अपने career में आगे बढ़ सके।"
+            text="Humara mission hai ki Pratappur ke har student ko ek aisa platform mile jahan wo confidence ke saath computer seekh sake aur apne career mein aage badh sake."
             accent="bg-blue-600"
             points={[
-              "Strong computer basics develop करना",
-              "Practical skills improve करना",
-              "Employment opportunities के लिए तैयार करना",
-              "Digital India की journey में योगदान देना"
+              "Strong computer basics develop karna",
+              "Practical skills improve karna",
+              "Employment opportunities ke liye taiyar rehna",
+              "Digital India ki journey mein yogdaan dena"
             ]}
           />
           <SectionCard 
             icon={<Eye className="w-8 h-8" />} 
             title="Our Vision" 
-            text="हमारा vision है कि Pratappur और आसपास के क्षेत्र के students को best computer education मिले और वे digital era में confidently आगे बढ़ें।"
+            text="Humara vision hai ki Pratappur aur aas-paas ke kshetron ke students ko world-class computer education mile aur wo digital era mein hamesha aage rahein."
             accent="bg-indigo-600"
             points={[
               "Real-world practical knowledge",
@@ -262,7 +262,7 @@ export default function AboutPage() {
             Ready to Build Your Digital Future?
           </h4>
           <p className="text-white/80 max-w-xl mx-auto leading-relaxed">
-            अगर आप एक ऐसे computer institute की तलाश में हैं जहाँ quality education और practical learning मिले, तो Vision IT आपके लिए सही choice है।
+            Agar aap ek aise computer institute ki talash mein hain jahan quality education aur practical learning mile, toh Vision IT Pratappur aapke liye sabse sahi choice hai. Aaj hi join karein!
           </p>
           <Link
             href="/admission"

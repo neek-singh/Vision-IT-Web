@@ -18,31 +18,31 @@ const table = "hero_slides";
 const defaultSlides: HeroSlide[] = [
   {
     id: 1,
-    title: "Best Computer Institute in Pratappur for DCA, PGDCA & IT",
-    description: "Vision IT Computer Institute Pratappur में सीखिए modern computer education, practical training और career-oriented courses 100% placement support के साथ।",
+    title: "Pratappur का No. 1 Computer Institute - Ab Career Banao Digital!",
+    description: "Class 6th ke students hon ya PG (Graduates)—Vision IT Pratappur mein seekhiye industry-leading courses placement support ke saath.",
     subtext: "अपना डिजिटल करियर आज ही शुरू करें।",
-    cta1: { text: "Join Now", href: "/admission" },
-    cta2: { text: "Enroll Now", href: "/admission" },
+    cta1: { text: "Enroll Now", href: "/admission" },
+    cta2: { text: "Book Free Demo", href: "/contact" },
     image: "/slides/slide1.png",
     accent: "text-blue-600"
   },
   {
     id: 2,
-    title: "Practical Training • Expert Guidance • 100+ Placements",
-    description: "हमारे institute में हर student को मिलता है step-by-step guidance, hands-on practice और easy learning environment success की गारंटी के साथ।",
+    title: "Practical Training • Expert Guidance • Local Placement",
+    description: "Hum focus karte hain hands-on practical training par taaki aap pehle din se hi job-ready banein. Seekho Tally, Python aur Full Stack.",
     subtext: "Best Computer Classes in Pratappur at Kadampara Chowk.",
     cta1: { text: "View Courses", href: "/courses" },
-    cta2: { text: "Book Free Demo", href: "/contact" },
+    cta2: { text: "WhatsApp Us", href: "https://wa.me/91XXXXXXXXXX" },
     image: "/slides/slide2.png",
     accent: "text-emerald-600"
   },
   {
     id: 3,
-    title: "Computer Courses for Govt. Jobs & IT Industry",
-    description: "DCA, PGDCA, Tally Prime, Python, और Web Designing जैसे useful courses के साथ अपने future को strong बनाइए।",
+    title: "Computer Courses for Govt. Jobs & Modern IT Industry",
+    description: "DCA, PGDCA, aur Tally Prime jaise verified courses ke saath apne future ko strong banaiye Vision IT Pratappur ke saath.",
     subtext: "Learn today, lead tomorrow with Vision IT.",
     cta1: { text: "Admission Open", href: "/admission" },
-    cta2: { text: "Contact Us", href: "/contact" },
+    cta2: { text: "Call Centre", href: "tel:+91XXXXXXXXXX" },
     image: "/slides/slide3.png",
     accent: "text-indigo-600"
   }

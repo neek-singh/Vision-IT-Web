@@ -40,12 +40,12 @@ export function Welcome() {
               </h2>
             </div>
 
-            <div className="space-y-6 text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed">
+            <div className="space-y-6 text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed text-justify">
               <p>
-                क्या आप Pratappur में एक अच्छा कंप्यूटर इंस्टिट्यूट ढूंढ रहे हैं? <strong className="text-zinc-900 dark:text-white font-bold">Vision IT Computer Institute</strong> Pratappur, Chhattisgarh में क्वालिटी टेक्निकल एजुकेशन का प्रमुख केंद्र है। Kadampara Chowk पर स्थित हमारा इंस्टिट्यूट एजुकेशन और एम्प्लॉयमेंट के बीच की दूरी को पाटने के लिए समर्पित है।
+                Agar aap <strong>Pratappur</strong> mein ek aisa computer institute ki talash kar rahe hain jahan theory se zyada practical knowledge di jaati hai, toh aap sahi jagah aaye hain. <strong className="text-zinc-900 dark:text-white font-bold">Vision IT Computer Institute Pratappur</strong> pichle kai saalon se Pratappur aur aas-paas ke areas jaise <strong>Wadrafnagar, Surajpur, aur Balrampur</strong> ke students ka ekmatra bharosa bana hua hai.
               </p>
               <p>
-                चाहे आप 10th/12th पास स्टूडेंट हों या प्रोफेशनल, हमारे पास आपके करियर के लिए रिवेलेंट कोर्सेज हैं। हम सिर्फ थ्योरी नहीं, बल्कि <strong className="text-primary font-bold">Practical Training</strong> पर फोकस करते हैं ताकि आप पहले दिन से ही जॉब-रेडी बन सकें। हमारा मिशन Pratappur के हर युवा को डिजिटली लिट्रेट और आत्मनिर्भर बनाना है।
+                Humara maqsad sirf certificate dena nahi, balki aapko job-ready banana hai. <strong className="text-zinc-900 dark:text-white font-bold">Class 6th ke students hon ya PG (Graduate) level ke</strong>, Vision IT Pratappur par hum provide karte hain industry-leading courses jaise DCA, PGDCA, Junior Special, aur Tally Prime with GST. Hum sirf theory nahi, balki <strong className="text-primary font-bold">Hands-on Practical Training</strong> par focus karte hain taaki aap industry ke kisi bhi professional se peeche na rahein.
               </p>
             </div>
 

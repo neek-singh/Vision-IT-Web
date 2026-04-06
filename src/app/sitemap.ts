@@ -1,10 +1,11 @@
 import { MetadataRoute } from "next";
+import { coursesData } from "@/data/courses"; // Dynamic course names
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://visionit.edu.in"; // Replace with your final domain
+  const baseUrl = "https://visionitinstitute.vercel.app";
   const lastModified = new Date();
 
-  const routes = [
+  const mainRoutes = [
     "",
     "/about",
     "/admission",
@@ -12,12 +13,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
     "/gallery",
     "/blog",
+    "/privacy",
+    "/terms",
   ];
 
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: lastModified,
-    changeFrequency: "weekly",
-    priority: route === "" ? 1 : 0.8,
-  }));
+  const sitemapEntries: MetadataRoute.Sitemap = [
+    ...mainRoutes.map((route) => ({
+      url: `${baseUrl}${route}`,
+      lastModified: lastModified,
+      changeFrequency: "weekly" as const,
+      priority: route === "" ? 1 : 0.8,
+    })),
+    ...Object.keys(coursesData).map((slug) => ({
+      url: `${baseUrl}/courses/${slug}`,
+      lastModified: lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+  ];
+
+  return sitemapEntries;
 }

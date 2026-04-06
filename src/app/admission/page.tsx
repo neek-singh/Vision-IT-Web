@@ -61,20 +61,20 @@ const courses = [
 
 const faqs = [
   {
-    question: "What documents are required for admission?",
-    answer: "Aadhar Card copy, 10th/12th Marksheet copy, and 2 Passport size photos are generally required during the physical verification process."
+    question: "Admission ke liye kaun se documents chahiye?",
+    answer: "Aadhar Card, 10th/12th ki Marksheet, aur 2 Passport size photos verification ke liye Pratappur centre par laana zaroori hai."
   },
   {
-    question: "Is there an instalment facility for fees?",
-    answer: "Yes, we provide flexible monthly instalment options for all major courses like ADCA and PGDCA to make quality education accessible."
+    question: "Kya fees installments mein jam kar sakte hain?",
+    answer: "Ji haan, Vision IT Pratappur mein hum monthly installment ki facility dete hain taaki students par ek saath load na pade."
   },
   {
-    question: "Do you offer practical training?",
-    answer: "Vision IT is 100% practical-focused. We maintain a 1:1 student-to-computer ratio with dedicated lab hours every day."
+    question: "Classes ki timings kya hogi?",
+    answer: "Humare paas morning 8 AM se evening 7 PM tak multiple batches available hain. Aap apni convenience ke hisaab se batch chun sakte hain."
   },
   {
-    question: "Will I get a certificate after completion?",
-    answer: "Yes, we provide ISO 9001:2015 certified diplomas and certificates which are valid for government jobs and private sector requirements."
+    question: "Pratappur centre ka address kya hai?",
+    answer: "Vision IT, Kadampara Chowk, Main Road, Pratappur. Aap humein kisi bhi raste se easily reach kar sakte hain."
   }
 ];
 
@@ -199,7 +199,7 @@ function AdmissionFormContent() {
           transition={{ delay: 0.1 }}
           className="text-zinc-500 dark:text-zinc-400 text-base max-w-2xl mx-auto"
         >
-          Vision IT Computer Institute Pratappur में अपनी सीट सुरक्षित करें। Form भरें और modern digital skills के साथ अपने career को नई ऊंचाइयां दें।
+          Vision IT Computer Institute Pratappur mein apni seat aaj hi book karein. Form bharein aur humari team aapko batch timings aur documents verification ke liye call karegi.
         </motion.p>
       </section>
 
@@ -210,9 +210,9 @@ function AdmissionFormContent() {
           <div className="space-y-6">
             <h4 className="text-xs font-bold uppercase tracking-widest text-zinc-400">Application Progress</h4>
             <div className="space-y-8">
-              <StepItem completed={true} title="Register Your Details" description="Fill out the basic admission form below." />
-              <StepItem completed={isSuccess} title="Connect via WhatsApp" description="Auto-redirect for instant verification." />
-              <StepItem completed={false} title="Physical Verification" description="Visit center for document verification." />
+              <StepItem completed={true} title="Register Your Details" description="Fill karein basic admission details aur course select karein." />
+              <StepItem completed={isSuccess} title="Connect via WhatsApp" description="Application bhejte hi humein WhatsApp par message karein." />
+              <StepItem completed={false} title="Physical Verification" description="Kadampara Chowk Pratappur centre par documents check karayein." />
             </div>
           </div>
 

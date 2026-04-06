@@ -27,7 +27,7 @@ export const coursesData: Record<string, Course> = {
     id: "adca",
     title: "ADCA",
     fullName: "Advanced Diploma in Computer Application",
-    description: "Our most comprehensive program for a complete digital transformation. Mastering everything from basics to professional designing and accounting in Pratappur.",
+    description: "Pratappur ka sabse complete program! Bascis se lekar professional designing aur accounting tak sab kuch seekho ek hi diploma mein.",
     duration: "12 Months",
     fees: "₹12,000 – ₹15,000",
     certificate: "Government Verified (ISO Certified)",
@@ -43,10 +43,10 @@ export const coursesData: Record<string, Course> = {
       "Project & Portfolio Building"
     ],
     benefits: [
-      "Lifetime membership for placement support",
-      "Live practical sessions every day",
+      "Lifetime membership for placement support in Pratappur",
+      "Daily live practical sessions in modern lab",
       "Recognized and globally valid certification",
-      "Free resume building workshops"
+      "Free resume building & interview prep"
     ],
     iconName: "Monitor",
     color: "from-blue-600 to-indigo-700",
@@ -58,7 +58,7 @@ export const coursesData: Record<string, Course> = {
     id: "tally",
     title: "Tally Prime",
     fullName: "Professional Accounting & GST Master",
-    description: "Master industry-standard accounting and taxation skills. Become job-ready for modern accounting roles in any business sector.",
+    description: "Accounting sector mein career banane ka best tarika. Seekho GST billing aur inventory management Pratappur ke experts se.",
     duration: "3-6 Months",
     fees: "₹5,000 – ₹7,000",
     certificate: "Professional Skill Certificate",
@@ -74,10 +74,10 @@ export const coursesData: Record<string, Course> = {
       "Final Account Reports"
     ],
     benefits: [
-      "Real-world case studies for accounting",
+      "Real-world case studies based on Pratappur market",
       "GST portal registration overview",
-      "Interview preparation for accounts roles",
-      "Practical assessment on real data"
+      "Local accounting job interview preparation",
+      "Practical assessment on real business data"
     ],
     iconName: "Database",
     color: "from-emerald-500 to-teal-700",
@@ -120,7 +120,7 @@ export const coursesData: Record<string, Course> = {
     id: "dca",
     title: "DCA",
     fullName: "Diploma in Computer Application",
-    description: "Perfect for beginners and professionals looking to master essential office productivity tools and digital literacy.",
+    description: "10th/12th pass students ke liye Pratappur mein sabse popular course. MS Office aur basic IT skills seekhein.",
     duration: "6 Months",
     fees: "₹5,000 – ₹7,000",
     certificate: "Standard Diploma",
@@ -136,10 +136,10 @@ export const coursesData: Record<string, Course> = {
       "Hindi & English Typing Mastery"
     ],
     benefits: [
-      "Government-level basic exam prep",
-      "Personalized lab time for students",
-      "Small batches for better focus",
-      "Course material and study notes"
+      "Government job computer exam preparation",
+      "Extra lab practice time available",
+      "Small batches for personalized attention in Pratappur",
+      "Detailed study material and notes"
     ],
     iconName: "Layout",
     color: "from-sky-500 to-indigo-600",
@@ -270,7 +270,7 @@ export const coursesData: Record<string, Course> = {
     id: "pgdca",
     title: "PGDCA",
     fullName: "Post Graduate Diploma in Computer Applications",
-    description: "An advanced 1-year diploma program designed for graduates to master professional IT skills, programming, and advanced office automation for corporate and government sectors.",
+    description: "Graduates aur Master's students ke liye advanced 1-year diploma. Professional IT skills, programming aur accounting mein expert baniye.",
     duration: "12 Months",
     fees: "₹15,000 – ₹18,000",
     certificate: "PG Diploma (Verified & ISO Certified)",
@@ -301,7 +301,7 @@ export const coursesData: Record<string, Course> = {
     id: "python",
     title: "Python",
     fullName: "Python Programming & Data Logic",
-    description: "Enter the world of coding with our Python classes. Learn logic building, data types, and backend development from the Best Computer Institute in Pratappur.",
+    description: "Enter the world of coding! Seekho logic building aur backend development Pratappur ke best programming lab mein.",
     duration: "3-6 Months",
     fees: "₹6,000 – ₹8,000",
     certificate: "Programming Specialist Cert.",
@@ -318,9 +318,9 @@ export const coursesData: Record<string, Course> = {
     ],
     benefits: [
       "Master the most versatile coding language",
-      "Build logic for Software Engineering",
-      "1:1 Doubt clearing sessions",
-      "Industry-ready mini projects"
+      "Build logic for Software Engineering careers",
+      "1:1 Doubt clearing at Pratappur centre",
+      "Industry-ready mini projects for your resume"
     ],
     iconName: "Code",
     color: "from-yellow-400 to-yellow-600",
@@ -358,5 +358,36 @@ export const coursesData: Record<string, Course> = {
     image: "/courses/fullstack.png",
     tag: { text: "High ROI", color: "bg-cyan-600" },
     careerPaths: ["Full Stack Developer", "Backend Engineer", "Product Engineer", "Freelance Developer", "Tech Lead"]
+  },
+  junior: {
+    id: "junior",
+    title: "Junior IT Special",
+    fullName: "Computer Basics for 6th to 10th Students",
+    description: "School students ke liye design kiya gaya special course! Computer fundamentals, fast typing, aur internet safety seekhein.",
+    duration: "3 Months",
+    fees: "₹2,500 – ₹3,500",
+    certificate: "Junior IT Certificate",
+    mode: "Offline (After School Batches)",
+    syllabus: [
+      "Introduction to Modern Computers",
+      "Fast Typing (Hindi & English)",
+      "MS Paint & Creative Tools",
+      "Safe Internet Browsing & Email",
+      "Scratch Coding Basics (Optional)",
+      "School Project Assistance",
+      "Digital Presentation (PPT)",
+      "Computer Ethics & Safety"
+    ],
+    benefits: [
+      "Specially designed for 6th-10th graders",
+      "Helps in school computer subjects",
+      "Builds logical thinking from early age",
+      "Cool environment with fun learning"
+    ],
+    iconName: "Monitor",
+    color: "from-orange-400 to-red-600",
+    image: "/courses/junior.png",
+    tag: { text: "School Special", color: "bg-orange-500" },
+    careerPaths: ["School Computer Champ", "Future Tech Student", "Digital Creator"]
   }
 };
