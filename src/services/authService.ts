@@ -112,7 +112,7 @@ export const authService = {
     if (!user) return null;
 
     const { data: profile, error } = await supabase
-      .from("users")
+      .from("profiles")
       .select("*")
       .eq("id", user.id)
       .single();

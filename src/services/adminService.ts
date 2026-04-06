@@ -63,5 +63,41 @@ export const adminService = {
       console.error("Error initializing admin:", error);
       throw error;
     }
+  },
+
+  /**
+   * Fetches the dashboard summary statistics in a single call.
+   */
+  async getDashboardSummary() {
+    try {
+      const { data, error } = await supabase.rpc("get_dashboard_summary");
+      
+      if (error) throw error;
+      
+      if (!data || data.length === 0) {
+        return {
+          totalAdmissions: 0,
+          totalBlogs: 0,
+          unreadInquiries: 0,
+          totalCourses: 0
+        };
+      }
+
+      const summary = data[0];
+      return {
+        totalAdmissions: Number(summary.total_admissions),
+        totalBlogs: Number(summary.total_blogs),
+        unreadInquiries: Number(summary.unread_inquiries),
+        totalCourses: Number(summary.total_courses)
+      };
+    } catch (error) {
+      console.error("Error fetching dashboard summary:", error);
+      return {
+        totalAdmissions: 0,
+        totalBlogs: 0,
+        unreadInquiries: 0,
+        totalCourses: 0
+      };
+    }
   }
 };

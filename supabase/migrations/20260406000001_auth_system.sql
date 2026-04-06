@@ -5,8 +5,8 @@ EXCEPTION
     WHEN duplicate_object THEN null;
 END $$;
 
--- Create Users Table (Public)
-CREATE TABLE IF NOT EXISTS public.users (
+-- Create Profiles Table (Public) - Renamed from 'users' to match app expectations
+CREATE TABLE IF NOT EXISTS public.profiles (
     id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
     name TEXT,
     email TEXT UNIQUE NOT NULL,
@@ -22,41 +22,53 @@ CREATE TABLE IF NOT EXISTS public.admin_whitelist (
 );
 
 -- Enable RLS
-ALTER TABLE public.users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.admin_whitelist ENABLE ROW LEVEL SECURITY;
 
--- RLS Policies for public.users
+-- Grant Permissions to Supabase Roles
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+GRANT SELECT, INSERT, UPDATE ON public.profiles TO anon, authenticated;
+GRANT SELECT ON public.admin_whitelist TO anon, authenticated;
+
+-- Helper Function: Check if user is an admin without triggering RLS recursion
+CREATE OR REPLACE FUNCTION public.check_is_admin(user_id UUID)
+RETURNS BOOLEAN AS $$
+BEGIN
+    RETURN EXISTS (
+        SELECT 1 FROM public.profiles 
+        WHERE id = user_id AND role = 'admin'
+    );
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- RLS Policies for public.profiles
+DROP POLICY IF EXISTS "Users can view own profile" ON public.profiles;
+DROP POLICY IF EXISTS "Users can update own profile" ON public.profiles;
+DROP POLICY IF EXISTS "Admins have full access to users" ON public.profiles;
+
 -- 1. Users can read their own profile
 CREATE POLICY "Users can view own profile" 
-ON public.users FOR SELECT 
+ON public.profiles FOR SELECT 
 USING (auth.uid() = id);
 
 -- 2. Users can update their own profile (name only, role is protected)
 CREATE POLICY "Users can update own profile" 
-ON public.users FOR UPDATE 
+ON public.profiles FOR UPDATE 
 USING (auth.uid() = id)
 WITH CHECK (auth.uid() = id);
 
--- 3. Admins have full access to all users
+-- 3. Admins have full access to all profiles (Uses NON-RECURSIVE helper function)
 CREATE POLICY "Admins have full access to users" 
-ON public.users FOR ALL 
-USING (
-    EXISTS (
-        SELECT 1 FROM public.users 
-        WHERE id = auth.uid() AND role = 'admin'
-    )
-);
+ON public.profiles FOR ALL 
+USING (public.check_is_admin(auth.uid()));
 
 -- RLS Policies for public.admin_whitelist
+DROP POLICY IF EXISTS "Admins manage whitelist" ON public.admin_whitelist;
+
 -- 1. Only admins can view/manage whitelist
 CREATE POLICY "Admins manage whitelist" 
 ON public.admin_whitelist FOR ALL 
-USING (
-    EXISTS (
-        SELECT 1 FROM public.users 
-        WHERE id = auth.uid() AND role = 'admin'
-    )
-);
+USING (public.check_is_admin(auth.uid()));
 
 -- Trigger Function: Handle New User Registration
 CREATE OR REPLACE FUNCTION public.handle_new_user() 
@@ -78,8 +90,8 @@ BEGIN
         assigned_role := 'user';
     END IF;
 
-    -- Insert into public.users
-    INSERT INTO public.users (id, name, email, role)
+    -- Insert into public.profiles
+    INSERT INTO public.profiles (id, name, email, role)
     VALUES (
         NEW.id, 
         COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.raw_user_meta_data->>'name', 'Vision IT User'), 
@@ -89,7 +101,7 @@ BEGIN
     ON CONFLICT (id) DO UPDATE 
     SET 
         email = EXCLUDED.email,
-        name = COALESCE(EXCLUDED.name, public.users.name);
+        name = COALESCE(EXCLUDED.name, public.profiles.name);
 
     RETURN NEW;
 END;

@@ -39,15 +39,15 @@ export const admissionService = {
         .from(ADMISSIONS_TABLE)
         .insert({
           user_id: data.userId || null,
-          student_name: data.fullName,
+          full_name: data.fullName,
           father_name: data.fatherName,
-          student_phone: data.phoneNumber,
-          student_email: data.email || null,
-          course_id: data.course,
-          student_address: data.address,
-          student_dob: data.dob,
+          phone_number: data.phoneNumber,
+          email: data.email || null,
+          course: data.course,
+          address: data.address,
+          dob: data.dob,
           status: "pending",
-          admission_date: new Date().toISOString(),
+          submitted_at: new Date().toISOString(),
           source: "website_online_form",
           metadata: metadata || {},
         })
@@ -69,7 +69,7 @@ export const admissionService = {
     const { data, error } = await supabase
       .from(ADMISSIONS_TABLE)
       .select("id")
-      .eq("student_phone", phoneNumber)
+      .eq("phone_number", phoneNumber)
       .limit(1);
     
     if (error) {
@@ -105,7 +105,7 @@ export const admissionService = {
       const { data, error } = await supabase
         .from(ADMISSIONS_TABLE)
         .select("*")
-        .order("admission_date", { ascending: false });
+        .order("submitted_at", { ascending: false });
       
       if (error) {
         console.error("Error fetching admissions:", error);
@@ -115,15 +115,15 @@ export const admissionService = {
       callback(data.map(m => ({
         id: m.id,
         userId: m.user_id,
-        fullName: m.student_name || "Unknown Candidate",
+        fullName: m.full_name || "Unknown Candidate",
         fatherName: m.father_name || "Not provided",
-        phoneNumber: m.student_phone || "No phone",
-        email: m.student_email || "No email",
-        course: m.course_id || "General Course",
-        address: m.student_address || "No address",
-        dob: m.student_dob || "Not set",
+        phoneNumber: m.phone_number || "No phone",
+        email: m.email || "No email",
+        course: m.course || "General Course",
+        address: m.address || "No address",
+        dob: m.dob || "Not set",
         status: m.status || "pending",
-        submittedAt: m.admission_date || new Date().toISOString(),
+        submittedAt: m.submitted_at || new Date().toISOString(),
         source: m.source || "form",
         metadata: m.metadata || {}
       })) as AdmissionApplication[]);
@@ -152,8 +152,8 @@ export const admissionService = {
     const { data, error } = await supabase
       .from(ADMISSIONS_TABLE)
       .select("*")
-      .eq("student_phone", phoneNumber)
-      .order("admission_date", { ascending: false })
+      .eq("phone_number", phoneNumber)
+      .order("submitted_at", { ascending: false })
       .limit(1);
     
     if (error || data.length === 0) return null;
@@ -162,15 +162,15 @@ export const admissionService = {
     return {
       id: m.id,
       userId: m.user_id,
-      fullName: m.student_name || "Unknown Candidate",
+      fullName: m.full_name || "Unknown Candidate",
       fatherName: m.father_name || "Not provided",
-      phoneNumber: m.student_phone || "No phone",
-      email: m.student_email || "No email",
-      course: m.course_id || "General Course",
-      address: m.student_address || "No address",
-      dob: m.student_dob || "Not set",
+      phoneNumber: m.phone_number || "No phone",
+      email: m.email || "No email",
+      course: m.course || "General Course",
+      address: m.address || "No address",
+      dob: m.dob || "Not set",
       status: m.status || "pending",
-      submittedAt: m.admission_date || new Date().toISOString(),
+      submittedAt: m.submitted_at || new Date().toISOString(),
       source: m.source || "form",
       metadata: m.metadata || {}
     } as AdmissionApplication;
@@ -184,31 +184,31 @@ export const admissionService = {
       let query = supabase.from(ADMISSIONS_TABLE).select("*");
       
       if (userId && phoneNumber) {
-        query = query.or(`user_id.eq.${userId},student_phone.eq.${phoneNumber}`);
+        query = query.or(`user_id.eq.${userId},phone_number.eq.${phoneNumber}`);
       } else if (userId) {
         query = query.eq("user_id", userId);
       } else if (phoneNumber) {
-        query = query.eq("student_phone", phoneNumber);
+        query = query.eq("phone_number", phoneNumber);
       } else {
         return [];
       }
 
-      const { data, error } = await query.order("admission_date", { ascending: false });
+      const { data, error } = await query.order("submitted_at", { ascending: false });
       
       if (error) throw error;
       
       return data.map(m => ({
         id: m.id,
         userId: m.user_id,
-        fullName: m.student_name || "Unknown Candidate",
+        fullName: m.full_name || "Unknown Candidate",
         fatherName: m.father_name || "Not provided",
-        phoneNumber: m.student_phone || "No phone",
-        email: m.student_email || "No email",
-        course: m.course_id || "General Course",
-        address: m.student_address || "No address",
-        dob: m.student_dob || "Not set",
+        phoneNumber: m.phone_number || "No phone",
+        email: m.email || "No email",
+        course: m.course || "General Course",
+        address: m.address || "No address",
+        dob: m.dob || "Not set",
         status: m.status || "pending",
-        submittedAt: m.admission_date || new Date().toISOString(),
+        submittedAt: m.submitted_at || new Date().toISOString(),
         source: m.source || "form",
         metadata: m.metadata || {}
       })) as AdmissionApplication[];
@@ -237,7 +237,7 @@ export const admissionService = {
           event: "*", 
           schema: "public", 
           table: ADMISSIONS_TABLE,
-          filter: `student_phone=eq.${phoneNumber}` 
+          filter: `phone_number=eq.${phoneNumber}` 
         },
         () => fetchStatus()
       )

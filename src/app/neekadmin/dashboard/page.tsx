@@ -2,50 +2,52 @@
 
 import React from "react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Users, 
   BookOpen, 
   Newspaper, 
-  TrendingUp, 
   ArrowUpRight, 
   Calendar,
   MousePointer2,
-  Eye,
   Plus,
-  MessageSquare
+  MessageSquare,
+  Loader2
 } from "lucide-react";
-import { coursesData } from "@/data/courses";
-import { admissionService } from "@/services/admissionService";
-import { blogService } from "@/services/blogService";
-import { contactService } from "@/services/contactService";
+import { adminService } from "@/services/adminService";
 
 export default function AdminDashboard() {
-  const courses = Object.values(coursesData);
+  const [loading, setLoading] = React.useState(true);
   const [counts, setCounts] = React.useState({
     admissions: 0,
     blogs: 0,
-    inquiries: 0
+    inquiries: 0,
+    courses: 0
   });
 
   React.useEffect(() => {
     const fetchCounts = async () => {
-      const authStats = await admissionService.getStats();
-      const blogCount = await blogService.getPostsCount();
-      const contactCount = await contactService.getUnreadCount();
-      
-      setCounts({
-        admissions: authStats.total,
-        blogs: blogCount,
-        inquiries: contactCount
-      });
+      try {
+        setLoading(true);
+        const summary = await adminService.getDashboardSummary();
+        setCounts({
+          admissions: summary.totalAdmissions,
+          blogs: summary.totalBlogs,
+          inquiries: summary.unreadInquiries,
+          courses: summary.totalCourses
+        });
+      } catch (error) {
+        console.error("Dashboard Load Error:", error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchCounts();
   }, []);
 
   const stats = [
     { name: "Total Admissions", value: counts.admissions.toString(), change: "Live", icon: Users, color: "text-blue-500", bg: "bg-blue-500/10" },
-    { name: "Global Courses", value: courses.length.toString(), change: "Stable", icon: BookOpen, color: "text-primary", bg: "bg-primary/10" },
+    { name: "Global Courses", value: counts.courses.toString(), change: "Stable", icon: BookOpen, color: "text-primary", bg: "bg-primary/10" },
     { name: "Insights Published", value: counts.blogs.toString(), change: "Sync", icon: Newspaper, color: "text-orange-500", bg: "bg-orange-500/10" },
     { name: "Unread Inquiries", value: counts.inquiries.toString(), change: "New", icon: MessageSquare, color: "text-emerald-500", bg: "bg-emerald-500/10" },
   ];
@@ -58,7 +60,7 @@ export default function AdminDashboard() {
             <h2 className="text-3xl font-black text-white tracking-tight uppercase">System Overview</h2>
             <p className="text-zinc-500 font-bold text-sm">Welcome back, Captain. Here's what's happening at Vision IT.</p>
           </div>
-          <button className="flex items-center gap-3 px-6 py-3 bg-primary text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
+          <button className="flex items-center gap-3 px-6 py-3 bg-primary text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl shadow-primary/20 hover:ring-2 hover:ring-primary/50 transition-all cursor-pointer">
              <Plus className="w-4 h-4" />
              Quick Action
           </button>
@@ -72,8 +74,14 @@ export default function AdminDashboard() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="p-8 rounded-[2.5rem] bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-md hover:border-zinc-700 transition-all group"
+              className="p-8 rounded-[2.5rem] bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-md hover:border-zinc-700 transition-all group relative overflow-hidden"
             >
+              {loading && (
+                <div className="absolute inset-0 bg-zinc-900/80 backdrop-blur-sm flex items-center justify-center z-10">
+                  <div className="w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
+                </div>
+              )}
+              
               <div className="flex items-center justify-between mb-6">
                 <div className={`p-4 rounded-2xl ${stat.bg} ${stat.color} group-hover:scale-110 transition-transform`}>
                   <stat.icon className="w-6 h-6" />
@@ -83,14 +91,16 @@ export default function AdminDashboard() {
                 </div>
               </div>
               <h3 className="text-zinc-500 font-bold text-xs uppercase tracking-widest mb-1">{stat.name}</h3>
-              <p className="text-4xl font-black text-white">{stat.value}</p>
+              <p className="text-4xl font-black text-white">
+                {loading ? "..." : stat.value}
+              </p>
             </motion.div>
           ))}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
            {/* Recent Activity / Chart Placeholder */}
-           <div className="lg:col-span-8 rounded-[3rem] bg-zinc-900/50 border border-zinc-800/50 p-10 relative overflow-hidden">
+           <div className="lg:col-span-8 rounded-[3rem] bg-zinc-900/50 border border-zinc-800/50 p-10 relative overflow-hidden h-[400px]">
               <div className="flex items-center justify-between mb-10">
                  <h3 className="text-xl font-black text-white tracking-tight uppercase">Institutional Growth</h3>
                  <div className="flex items-center gap-4">
@@ -98,25 +108,33 @@ export default function AdminDashboard() {
                     <span className="flex items-center gap-2 text-[10px] font-bold text-zinc-500 uppercase tracking-widest"><div className="w-2 h-2 rounded-full bg-zinc-700" /> Inquiries</span>
                  </div>
               </div>
-              <div className="h-64 flex items-end gap-2 overflow-hidden px-4">
-                 {[...Array(24)].map((_, i) => (
-                   <motion.div 
-                     key={i} 
-                     initial={{ height: 0 }}
-                     animate={{ height: `${Math.random() * 80 + 20}%` }}
-                     transition={{ delay: i * 0.02, type: "spring", stiffness: 50 }}
-                     className="flex-grow bg-primary/20 rounded-t-lg relative group overflow-hidden"
-                   >
-                      <div className="absolute inset-0 bg-primary opacity-20 group-hover:opacity-100 transition-all translate-y-full group-hover:translate-y-0" />
-                   </motion.div>
-                 ))}
-              </div>
+              
+              {loading ? (
+                <div className="h-48 w-full bg-zinc-800/20 rounded-2xl animate-pulse flex items-center justify-center">
+                   <Loader2 className="w-8 h-8 text-primary animate-spin" />
+                </div>
+              ) : (
+                <div className="h-64 flex items-end gap-2 overflow-hidden px-4">
+                   {[...Array(24)].map((_, i) => (
+                     <motion.div 
+                       key={i} 
+                       initial={{ height: 0 }}
+                       animate={{ height: `${Math.random() * 80 + 20}%` }}
+                       transition={{ delay: i * 0.02, type: "spring", stiffness: 50 }}
+                       className="flex-grow bg-primary/20 rounded-t-lg relative group overflow-hidden"
+                     >
+                        <div className="absolute inset-0 bg-primary opacity-20 group-hover:opacity-100 transition-all translate-y-full group-hover:translate-y-0" />
+                     </motion.div>
+                   ))}
+                </div>
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent pointer-events-none" />
            </div>
 
            {/* Sidebar Stats */}
            <div className="lg:col-span-4 space-y-6">
-              <div className="p-8 rounded-[2.5rem] bg-zinc-900/50 border border-zinc-800/50 hover:border-primary/20 transition-all">
+              <div className="p-8 rounded-[2.5rem] bg-zinc-900/50 border border-zinc-800/50 hover:border-primary/20 transition-all relative overflow-hidden">
+                 {loading && <div className="absolute inset-0 bg-zinc-900/50 backdrop-blur-sm z-10" />}
                  <h3 className="text-sm font-black text-white tracking-widest uppercase mb-6 flex items-center gap-3">
                    <Calendar className="w-5 h-5 text-primary" /> Active Enrollment
                  </h3>
@@ -151,6 +169,16 @@ export default function AdminDashboard() {
            </div>
         </div>
       </div>
+      
+      <style jsx global>{`
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        .animate-shimmer {
+          animation: shimmer 2s infinite linear;
+        }
+      `}</style>
     </AdminLayout>
   );
 }

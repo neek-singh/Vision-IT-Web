@@ -15,7 +15,7 @@ export const userService = {
   async getUserProfile(id: string): Promise<UserProfile | null> {
     try {
       const { data, error } = await supabase
-        .from("users")
+        .from("profiles")
         .select("*")
         .eq("id", id)
         .single();
@@ -52,7 +52,7 @@ export const userService = {
       if (updates.role !== undefined) supabaseUpdates.role = updates.role;
 
       const { error } = await supabase
-        .from("users")
+        .from("profiles")
         .update(supabaseUpdates)
         .eq("id", id);
       
@@ -70,7 +70,7 @@ export const userService = {
   async getAllProfiles(): Promise<UserProfile[]> {
     try {
       const { data, error } = await supabase
-        .from("users")
+        .from("profiles")
         .select("*")
         .order("created_at", { ascending: false });
       
