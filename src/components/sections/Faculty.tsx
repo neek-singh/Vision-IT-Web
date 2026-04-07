@@ -73,7 +73,7 @@ function FacultyCard({ member, index }: { member: any; index: number }) {
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
+      transition={{ delay: index * 0.05, duration: 0.3 }}
       className="group p-6 md:p-8 glass bg-white dark:bg-zinc-900 shadow-2xl shadow-primary/5 rounded-[3.5rem] relative overflow-hidden border border-zinc-100 dark:border-zinc-800"
     >
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-[80px] -z-10" />

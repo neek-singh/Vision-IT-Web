@@ -44,7 +44,7 @@ import { mockTeachers } from "@/data/verification";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-background pb-16 pt-6 transition-colors duration-500">
+    <div className="min-h-screen bg-background pb-16 pt-6 transition-colors duration-200">
       {/* Hero Section */}
       <section className="py-8 md:py-10 px-6 relative overflow-hidden bg-background">
         <div className="absolute top-0 right-0 w-[40%] h-[100%] bg-primary/[0.03] dark:bg-primary/[0.05] -skew-x-12 -z-10" />
@@ -99,7 +99,7 @@ export default function AboutPage() {
       {/* Why Choose Us Detailed */}
 
       {/* Meet Our Experts Section */}
-      <section className="py-24 bg-background px-6 transition-colors duration-500 overflow-hidden relative border-t border-zinc-100 dark:border-zinc-900">
+      <section className="py-24 bg-background px-6 transition-colors duration-200 overflow-hidden relative border-t border-zinc-100 dark:border-zinc-900">
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary/[0.03] to-transparent -z-10" />
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="text-center space-y-6">
@@ -135,7 +135,7 @@ export default function AboutPage() {
                 experience={teacher.experience}
                 summary={teacher.summary}
                 specialization={teacher.specialization}
-                delay={0.2 + (index * 0.1)}
+                delay={0.1 + (index * 0.05)}
               />
             ))}
           </div>
@@ -192,7 +192,7 @@ export default function AboutPage() {
       </section>
 
       {/* Social Media Section */}
-      <section className="py-20 bg-surface-secondary px-6 transition-colors duration-500 overflow-hidden relative">
+      <section className="py-20 bg-surface-secondary px-6 transition-colors duration-200 overflow-hidden relative">
         <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl -z-10" />
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="text-center space-y-4">

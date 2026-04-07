@@ -68,7 +68,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: any; index: numb
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
+      transition={{ delay: index * 0.05, duration: 0.3 }}
       whileHover={{ y: -5 }}
       className="p-6 glass bg-white dark:bg-zinc-900 shadow-xl shadow-primary/5 rounded-[2.5rem] relative border border-zinc-100 dark:border-zinc-800"
     >

@@ -27,7 +27,7 @@ export function Welcome() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.3 }}
             className="space-y-12"
           >
             <div className="space-y-6">
@@ -76,7 +76,7 @@ export function Welcome() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.3 }}
             className="grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
             <div className="p-10 rounded-[3rem] bg-surface-secondary border border-zinc-200/50 dark:border-zinc-800/50 space-y-6 hover:border-primary/20 transition-all duration-500 group">

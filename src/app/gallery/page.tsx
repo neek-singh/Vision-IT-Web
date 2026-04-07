@@ -29,7 +29,7 @@ export default function GalleryPage() {
     : galleryItems.filter(item => item.category === activeFilter);
 
   return (
-    <div className="min-h-screen bg-background pb-16 pt-6 transition-colors duration-500">
+    <div className="min-h-screen bg-background pb-16 pt-6 transition-colors duration-200">
       {/* Header */}
       <section className="py-10 px-6 text-center bg-background">
         <motion.div
@@ -81,7 +81,7 @@ export default function GalleryPage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                transition={{ duration: 0.2, delay: idx * 0.02 }}
                 className="group relative h-[280px] glass rounded-[3rem] overflow-hidden cursor-pointer shadow-xl shadow-primary/5 hover:shadow-2xl transition-all border border-zinc-100 dark:border-zinc-800"
                 onClick={() => setSelectedImage(item)}
               >

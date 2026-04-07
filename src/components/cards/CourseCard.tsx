@@ -21,7 +21,7 @@ export function CourseCard({ course, idx }: CourseCardProps) {
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: idx * 0.05 }}
+      transition={{ duration: 0.3, delay: idx * 0.03 }}
       whileHover={{ y: -8 }}
       className="group relative h-full flex flex-col bg-white dark:bg-zinc-900 rounded-[2.5rem] border border-zinc-200/60 dark:border-zinc-800 shadow-xl shadow-zinc-200/30 dark:shadow-none hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 overflow-hidden"
     >

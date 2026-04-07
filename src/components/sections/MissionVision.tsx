@@ -14,7 +14,7 @@ export function MissionVision() {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
           className="space-y-5"
         >
           <div className="flex items-center gap-4 text-primary">
@@ -45,7 +45,7 @@ export function MissionVision() {
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
           className="space-y-5 p-6 glass rounded-[3rem] relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10" />

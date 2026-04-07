@@ -28,7 +28,6 @@ dayjs.extend(relativeTime);
 
 const trackStages = [
   { id: "pending", label: "Application Received", sub: "We've got your details!", icon: Bookmark },
-  { id: "review", label: "Under Review", sub: "Our team is checking the records.", icon: SearchCheck },
   { id: "contacted", label: "Contact Initiated", sub: "Counselor will reach out soon.", icon: Phone },
   { id: "enrolled", label: "Enrollment Finalized", sub: "Welcome to the Visionary community!", icon: ShieldCheck },
 ];
@@ -76,10 +75,9 @@ export default function TrackStatusPage() {
 
   const getActiveIndex = (status: string) => {
     if (status === 'pending') return 0;
-    if (status === 'contacted') return 2;
-    if (status === 'enrolled') return 3;
-    if (status === 'rejected') return -1;
-    return 1; // default review
+    if (status === 'contacted') return 1;
+    if (status === 'enrolled') return 2;
+    return -1; // rejected or unknown
   };
 
   return (
@@ -178,12 +176,11 @@ export default function TrackStatusPage() {
                   </div>
 
                   {/* Visual Tracker Pipeline */}
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4">
+                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
                      {trackStages.map((stage, idx) => {
                         const activeIdx = getActiveIndex(application.status);
                         const isCurrent = activeIdx === idx;
                         const isPast = activeIdx > idx;
-                        const isEnrolled = application.status === 'enrolled';
 
                         return (
                            <div key={stage.id} className="relative group">
@@ -207,7 +204,7 @@ export default function TrackStatusPage() {
                               </div>
                               
                               {/* Connector Lines */}
-                              {idx < 3 && (
+                              {idx < 2 && (
                                 <div className="hidden md:block absolute top-1/2 -right-4 w-4 h-[1px] bg-zinc-800 z-0" />
                               )}
                            </div>

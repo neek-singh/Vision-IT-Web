@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog",
     "/privacy",
     "/terms",
+    "/track",
   ];
 
   const sitemapEntries: MetadataRoute.Sitemap = [

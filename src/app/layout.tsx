@@ -67,8 +67,8 @@ const jsonLd = {
     "closes": "19:00"
   },
   "sameAs": [
-    "https://facebook.com/visionitpratappur",
-    "https://instagram.com/visionitpratappur"
+    "https://facebook.com/visionitinstitute",
+    "https://instagram.com/visionitinstitute"
   ]
 };
 
@@ -105,7 +105,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
+      <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-200">
         <AuthProvider>
           <ThemeProvider>
             <FramerProvider>

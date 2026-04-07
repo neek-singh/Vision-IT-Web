@@ -22,6 +22,7 @@ export const verificationService = {
     const bestMatch = data[0]; 
     return {
       type: "query",
+      id: bestMatch.id,
       status: (bestMatch as any).status || "Pending",
       course: (bestMatch as any).course,
       studentName: (bestMatch as any).full_name,

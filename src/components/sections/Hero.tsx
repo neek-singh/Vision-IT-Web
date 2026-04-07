@@ -50,7 +50,7 @@ export function Hero({ initialSlides }: { initialSlides?: HeroSlide[] }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
             className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center py-4"
           >
             {/* Text Content */}
@@ -120,7 +120,7 @@ export function Hero({ initialSlides }: { initialSlides?: HeroSlide[] }) {
             <motion.div
               initial={{ opacity: 0, scale: 0.9, x: 50 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
               className="relative group order-1 lg:order-2"
             >
               <div className="absolute inset-0 bg-gradient-premium blur-3xl opacity-20 group-hover:opacity-30 transition-opacity -z-10" />
@@ -131,7 +131,7 @@ export function Hero({ initialSlides }: { initialSlides?: HeroSlide[] }) {
                     initial={{ opacity: 0, scale: 1.1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.4 }}
                     className="absolute inset-3 z-20"
                   >
                     <Image
