@@ -25,6 +25,7 @@ import Link from "next/link";
 import { AdmissionApplication, admissionService } from "@/services/admissionService";
 import { userService } from "@/services/userService";
 import { cn } from "@/lib/utils";
+import { AuthUser } from "@/services/authService";
 
 dayjs.extend(relativeTime);
 
@@ -64,7 +65,7 @@ export default function ProfilePage() {
     if (user) {
       const fetchAdmissions = async () => {
         try {
-          const apps = await admissionService.getStudentApplications(user.id, profile?.phoneNumber);
+          const apps = await admissionService.getStudentApplications(user.id, profileData.phoneNumber);
           setAdmissions(apps);
         } catch (err) {
           console.error("Error fetching admissions:", err);
@@ -75,16 +76,29 @@ export default function ProfilePage() {
   }, [user, profile]);
 
   useEffect(() => {
-    if (profile) setEditName(profile.displayName || "");
+    if (profileData) setEditName(profileData.displayName || "");
   }, [profile]);
 
-  if (loading || !user || !profile) {
+  if (loading || !user) {
     return (
       <div className="min-h-screen bg-white dark:bg-zinc-950 flex items-center justify-center">
         <Loader2 className="w-10 h-10 text-primary animate-spin" />
       </div>
     );
   }
+
+  // Use fallback values if profile is still null or data is missing
+  const profileData: AuthUser = profile || {
+    id: user.id,
+    displayName: user.user_metadata?.full_name || user.email?.split('@')[0] || 'Student',
+    name: user.user_metadata?.full_name || user.email?.split('@')[0] || 'Student',
+    email: user.email || "",
+    role: (user.user_metadata?.role as any) || 'user',
+    createdAt: user.created_at,
+    photoURL: user.user_metadata?.avatar_url || undefined,
+    phoneNumber: undefined,
+    lastLogin: undefined,
+  };
 
   const handleUpdate = async () => {
     setUpdateLoading(true);
@@ -119,8 +133,8 @@ export default function ProfilePage() {
                     <Loader2 className="w-8 h-8 text-white animate-spin" />
                   </div>
                 ) : null}
-                {profile.photoURL ? (
-                  <img src={profile.photoURL} alt="Profile" className="w-full h-full object-cover" />
+                {profileData.photoURL ? (
+                  <img src={profileData.photoURL} alt="Profile" className="w-full h-full object-cover" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-4xl font-black text-zinc-300 dark:text-zinc-600">
                     <User className="w-12 h-12" />
@@ -153,7 +167,7 @@ export default function ProfilePage() {
                     autoFocus
                   />
                 ) : (
-                  <h1 className="text-3xl font-black uppercase tracking-tight italic">{profile.displayName}</h1>
+                  <h1 className="text-3xl font-black uppercase tracking-tight italic">{profileData.displayName}</h1>
                 )}
                 <button 
                   onClick={() => isEditing ? handleUpdate() : setIsEditing(true)}
@@ -163,7 +177,7 @@ export default function ProfilePage() {
                 </button>
               </div>
               <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest border border-primary/20">
-                <Shield className="w-3.5 h-3.5" /> {profile.role} Account
+                <Shield className="w-3.5 h-3.5" /> {profileData.role} Account
               </div>
             </div>
           </div>
@@ -175,22 +189,22 @@ export default function ProfilePage() {
               <InfoRow 
                 icon={<Mail className="w-4 h-4" />} 
                 label="Registered Email" 
-                value={profile.email || "Not set"} 
+                value={profileData.email || "Not set"} 
               />
               <InfoRow 
                 icon={<Phone className="w-4 h-4" />} 
                 label="Direct Mobile" 
-                value={profile.phoneNumber || "Not set"} 
+                value={profileData.phoneNumber || "Not set"} 
               />
               <InfoRow 
                 icon={<Clock className="w-4 h-4" />} 
                 label="Session Status" 
-                value={profile.lastLogin ? `Last active ${dayjs(profile.lastLogin).fromNow()}` : "Active Now"} 
+                value={profileData.lastLogin ? `Last active ${dayjs(profileData.lastLogin).fromNow()}` : "Active Now"} 
               />
               <InfoRow 
                 icon={<Calendar className="w-4 h-4" />} 
                 label="Enrollment Date" 
-                value={dayjs(profile.createdAt).format("MMMM DD, YYYY")} 
+                value={dayjs(profileData.createdAt).format("MMMM DD, YYYY")} 
               />
             </div>
           </div>

@@ -42,7 +42,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(currentUser);
 
       if (currentUser) {
-        await fetchProfile(currentUser.id);
+        await fetchProfile(currentUser.id, currentUser);
       } else {
         setProfile(null);
         setLoading(false);
@@ -55,7 +55,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setUser(updatedUser);
 
           if (updatedUser) {
-            await fetchProfile(updatedUser.id);
+            await fetchProfile(updatedUser.id, updatedUser);
           } else {
             setProfile(null);
             setLoading(false);
@@ -71,7 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     initAuth();
   }, []);
 
-  const fetchProfile = async (id: string) => {
+  const fetchProfile = async (id: string, currentUser?: User) => {
     try {
       const userProfile = await userService.getUserProfile(id);
       if (userProfile) {
@@ -85,6 +85,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           phoneNumber: userProfile.phoneNumber,
           lastLogin: userProfile.lastLogin,
           createdAt: userProfile.createdAt,
+        });
+      } else if (currentUser) {
+        // Fallback for missing profile record
+        setProfile({
+          id: currentUser.id,
+          email: currentUser.email || "",
+          name: currentUser.user_metadata?.full_name || currentUser.email?.split("@")[0] || "Student",
+          role: "user",
+          displayName: currentUser.user_metadata?.full_name || currentUser.email?.split("@")[0] || "Student",
+          createdAt: currentUser.created_at,
         });
       }
     } catch (error) {
@@ -119,7 +129,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const refreshProfile = async () => {
     if (user) {
-      await fetchProfile(user.id);
+      await fetchProfile(user.id, user);
     }
   };
 
